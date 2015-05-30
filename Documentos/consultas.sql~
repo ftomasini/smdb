@@ -122,13 +122,13 @@ SELECT version();
 ORDER BY idx_percent, seq_scan DESC;
 
 --tamando de tabela em disco
-SELECT pg_size_pretty(pg_relation_size('fininvoice'));
+SELECT pg_size_pretty(pg_relation_size('nome_tabela'));
 
 --tamanho da tabela em disco levendo em conta tabela + indices
-SELECT pg_size_pretty(pg_total_relation_size('fininvoice'));
+SELECT pg_size_pretty(pg_total_relation_size('nome_tabela'));
 
 --tamanho da base de dados
-SELECT pg_size_pretty(pg_database_size('sagu_fametro'));
+SELECT pg_size_pretty(pg_database_size('nome_banco_de_dados'));
 
 --aproveitamento do cache por tabela (hit ratio),
 --para cada tabela do banco mostra um percentual que 

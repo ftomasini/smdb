@@ -17,6 +17,7 @@ configuração da base de dados
 
 
 
+
 configuração de alertas (com alertas pre-definidos)
     disparar alerta sempre que resulatado da qery for diferente do programado
 
