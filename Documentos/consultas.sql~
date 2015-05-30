@@ -17,6 +17,7 @@ configuração da base de dados
 
 
 
+
 configuração de alertas (com alertas pre-definidos)
     disparar alerta sempre que resulatado da qery for diferente do programado
 
@@ -165,8 +166,8 @@ SELECT round(
 --Por exemplo, para mostrar o PID e o comando corrente de todos os processos servidor:
 
 SELECT pg_stat_get_backend_pid(s.backendid) AS procpid,
-       pg_stat_get_backend_activity(s.backendid) AS current_query
-    FROM (SELECT pg_stat_get_backend_idset() AS backendid) AS s;
+       pg_stat_get_backend_activity(s.backendid) AS current_query    
+  FROM (SELECT pg_stat_get_backend_idset() AS backendid) AS s;
 
 
 

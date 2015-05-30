@@ -123,9 +123,11 @@ SELECT version();
 ORDER BY idx_percent, seq_scan DESC;
 
 --tamando de tabela em disco
+
 SELECT pg_size_pretty(pg_relation_size('nome_tabela'));
 
 --tamanho da tabela em disco levendo em conta tabela + indices
+
 SELECT pg_size_pretty(pg_total_relation_size('nome_tabela'));
 
 --tamanho da base de dados
@@ -166,8 +168,8 @@ SELECT round(
 --Por exemplo, para mostrar o PID e o comando corrente de todos os processos servidor:
 
 SELECT pg_stat_get_backend_pid(s.backendid) AS procpid,
-       pg_stat_get_backend_activity(s.backendid) AS current_query
-    FROM (SELECT pg_stat_get_backend_idset() AS backendid) AS s;
+       pg_stat_get_backend_activity(s.backendid) AS current_query    
+  FROM (SELECT pg_stat_get_backend_idset() AS backendid) AS s;
 
 
 
