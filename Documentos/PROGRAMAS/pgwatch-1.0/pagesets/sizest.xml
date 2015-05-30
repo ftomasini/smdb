@@ -1,0 +1,380 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset timeline="true">
+
+<breadcrumb>
+	<item type="menu" label="Storage and cache" href="#set=sizes"/>
+	<item type="root" label="Sizes over time" href="#set=sizest&amp;page=instances"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="storage_cache_right.tpl"/>
+</rightmenu>
+
+<if sql_condition="'{{var:dates:gap}}'::interval &lt; '1 day'::interval">
+	<then>
+		<var name="datasource_table" value="t_stat_all_tables"/>
+		<var name="datasource_schema" value="t_stat_all_schemas"/>
+		<var name="datasource_index" value="t_stat_all_indexes"/>
+	</then>
+	<else>
+		<var name="datasource_table" value="t_stat_all_tables_day"/>
+		<var name="datasource_schema" value="t_stat_all_schemas_day"/>
+		<var name="datasource_index" value="t_stat_all_indexes_day"/>
+	</else>
+</if>
+<query debug="false">
+	CREATE TEMP TABLE timeline AS {{var:dates:gran}};
+	CREATE INDEX tmp_timeline_a2 ON timeline (date_a2);
+	CREATE INDEX tmp_timeline_b2 ON timeline (date_b2);
+</query>
+
+<page id="instances" default="true" timeline="true" inputs="pager date_from date_until">
+	<title>All instances</title>
+	<query varname="inst" paginate="true">
+		SELECT id,descr FROM config.t_node ORDER BY 2
+		<query varname="subinst">
+			SELECT date, sum(size) AS size FROM (
+				SELECT g.date_m AS "date", database_id, max(size) AS "size"
+					FROM timeline AS g LEFT JOIN raw_data.t_database_size AS s
+					ON (g.date_a2 &lt;= s.tstamp AND s.tstamp &lt; g.date_b2 AND node_id={{db_result:inst:id}})
+					GROUP BY 1,2
+			) AS x GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:inst:descr}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subinst">
+					<param value="date"/>
+					<param value="size"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=sizest&amp;page=databases&amp;node_id={{db_result:inst:id}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data"> <!-- MSLine -->
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="inst"/>
+			<param name="base_url" value="set=sizest&amp;page=instances"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="byte"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="true" inputs="pager node_id date_from date_until">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Databases in {{db_result:node:descr:0}}</title>
+	<query varname="dbs" paginate="true">
+		SELECT id,database_name FROM config.t_database WHERE node_id={{input:node_id}} ORDER BY 2
+		<query varname="subdbs">
+			SELECT g.date_m AS "date", max(size) AS size
+				FROM timeline AS g LEFT JOIN raw_data.t_database_size AS s
+					ON (g.date_a2 &lt;= s.tstamp AND s.tstamp &lt; g.date_b2
+						AND node_id={{input:node_id}} AND database_id={{db_result:dbs:id}})
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:dbs:database_name}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subdbs">
+					<param value="date"/>
+					<param value="size"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=sizest&amp;page=schemas&amp;db_id={{db_result:dbs:id}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data"> <!--MSLine-->
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="inst"/>
+			<param name="base_url" value="set=sizest&amp;page=databases&amp;node_id={{input:node_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="byte"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizest&amp;page=databases&amp;node_id={{input:node_id}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="schemas" timeline="true" inputs="pager db_id">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Schemas in {{db_result:db:database_name:0}}</title>
+
+	<query debug="false">
+		CREATE TEMP TABLE raw_table AS SELECT * FROM raw_data.{{var:datasource_schema}}
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}}
+				AND tstamp BETWEEN '{{var:dates:date_from}}' AND '{{var:dates:date_until}}';
+		CREATE INDEX raw_idx1 ON raw_table (tstamp);
+		CREATE INDEX raw_idx2 ON raw_table (schemaname);
+	</query>
+
+	<query varname="sch" paginate="true" debug="false">
+		SELECT DISTINCT schemaname FROM raw_table ORDER BY 1
+		<query varname="subsch" debug="false">
+			WITH x AS (SELECT g.date_m AS "date", relname, max(total_size) AS size FROM timeline AS g
+				LEFT JOIN raw_table ON (schemaname='{{db_result:sch:schemaname}}' AND g.date_a2 &lt;= tstamp AND tstamp &lt; g.date_b2)
+				GROUP BY 1,2)
+			SELECT date, sum(size) AS size FROM x GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:sch:schemaname}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subsch">
+					<param value="date"/>
+					<param value="size"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=sizest&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{db_result:sch:schemaname}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+
+	<chart multiseries="true" varname="chart" type="MSLine" source="data"> <!--MSLine-->
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sch"/>
+			<param name="base_url" value="set=sizest&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="byte"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizest&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizest&amp;page=schemas&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="tables" timeline="true" inputs="pager db_id schema">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Tables in {{input:schema}}</title>
+
+	<query debug="false">
+		CREATE TEMP TABLE raw_table AS SELECT * FROM raw_data.{{var:datasource_table}}
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}}
+				AND tstamp BETWEEN '{{var:dates:date_from}}' AND '{{var:dates:date_until}}';
+		CREATE INDEX raw_idx1 ON raw_table (tstamp);
+		CREATE INDEX raw_idx2 ON raw_table (schemaname, relname);
+	</query>
+
+	<query varname="tab" paginate="true">
+		SELECT DISTINCT relname FROM raw_table WHERE schemaname='{{input:schema}}' ORDER BY 1
+		<query varname="subtab" debug="false">
+			SELECT g.date_m AS "date", max(total_size) AS size FROM timeline AS g
+				LEFT JOIN raw_table ON (schemaname='{{input:schema}}' AND relname='{{db_result:tab:relname}}'
+					AND g.date_a2 &lt;= tstamp AND tstamp &lt; g.date_b2)
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:tab:relname}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subtab">
+					<param value="date"/>
+					<param value="size"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=sizest&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{db_result:tab:relname}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+
+	<chart multiseries="true" varname="chart" type="MSLine" source="data"> <!--MSLine-->
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="tab"/>
+			<param name="base_url" value="set=sizest&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="byte"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizest&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizest&amp;page=schemas&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=sizest&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="indexes" timeline="true" inputs="pager db_id schema">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Indexes in {{input:schema}}</title>
+
+	<query debug="false">
+		CREATE TEMP TABLE raw_table AS SELECT * FROM raw_data.{{var:datasource_index}}
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+				AND tstamp BETWEEN '{{var:dates:date_from}}' AND '{{var:dates:date_until}}';
+		CREATE INDEX raw_idx1 ON raw_table (tstamp);
+		CREATE INDEX raw_idx2 ON raw_table (indexrelname);
+	</query>
+
+	<query varname="idx" paginate="true">
+		SELECT DISTINCT indexrelname FROM raw_table ORDER BY 1
+		<query varname="subidx">
+			SELECT g.date_m AS "date", max(relation_size) AS size FROM timeline AS g LEFT JOIN raw_table
+				ON (indexrelname='{{db_result:idx:indexrelname}}' AND g.date_a2 &lt;= tstamp AND tstamp &lt; g.date_b2)
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:idx:indexrelname}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subidx">
+					<param value="date"/>
+					<param value="size"/>
+				</param>
+			</param>
+		</var>
+	</query>
+
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="idx"/>
+			<param name="base_url" value="set=sizest&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="byte"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizest&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizest&amp;page=schemas&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=sizest&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="tabindexes" timeline="true" inputs="pager db_id schema table">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Indexes of {{input:table}} in {{input:schema}}</title>
+
+	<query debug="false">
+		CREATE TEMP TABLE raw_table AS SELECT * FROM raw_data.{{var:datasource_index}}
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}' AND relname='{{input:table}}'
+				AND tstamp BETWEEN '{{var:dates:date_from}}' AND '{{var:dates:date_until}}';
+		CREATE INDEX raw_idx1 ON raw_table (tstamp);
+		CREATE INDEX raw_idx2 ON raw_table (indexrelname);
+	</query>
+
+	<query varname="idx" paginate="true">
+		SELECT DISTINCT indexrelname FROM raw_table	ORDER BY 1
+		<query varname="subidx">
+			SELECT g.date_m AS "date", max(relation_size) AS size FROM timeline AS g LEFT JOIN raw_table
+				ON (indexrelname='{{db_result:idx:indexrelname}}' AND g.date_a2 &lt;= tstamp AND tstamp &lt; g.date_b2)
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:idx:indexrelname}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subidx">
+					<param value="date"/>
+					<param value="size"/>
+				</param>
+			</param>
+		</var>
+	</query>
+
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="idx"/>
+			<param name="base_url" value="set=sizest&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{input:table}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="byte"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizest&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizest&amp;page=schemas&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=sizest&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="table" label="{{input:table}}" href="#set=sizest&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{input:table}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

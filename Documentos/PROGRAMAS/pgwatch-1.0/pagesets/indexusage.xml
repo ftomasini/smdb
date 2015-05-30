@@ -1,0 +1,214 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset>
+
+<breadcrumb>
+	<item type="menu" label="Indexes" href="#set=indexes"/>
+	<item type="root" label="Index cache hit rate" href="#set=indexusage&amp;page=instances"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="indexes_right.tpl"/>
+</rightmenu>
+
+<page id="instances" default="true" timeline="false" inputs="pager">
+	<title>Index cache hit rate</title>
+	<description>To find the index sizes you are looking for please choose a database instance first.<br/>
+		In this table the total size shows the entire size of the instance, not the size of the indexes yet.<br/>
+		The column "Added" is the time when the database instance was added to the configuration.
+	</description>
+	<query varname="sql">
+		SELECT id, descr AS instance,
+			(SELECT sum(size) FROM raw_data.t_database_size WHERE node_id=n.id AND tstamp=(SELECT max(tstamp) FROM log.t_sync)) AS total_size,
+			substr(added::timestamp::text,1,19)::timestamp AS added
+			FROM config.t_node AS n ORDER BY descr
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="link_column" value="instance"/>
+		<param name="link_target" value="set=indexusage&amp;page=databases"/>
+		<param name="link_params" type="array">
+			<param value="id" name="node_id"/>
+		</param>
+		<param name="hidden_cols" type="array">
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="total_size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="sort_col" value="instance"/>
+	</datatable>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="false" inputs="pager node_id">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Index cache hit rate in {{db_result:node:descr:0}}</title>
+	<description>To find the index sizes you are looking for please choose a database in this step.<br/>
+		In this table the total size shows the entire size of the instance, not the size of the indexes.<br/>
+	</description>
+	<query varname="sql" debug="false">
+		WITH y AS (SELECT max(tstamp) AS tstamp, node_id, database_id FROM raw_data.t_database_size WHERE node_id={{input:node_id}} GROUP BY 2, 3)
+		SELECT d.id, d.database_name, z.size AS total_size, substr(z.tstamp::timestamp::text,1,19)::timestamp AS last_sync
+			FROM y JOIN raw_data.t_database_size AS z USING (node_id, database_id, tstamp)
+				JOIN config.t_database AS d ON (y.database_id = d.id) ORDER BY 2
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="hidden_cols" type="array">	
+		</param>
+		<param name="link_column" value="database_name"/>
+		<param name="link_target" value="set=indexusage&amp;page=schemas"/>
+		<param name="link_params" type="array">
+			<param value="id" name="db_id"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="total_size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="col_heads" type="array">
+			<param name="tstamp" value="Timestamp"/>
+		</param>
+		<param name="sort_col" value="database_name"/>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=indexusage&amp;page=databases&amp;node_id={{input:node_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="schemas" timeline="false" inputs="pager db_id">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index cache hit rate in {{db_result:db:database_name:0}}</title>
+	<description>In the datatable below you can see the summarized index cache hit rate and size per schema in the given database.<br/>
+		The items are displayed in descending order of cache hit rate.<br/>
+	</description>
+	<query varname="sql" debug="false">
+		WITH x AS (SELECT node_id, database_id, schemaname, max(tstamp) AS tstamp FROM raw_data.t_stat_all_schema_indexes
+				WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} GROUP BY 1,2,3),
+			i AS (SELECT tstamp, node_id, database_id, schemaname, count(*) FROM raw_data.t_stat_all_indexes
+				JOIN x USING (tstamp, node_id, database_id, schemaname) GROUP BY 1,2,3,4)
+		SELECT t.node_id, t.database_id AS id, t.schemaname AS schema,
+			(SELECT count FROM i WHERE i.node_id=t.node_id AND i.database_id=t.database_id AND i.schemaname=t.schemaname) AS index_count,
+			sum(t.relation_size) AS index_size,
+			CASE WHEN sum(idx_blks_read+idx_blks_hit)>0
+				THEN round( 100 * sum(idx_blks_hit) / sum(idx_blks_read+idx_blks_hit), 1)
+				ELSE 0 END AS cache_hit_rate,
+			date_trunc('second', t.tstamp)::timestamp AS last_sync
+			FROM raw_data.t_stat_all_schema_indexes AS t
+				JOIN raw_data.t_statio_all_schema_indexes AS t2 USING (tstamp, database_id, schemaname)
+				JOIN x ON (t.node_id=x.node_id AND t.database_id=x.database_id AND t.schemaname=x.schemaname AND t.tstamp=x.tstamp)
+			GROUP BY 2,3,t.tstamp, t.node_id
+			ORDER BY cache_hit_rate DESC, 2
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="hidden_cols" type="array">
+			<param value="id"/>
+			<param value="node_id"/>
+		</param>
+		<param name="link_column" value="schema"/>
+		<param name="link_target" value="set=indexusage&amp;page=indexes"/>
+		<param name="link_params" type="array">
+			<param value="id" name="db_id"/>
+			<param value="schema"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="index_count" value="number"/>
+			<param name="index_size" value="byte"/>
+			<param name="cache_hit_rate" value="percent"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="col_heads" type="array">
+			<param name="tstamp" value="Timestamp"/>
+		</param>
+		<param name="sort_col" value="cache_hit_rate"/>
+		<param name="sort_dir" value="desc"/>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=indexusage&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=indexusage&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="indexes" timeline="false" inputs="pager db_id schema">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index cache hit rate in {{input:schema}}</title>
+	<query varname="sql" paginate="true" debug="false">
+		WITH x AS (SELECT node_id, database_id, schemaname, max(tstamp) FROM raw_data.t_statio_all_indexes
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+				AND tstamp=(SELECT tstamp FROM log.t_sync ORDER BY id DESC LIMIT 1) GROUP BY 1,2,3)
+		SELECT indexrelname AS index, relname AS table,
+			sum(idx_blks_read+idx_blks_hit) AS read_blocks, sum(idx_blks_hit) AS hit_blocks,
+			CASE WHEN sum(idx_blks_read+idx_blks_hit)>0
+				THEN round( 100 * sum(idx_blks_hit) / sum(idx_blks_read+idx_blks_hit), 1)
+				ELSE 0 END AS cache_hit_rate
+			FROM raw_data.t_statio_all_indexes AS b
+				JOIN x ON (b.tstamp=x.max AND b.node_id=x.node_id AND b.database_id=x.database_id AND b.schemaname=x.schemaname)
+			GROUP BY 1,2 ORDER BY 5 DESC
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="index"/>
+		<param name="value_column" value="cache_hit_rate"/>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=indexusage&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="link_column" value="schema"/>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="read_blocks" value="number"/>
+				<param name="hit_blocks" value="number"/>
+				<param name="cache_hit_rate" value="percent"/>
+			</param>
+			<param name="format_col_heads" value="replace:_: |ucfirst"/>
+			<param name="col_heads" type="array">
+				<param name="tstamp" value="Timestamp"/>
+			</param>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=indexusage&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=indexusage&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=indexusage&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

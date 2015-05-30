@@ -1,0 +1,135 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset timeline="true">
+
+<breadcrumb>
+	<item type="menu" label="Database activity" href="#set=dbactivity"/>
+	<item type="root" label="Checkpoints done" href="#set=checkpoints"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="dbactivity_right.tpl"/>
+</rightmenu>
+
+<query debug="false">
+	CREATE TEMP TABLE timeline AS {{var:dates:gran}};
+	CREATE INDEX tmp_timeline_a2 ON timeline (date_a2);
+	CREATE INDEX tmp_timeline_b2 ON timeline (date_b2);
+</query>
+
+<page id="instances" default="true" timeline="true" inputs="pager date_from date_until">
+	<title>Checkpoints done</title>
+	<description>The values mean the number of checkpoints done during the <b>{{var:dates:gap}}</b> long intervals.</description>
+	<query varname="sql" paginate="true" rows_per_page="5">
+		SELECT id,descr FROM config.t_node ORDER BY 2
+		<query varname="subsql">
+			SELECT g.date_m AS "date",
+				greatest(0,round(max(b.checkpoints_timed+b.checkpoints_req)-lag(max(b.checkpoints_timed+b.checkpoints_req),1,max(b.checkpoints_timed+b.checkpoints_req)) OVER (ORDER BY g.date_m),1)) AS cp
+				FROM timeline AS g
+					LEFT JOIN raw_data.t_stat_bgwriter AS b
+					ON (g.date_a2 &lt;= b.tstamp AND b.tstamp &lt; g.date_b2 AND node_id={{db_result:sql:id}})
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:sql:descr}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subsql">
+					<param value="date"/>
+					<param value="cp"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=checkpoints&amp;page=details&amp;node_id={{db_result:sql:id}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="number"/>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=checkpoints&amp;page=instances"/>
+		</param>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="checkpoints_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="details" timeline="true" inputs="pager node_id date_from date_until">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Checkpoints done in {{db_result:node:descr:0}}</title>
+	<description>The values mean the number of checkpoints done during the <b>{{var:dates:gap}}</b> long intervals.</description>
+	<query varname="subsql">
+		SELECT g.date_m AS "date",
+			greatest(0,round(max(b.checkpoints_timed)-lag(max(b.checkpoints_timed),1,max(b.checkpoints_timed)) OVER (ORDER BY g.date_m),1)) AS timed,
+			greatest(0,round(max(b.checkpoints_req)-lag(max(b.checkpoints_req),1,max(b.checkpoints_req)) OVER (ORDER BY g.date_m),1)) AS requested,
+			greatest(0,round(max(b.checkpoints_timed+b.checkpoints_req)-lag(max(b.checkpoints_timed+b.checkpoints_req),1,max(b.checkpoints_timed+b.checkpoints_req)) OVER (ORDER BY g.date_m),1)) AS total
+		FROM timeline AS g LEFT JOIN raw_data.t_stat_bgwriter AS b
+			ON (g.date_a2 &lt;= b.tstamp AND b.tstamp &lt; g.date_b2 AND node_id={{input:node_id}})
+		GROUP BY 1 ORDER BY 1 OFFSET 1
+	</query>
+	<var name="data" type="array" append="true">
+		<param type="array">
+			<param name="dataset_name" value="Total"/>
+			<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc_hold" source="subsql">
+				<param value="date"/>
+				<param value="total"/>
+			</param>
+		</param>
+			<param type="array">
+			<param name="dataset_name" value="Timed"/>
+			<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc_hold" source="subsql">
+				<param value="date"/>
+				<param value="timed"/>
+			</param>
+		</param>
+		<param type="array">
+			<param name="dataset_name" value="Requested"/>
+			<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subsql">
+				<param value="date"/>
+				<param value="requested"/>
+			</param>
+		</param>
+	</var>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="number"/>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="subsql"/>
+			<param name="base_url" value="set=checkpoints&amp;page=details&amp;node_id={{input:node_id}}"/>
+		</param>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=checkpoints&amp;page=details&amp;node_id={{input:node_id}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="checkpoints_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+
+</pageset>
+

@@ -1,0 +1,66 @@
+; Connection parameters to main database
+pgwatch_connect_string = "host=__DBHOST__ dbname=__DBNAME__ port=__DBPORT__ user=__DBUSER__ password=__DBPASS__"
+
+; Web root url without trailing slash ("/")
+web_root = "http://__HOSTNAME__/__FOLDER__"
+
+; Temporary files folder
+tmp_dir = "__TMPDIR__"
+
+; When during synchronization a daily aggregation also happens for tables and indexes info.
+; This variable tells the system what length of interval to reprocess.
+; Must be at least 1 hour, but to avoid "holes" in data due to any syytem halts
+; it's better to choose a bigger interval.
+sync_agg_reprocess_interval = "2 days"
+
+; allowed pg versions (dropdown in configure menu)
+allowed_pg_versions[] = "8.4"
+allowed_pg_versions[] = "9.0"
+allowed_pg_versions[] = "9.1"
+
+; Allow caching dbrow objects for acceleration purposes, but needs more memory
+allow_cache = true
+
+; Allow response template if handler not exists (may be true when developing)
+allow_response_template = true
+
+; YUI datatable container div width
+default_datatable_width = 670
+
+; Whether to log queries and execution circumstances defined in pagesets or not
+log_xml_queries = false
+
+; Show up charts animated or faster, without animation
+chart_animation = true
+
+; Max number of sub intervals the time-based charts should split up the date interval into
+chart_points_max = 40
+
+; Count of items on a non-time-based charts (ie. bar or column diagram).
+; Over this number the chart will be paginated.
+chart_rows_per_page = 10
+
+; Default width of charts
+chart_size_x = 670
+
+; Default height of charts
+chart_size_y = 300
+
+; In dashboard the default date interval size until current day
+dashboard_default_timeline_days = 2
+
+; Default pagesize for paginated YUI datatables
+datatable_pagesize = 25
+
+; Reverse rows order in datatables.
+; Useful for datatables displayed for time-based charts;
+; it will display the latest data first
+datatable_reversed = false
+
+; Minium width of datatable in pixels.
+; Actually divided by column count and columns get this minwidth argument.
+datatable_min_width_px = 400
+
+; Time-based graphs tend to curve down in the end due to uncomplete last interval.
+; this variable can prevent this phenomenon by omitting the last fragment interval up to "now".
+truncate_date_filtering_to_whole_intervals = true

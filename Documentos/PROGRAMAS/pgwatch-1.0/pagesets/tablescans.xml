@@ -1,0 +1,319 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset timeline="true">
+
+<breadcrumb>
+	<item type="menu" label="Indexes" href="#set=indexes"/>
+	<item type="root" label="Index vs seq scans ratio" href="#set=tablescans&amp;page=instances"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="indexes_right.tpl"/>
+</rightmenu>
+
+<if sql_condition="'{{var:dates:gap}}'::interval &lt; '1 day'::interval">
+	<then>
+		<var name="datasource_stat" value="t_stat_all_tables"/>
+		<var name="datasource_statio" value="t_statio_all_tables"/>
+		<var name="datasource_stat_schema" value="t_stat_all_schemas"/>
+		<var name="datasource_statio_schema" value="t_statio_all_schemas"/>
+	</then>
+	<else>
+		<var name="datasource_stat" value="t_stat_all_tables_day"/>
+		<var name="datasource_statio" value="t_statio_all_tables_day"/>
+		<var name="datasource_stat_schema" value="t_stat_all_schemas_day"/>
+		<var name="datasource_statio_schema" value="t_statio_all_schemas_day"/>
+	</else>
+</if>
+
+<query debug="false">
+	CREATE TEMP TABLE timeline AS {{var:dates:gran}};
+	CREATE INDEX tmp_timeline_a2 ON timeline (date_a2);
+	CREATE INDEX tmp_timeline_b2 ON timeline (date_b2);
+</query>
+
+<page id="instances" default="true" timeline="false" inputs="pager">
+	<title>Index vs seq scans ratio</title>
+	<description>To find the scans ratio you are looking for please choose a database instance first.<br/>
+		In this table the total size shows the entire size of the instance.<br/>
+		The column "Added" is the time when the database instance was added to the configuration.
+	</description>
+	<query varname="sql">
+		SELECT id, descr AS instance,
+			(SELECT sum(size) FROM raw_data.t_database_size WHERE node_id=n.id AND tstamp=(SELECT max(tstamp) FROM log.t_sync)) AS total_size,
+			substr(added::timestamp::text,1,19)::timestamp AS added
+			FROM config.t_node AS n ORDER BY descr
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="link_column" value="instance"/>
+		<param name="link_target" value="set=tablescans&amp;page=databases"/>
+		<param name="link_params" type="array">
+			<param value="id" name="node_id"/>
+		</param>
+		<param name="hidden_cols" type="array">
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="total_size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="col_heads" type="array">
+			<param name="tstamp" value="Timestamp"/>
+		</param>
+		<param name="sort_col" value="instance"/>
+	</datatable>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="false" inputs="pager node_id">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Index vs seq scans ratio in {{db_result:node:descr:0}}</title>
+	<description>To find the scans ratio you are looking for please choose a database.<br/>
+		In this table the total size shows the entire size of the database.<br/>
+		The items are displayed in descending order of sizes.
+	</description>
+	<query varname="sql">
+		SELECT d.id, d.database_name, z.size AS total_size, substr(z.tstamp::timestamp::text,1,19)::timestamp AS last_sync
+			FROM (SELECT max(id) AS x, node_id, database_id
+				FROM raw_data.t_database_size
+				GROUP BY 2, 3) AS y
+			JOIN raw_data.t_database_size AS z ON (y.x = z.id)
+			JOIN config.t_database AS d ON (y.database_id = d.id)
+			WHERE d.node_id = {{input:node_id}}
+			ORDER BY 2
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="hidden_cols" type="array">	
+		</param>
+		<param name="link_column" value="database_name"/>
+		<param name="link_target" value="set=tablescans&amp;page=schemas"/>
+		<param name="link_params" type="array">
+			<param value="id" name="db_id"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="total_size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="sort_col" value="database_name"/>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=tablescans&amp;page=databases&amp;node_id={{input:node_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="schemas" timeline="false" inputs="pager db_id">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index vs seq scans ratio in {{db_result:db:database_name:0}}</title>
+	<description>In the datatable below you can see the table count with their sizes, and cumulative scan counts.<br/>
+		Cumulative ratio means the number of index scans divided by total scans count on the objects over their entire lifetime up till now.<br/>
+		The items are displayed in descending order of cumulative ratio.
+	</description>
+	<query varname="sql" debug="false">
+		WITH a AS (SELECT node_id, database_id, schemaname, max(tstamp) AS tstamp FROM raw_data.{{var:datasource_stat_schema}}
+				WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} GROUP BY 1,2,3),
+			i AS (SELECT node_id, database_id, schemaname, count(*) FROM raw_data.t_stat_all_tables AS t
+				JOIN a USING (node_id, database_id, schemaname)
+				WHERE t.tstamp = (SELECT max(tstamp) FROM log.t_sync ORDER BY 1 DESC LIMIT 1)
+				GROUP BY 1,2,3)
+		SELECT t.node_id, t.database_id AS id, t.schemaname AS schema,
+			i.count AS table_count,
+			sum(t.total_size) AS total_size,
+			CASE coalesce(sum(idx_scan+seq_scan),0)
+				WHEN 0 THEN 0
+				ELSE round(100.0 * sum(idx_scan)/sum(idx_scan+seq_scan),1) END AS cumulative_ratio
+			FROM raw_data.{{var:datasource_stat_schema}} AS t
+				JOIN a USING (node_id, database_id, schemaname, tstamp)
+				JOIN i USING (node_id, database_id, schemaname)
+			WHERE t.database_id={{input:db_id}} AND t.tstamp>'YESTERDAY'::timestamp
+			GROUP BY 1,2,3,4
+			ORDER BY cumulative_ratio DESC, total_size DESC, 3
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="hidden_cols" type="array">
+			<param value="id"/>
+			<param value="node_id"/>
+		</param>
+		<param name="link_column" value="schema"/>
+		<param name="link_target" value="set=tablescans&amp;page=tables"/>
+		<param name="link_params" type="array">
+			<param value="id" name="db_id"/>
+			<param value="schema"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="table_count" value="number"/>
+			<param name="total_size" value="byte"/>
+			<param name="cumulative_ratio" value="percent"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="col_heads" type="array">
+			<param name="tstamp" value="Timestamp"/>
+		</param>
+		<param name="sort_col" value="cumulative_ratio"/>
+		<param name="sort_dir" value="desc"/>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=tablescans&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=tablescans&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="tables" timeline="true" inputs="pager db_id schema date_from date_until">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index vs seq scans ratio in {{input:schema}}</title>
+
+	<query varname="tab" paginate="true" rows_per_page="5">
+		SELECT DISTINCT database_name, schemaname, relname, d.id AS db_id
+			FROM raw_data.{{var:datasource_stat}} AS t JOIN config.t_database AS d ON (t.database_id=d.id AND t.node_id=d.node_id)
+			WHERE t.node_id={{db_result:node:id}} AND t.database_id={{input:db_id}} AND schemaname='{{input:schema}}' AND tstamp>'YESTERDAY'::timestamp
+			ORDER BY 1,2,3,4
+		<query varname="subtab">
+			SELECT date, CASE coalesce(idx+seq,0) WHEN 0 THEN 0 ELSE round(100.0 * idx / (idx+seq), 1) END AS ratio FROM (
+				SELECT g.date_m AS "date",
+					max(idx_scan)-lag(max(idx_scan)) OVER (ORDER BY g.date_m) AS idx,
+					max(seq_scan)-lag(max(seq_scan)) OVER (ORDER BY g.date_m) AS seq
+				FROM timeline AS g LEFT JOIN raw_data.{{var:datasource_stat}} AS i
+					ON (g.date_a &lt;= to_char(i.tstamp,'{{var:dates:date_pattern}}')
+						AND to_char(i.tstamp,'{{var:dates:date_pattern}}') &lt; g.date_b
+						AND i.node_id={{db_result:node:id}}
+						AND i.database_id={{db_result:tab:db_id}}
+						AND i.schemaname='{{db_result:tab:schemaname}}'
+						AND i.relname='{{db_result:tab:relname}}')
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+			) AS x;
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:tab:relname}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subtab">
+					<param value="date"/>
+					<param value="ratio"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=tablescans&amp;page=table&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{db_result:tab:relname}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="tab"/>
+			<param name="base_url" value="set=tablescans&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="percent"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=tablescans&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=tablescans&amp;page=schemas&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=tablescans&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="table" timeline="true" inputs="pager db_id schema table date_from date_until">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index vs seq scans ratio in {{input:schema}}</title>
+
+	<query varname="tab" paginate="true" rows_per_page="5">
+		SELECT DISTINCT database_name, schemaname, relname, d.id AS db_id
+			FROM raw_data.{{var:datasource_stat}} AS t JOIN config.t_database AS d ON (t.database_id=d.id AND t.node_id=d.node_id)
+			WHERE d.node_id={{db_result:node:id}} AND d.id={{input:db_id}} AND schemaname='{{input:schema}}' AND relname='{{input:table}}'
+				AND tstamp>'YESTERDAY'::timestamp
+			ORDER BY 1,2,3,4
+		<query varname="subtab">
+			SELECT date, CASE coalesce(idx+seq,0) WHEN 0 THEN 0 ELSE round(100.0 * idx / (idx+seq), 1) END AS ratio FROM (
+				SELECT g.date_m AS "date",
+					max(idx_scan)-lag(max(idx_scan)) OVER (ORDER BY g.date_m) AS idx,
+					max(seq_scan)-lag(max(seq_scan)) OVER (ORDER BY g.date_m) AS seq
+				FROM timeline AS g LEFT JOIN raw_data.{{var:datasource_stat}} AS i
+					ON (g.date_a &lt;= to_char(i.tstamp,'{{var:dates:date_pattern}}')
+						AND to_char(i.tstamp,'{{var:dates:date_pattern}}') &lt; g.date_b
+						AND i.node_id={{db_result:node:id}}
+						AND i.database_id={{db_result:tab:db_id}}
+						AND i.schemaname='{{db_result:tab:schemaname}}'
+						AND i.relname='{{db_result:tab:relname}}')
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+			) AS x;
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:tab:relname}}"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subtab">
+					<param value="date"/>
+					<param value="ratio"/>
+				</param>
+			</param>
+		</var>
+	</query>
+
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="tab"/>
+			<param name="base_url" value="set=tablescans&amp;page=table&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{input:table}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="percent"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=tablescans&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=tablescans&amp;page=schemas&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=tablescans&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="table" label="{{input:table}}" href="#set=tablescans&amp;page=table&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{input:table}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

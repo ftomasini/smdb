@@ -1,0 +1,177 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset timeline="true">
+
+<breadcrumb>
+	<item type="menu" label="Database activity" href="#set=dbactivity"/>
+	<item type="root" label="Commits" href="#set=xactdiffc"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="dbactivity_right.tpl"/>
+</rightmenu>
+
+<query debug="false">
+	CREATE TEMP TABLE timeline AS {{var:dates:gran}};
+	CREATE INDEX tmp_timeline_a2 ON timeline (date_a2);
+	CREATE INDEX tmp_timeline_b2 ON timeline (date_b2);
+</query>
+
+<page id="instances" default="true" timeline="true" inputs="pager date_from date_until">
+	<title>Instance commits</title>
+	<description>The values mean the number of commits during the <b>{{var:dates:gap}}</b> long intervals.</description>
+	<query varname="sql" paginate="true" rows_per_page="5">
+		SELECT id,descr FROM config.t_node ORDER BY 2
+		<query varname="subsql">
+			SELECT g.date_m AS "date",
+					greatest(0,round(max(xc)-lag(max(xc)) OVER (ORDER BY g.date_m),1)) AS xact_commit
+				FROM timeline AS g
+				LEFT JOIN (SELECT tstamp,sum(xact_commit) AS xc, sum(xact_rollback) AS xr
+					FROM raw_data.t_stat_database WHERE node_id={{db_result:sql:id}} GROUP BY 1 ORDER BY 1) AS b
+					ON (g.date_a2 &lt;= b.tstamp AND b.tstamp &lt; g.date_b2)
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:sql:descr}} commits"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subsql">
+					<param value="date"/>
+					<param value="xact_commit"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=xactdiffc&amp;page=databases&amp;node_id={{db_result:sql:id}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="number"/>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=xactdiffc&amp;page=instances"/>
+		</param>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="xactdiffc_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="true" inputs="pager node_id date_from date_until">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Commits in {{db_result:node:descr:0}}</title>
+	<description>The values mean the number of commits during the <b>{{var:dates:gap}}</b> long intervals.</description>
+	<query varname="sql" paginate="true" rows_per_page="5">
+		SELECT id,database_name FROM config.t_database WHERE node_id={{input:node_id}} ORDER BY 2
+		<query varname="subsql">
+			SELECT g.date_m AS "date",
+					greatest(0,round(max(xc)-lag(max(xc)) OVER (ORDER BY g.date_m),1)) AS xact_commit
+				FROM timeline AS g
+				LEFT JOIN (SELECT tstamp,sum(xact_commit) AS xc, sum(xact_rollback) AS xr
+					FROM raw_data.t_stat_database WHERE node_id={{input:node_id}} AND database_id={{db_result:sql:id}} GROUP BY 1 ORDER BY 1) AS b
+						ON (g.date_a2 &lt;= b.tstamp AND b.tstamp &lt; g.date_b2)
+				GROUP BY 1 ORDER BY 1 OFFSET 1
+		</query>
+		<var name="data" type="array" append="true">
+			<param type="array">
+				<param name="dataset_name" value="{{db_result:sql:database_name}} commits"/>
+				<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="subsql">
+					<param value="date"/>
+					<param value="xact_commit"/>
+				</param>
+				<param name="params" value="link=javascript:$.historyLoad('set=xactdiffc&amp;page=database&amp;db_id={{db_result:sql:id}}&amp;{{var:dates:dates_in_url}}')"/>
+			</param>
+		</var>
+	</query>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=xactdiffc&amp;page=databases&amp;node_id={{input:node_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="number"/>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=xactdiffc&amp;page=databases&amp;node_id={{input:node_id}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="database" timeline="true" inputs="pager db_id date_from date_until">
+	<query varname="db">SELECT node_id, database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id}}</query>
+	<title>Commits in {{db_result:db:database_name}}</title>
+	<description>The values mean the number of commits during the <b>{{var:dates:gap}}</b> long intervals.</description>
+	<query varname="sql">
+		SELECT g.date_m AS "date",
+				greatest(0,round(max(xc)-lag(max(xc)) OVER (ORDER BY g.date_m),1)) AS xact_commit
+			FROM timeline AS g
+			LEFT JOIN (SELECT tstamp,sum(xact_commit) AS xc, sum(xact_rollback) AS xr
+				FROM raw_data.t_stat_database WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} GROUP BY 1 ORDER BY 1) AS b
+					ON (g.date_a2 &lt;= b.tstamp AND b.tstamp &lt; g.date_b2)
+			GROUP BY 1 ORDER BY 1 OFFSET 1
+	</query>
+	<var name="data" type="array" append="true">
+		<param type="array">
+			<param name="dataset_name" value="{{db_result:db:database_name}} commits"/>
+			<param name="dataset_cats_vals" type="db_method" method="fetch_all_assoc" source="sql">
+				<param value="date"/>
+				<param value="xact_commit"/>
+			</param>
+		</param>
+	</var>
+	<chart multiseries="true" varname="chart" type="MSLine" source="data">
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_values_formatter" value="number"/>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=xactdiffc&amp;page=database&amp;db_id={{input:db_id}}"/>
+		</param>
+		<param name="datatable_args" type="array">
+			<param name="reversed" type="bool" value="true"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=xactdiffc&amp;page=databases&amp;node_id={{db_result:node:id}}&amp;{{var:dates:dates_in_url}}"/>
+		<item type="database" label="{{db_result:db:database_name}}" href="#set=xactdiffc&amp;page=database&amp;db_id={{input:db_id}}&amp;{{var:dates:dates_in_url}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizest_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

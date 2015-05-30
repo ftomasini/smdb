@@ -1,0 +1,366 @@
+<?xml version='1.0' standalone='yes'?>
+<queries>
+
+<query debug="true" log="Retrieving t_stat_activity">
+	INSERT INTO raw_data.t_stat_activity
+		(tstamp, node_id, database_id, datid, datname, procpid, usesysid, usename, current_query,
+		waiting, xact_start, query_start, backend_start, client_addr, client_port)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT datid, datname, procpid, usesysid, usename, current_query,
+				waiting, xact_start, query_start, backend_start, client_addr, client_port
+				FROM pg_catalog.pg_stat_activity WHERE datname=''{{input:dbname}}''
+					AND current_query!=''&lt;IDLE&gt;'' AND procpid!=pg_backend_pid()')
+			AS (datid oid, datname name, procpid integer, usesysid oid, usename name,
+				current_query text, waiting boolean, xact_start timestamp, query_start timestamp,
+				backend_start timestamp, client_addr inet, client_port integer)
+</query>
+
+<query debug="true" log="Retrieving t_stat_all_indexes">
+	INSERT INTO raw_data.t_stat_all_indexes
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+		idx_scan, idx_tup_read, idx_tup_fetch, relation_size)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT relid, indexrelid, schemaname, relname, indexrelname,
+				idx_scan, idx_tup_read, idx_tup_fetch, pg_relation_size(indexrelid) AS relation_size
+				FROM pg_catalog.pg_stat_all_indexes')
+			AS (relid oid, indexrelid oid, schemaname name, relname name, indexrelname name,
+				idx_scan bigint, idx_tup_read bigint, idx_tup_fetch bigint, relation_size int8)
+</query>
+
+<query debug="true" log="Calculating t_stat_all_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_stat_all_indexes_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Retrieving t_stat_all_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_stat_all_indexes_day
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+		idx_scan, idx_tup_read, idx_tup_fetch, relation_size)
+		SELECT date_trunc('day',tstamp::timestamp),
+				node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+				max(idx_scan), max(idx_tup_read), max(idx_tup_fetch), max(relation_size)
+			FROM raw_data.t_stat_all_indexes
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6,7,8
+</query>
+
+<query debug="true" log="Retrieving t_stat_all_schema_indexes">
+	INSERT INTO raw_data.t_stat_all_schema_indexes
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+		idx_scan, idx_tup_read, idx_tup_fetch, relation_size)
+		WITH x AS (SELECT tstamp, node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+				max(idx_scan) as idx_scan, max(idx_tup_read) as idx_tup_read,
+				max(idx_tup_fetch) as idx_tup_fetch, max(relation_size) as relation_size
+			FROM raw_data.t_stat_all_indexes
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}} AND tstamp = '{{input:now}}'::timestamp
+			GROUP BY 1,2,3,4,5,6,7,8)
+		SELECT tstamp, node_id, database_id, NULL::int4 AS relid, NULL::int4 AS indexrelid,
+			schemaname, NULL::text AS relname, NULL::text AS indexrelname,
+			sum(idx_scan), sum(idx_tup_read), sum(idx_tup_fetch), sum(relation_size)
+			FROM x GROUP BY 1,2,3,4,5,6,7,8
+</query>
+
+<query debug="true" log="Calculating t_stat_all_schema_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_stat_all_schema_indexes_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Retrieving t_stat_all_schema_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_stat_all_schema_indexes_day
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+		idx_scan, idx_tup_read, idx_tup_fetch, relation_size)
+		SELECT date_trunc('day',tstamp::timestamp),
+				node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+				max(idx_scan), max(idx_tup_read), max(idx_tup_fetch), max(relation_size)
+			FROM raw_data.t_stat_all_schema_indexes
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6,7,8
+</query>
+
+
+<query debug="true" log="Retrieving t_stat_all_tables">
+	INSERT INTO raw_data.t_stat_all_tables
+		(tstamp, node_id, database_id, relid, schemaname, relname, seq_scan, seq_tup_read,
+		idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd,
+		n_live_tup, n_dead_tup, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze,
+		table_size, total_size)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT relid, schemaname, relname, seq_scan, seq_tup_read,
+				idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd,
+				n_live_tup, n_dead_tup, last_vacuum, last_autovacuum, last_analyze,
+				last_autoanalyze, pg_relation_size(relid)::int8 AS table_size,
+				pg_total_relation_size(relid)::int8 AS total_size
+				FROM pg_stat_all_tables')
+			AS (relid oid, schemaname name, relname name, seq_scan bigint, seq_tup_read bigint,
+				idx_scan bigint, idx_tup_fetch bigint, n_tup_ins bigint, n_tup_upd bigint,
+				n_tup_del bigint, n_tup_hot_upd bigint, n_live_tup bigint, n_dead_tup bigint,
+				last_vacuum timestamptz, last_autovacuum timestamptz, last_analyze timestamptz,
+				last_autoanalyze timestamptz, table_size int8, total_size int8)
+</query>
+
+<query debug="true" log="Deleting from t_stat_all_tables_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_stat_all_tables_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Calculating t_stat_all_tables_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_stat_all_tables_day
+		(tstamp, node_id, database_id, relid, schemaname, relname, seq_scan, seq_tup_read,
+		idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd,
+		n_live_tup, n_dead_tup, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze,
+		table_size, total_size)
+		SELECT date_trunc('day',tstamp), node_id, database_id, relid, schemaname,
+				relname, max(seq_scan), max(seq_tup_read), max(idx_scan), max(idx_tup_fetch), max(n_tup_ins), max(n_tup_upd),
+				max(n_tup_del), max(n_tup_hot_upd), max(n_live_tup), max(n_dead_tup), max(last_vacuum), max(last_autovacuum),
+				max(last_analyze), max(last_autoanalyze), max(table_size), max(total_size)
+			FROM raw_data.t_stat_all_tables
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6
+</query>
+
+<query debug="true" log="Calculating t_stat_all_schemas">
+	INSERT INTO raw_data.t_stat_all_schemas
+		(tstamp, node_id, database_id, relid, schemaname, relname, seq_scan, seq_tup_read,
+		idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd,
+		n_live_tup, n_dead_tup, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze,
+		table_size, total_size)
+		WITH x AS (SELECT tstamp, node_id, database_id, schemaname, relid, relname,
+				max(seq_scan) as seq_scan, max(seq_tup_read) as seq_tup_read, max(idx_scan) as idx_scan,
+				max(idx_tup_fetch) as idx_tup_fetch, max(n_tup_ins) as n_tup_ins, max(n_tup_upd) as n_tup_upd,
+				max(n_tup_del) as n_tup_del, max(n_tup_hot_upd) as n_tup_hot_upd, max(n_live_tup) as n_live_tup,
+				max(n_dead_tup) as n_dead_tup,
+				max(last_vacuum) as last_vacuum, max(last_autovacuum) as last_autovacuum,
+				max(last_analyze) as last_analyze, max(last_autoanalyze) as last_autoanalyze,
+				max(table_size) as table_size, max(total_size) as total_size
+			FROM raw_data.t_stat_all_tables
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}} AND tstamp = '{{input:now}}'::timestamp
+			GROUP BY 1,2,3,4,5,6)
+		SELECT tstamp, node_id, database_id, NULL::int4 AS relid, schemaname, NULL::text AS relname,
+				sum(seq_scan), sum(seq_tup_read), sum(idx_scan), sum(idx_tup_fetch), sum(n_tup_ins), sum(n_tup_upd),
+				sum(n_tup_del), sum(n_tup_hot_upd), sum(n_live_tup), sum(n_dead_tup),
+				max(last_vacuum), max(last_autovacuum), max(last_analyze), max(last_autoanalyze),
+				sum(table_size), sum(total_size)
+			FROM x GROUP BY 1,2,3,4,5,6
+</query>
+
+<query debug="true" log="Deleting from t_stat_all_schemas_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_stat_all_schemas_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Calculating t_stat_all_schemas_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_stat_all_schemas_day
+		(tstamp, node_id, database_id, relid, schemaname, relname, seq_scan, seq_tup_read,
+		idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd,
+		n_live_tup, n_dead_tup, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze,
+		table_size, total_size)
+		SELECT date_trunc('day',tstamp), node_id, database_id, relid, schemaname,
+				relname, max(seq_scan), max(seq_tup_read), max(idx_scan), max(idx_tup_fetch), max(n_tup_ins), max(n_tup_upd),
+				max(n_tup_del), max(n_tup_hot_upd), max(n_live_tup), max(n_dead_tup), max(last_vacuum), max(last_autovacuum),
+				max(last_analyze), max(last_autoanalyze), max(table_size), max(total_size)
+			FROM raw_data.t_stat_all_schemas
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6
+</query>
+<!--query debug="true" log="Calculating t_stat_all_schemas_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_stat_all_schemas_day
+		(tstamp, node_id, database_id, relid, schemaname, relname, seq_scan, seq_tup_read,
+		idx_scan, idx_tup_fetch, n_tup_ins, n_tup_upd, n_tup_del, n_tup_hot_upd,
+		n_live_tup, n_dead_tup, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze,
+		table_size, total_size)
+		SELECT tstamp, node_id, database_id, NULL::int4 AS relid, schemaname, NULL::text AS relname, sum(seq_scan),
+				sum(seq_tup_read), sum(idx_scan), sum(idx_tup_fetch), sum(n_tup_ins), sum(n_tup_upd), sum(n_tup_del),
+				sum(n_tup_hot_upd), sum(n_live_tup), sum(n_dead_tup), max(last_vacuum), max(last_autovacuum),
+				max(last_analyze), max(last_autoanalyze), sum(table_size), sum(total_size)
+			FROM (SELECT date_trunc('day',tstamp) as tstamp, node_id, database_id, relid, schemaname, relname,
+					max(seq_scan) as seq_scan, max(seq_tup_read) as seq_tup_read, max(idx_scan) as idx_scan,
+					max(idx_tup_fetch) as idx_tup_fetch, max(n_tup_ins) as n_tup_ins, max(n_tup_upd) as n_tup_upd,
+					max(n_tup_del) as n_tup_del, max(n_tup_hot_upd) as n_tup_hot_upd, max(n_live_tup) as n_live_tup,
+					max(n_dead_tup) as n_dead_tup, max(last_vacuum) as last_vacuum, max(last_autovacuum) as last_autovacuum,
+					max(last_analyze) as last_analyze, max(last_autoanalyze) as last_autoanalyze,
+					max(table_size) as table_size, max(total_size) as total_size
+				FROM raw_data.t_stat_all_schemas
+				WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+					AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+				GROUP BY node_id, database_id, tstamp, schemaname, relid, relname) AS x
+			GROUP BY 1,2,3,4,5,6
+</query-->
+
+<query debug="true" log="Retrieving t_stat_bgwriter">
+	INSERT INTO raw_data.t_stat_bgwriter
+		(tstamp, node_id, database_id, checkpoints_timed, checkpoints_req,
+		buffers_checkpoint, buffers_clean, maxwritten_clean, buffers_backend, buffers_alloc)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT checkpoints_timed, checkpoints_req, buffers_checkpoint,
+			buffers_clean, maxwritten_clean, buffers_backend, buffers_alloc FROM pg_stat_bgwriter')
+		AS (checkpoints_timed bigint, checkpoints_req bigint,
+			buffers_checkpoint bigint, buffers_clean bigint, maxwritten_clean bigint,
+			buffers_backend bigint, buffers_alloc bigint)
+</query>
+
+<query debug="true" log="Retrieving t_stat_database">
+	INSERT INTO raw_data.t_stat_database
+		(tstamp, node_id, database_id, datid, datname, numbackends, xact_commit,
+		xact_rollback, blks_read, blks_hit, tup_returned, tup_fetched, tup_inserted,
+		tup_updated, tup_deleted)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT datid, datname, numbackends, xact_commit,
+			xact_rollback, blks_read, blks_hit, tup_returned, tup_fetched, tup_inserted,
+			tup_updated, tup_deleted FROM pg_stat_database WHERE datname=''{{input:dbname}}''')
+		AS (datid oid, datname name, numbackends integer, xact_commit bigint,
+			xact_rollback bigint, blks_read bigint, blks_hit bigint, tup_returned bigint,
+			tup_fetched bigint, tup_inserted bigint, tup_updated bigint, tup_deleted bigint)
+</query>
+
+<query debug="true" log="Retrieving t_stat_user_functions">
+	INSERT INTO raw_data.t_stat_user_functions
+		(tstamp, node_id, database_id,  funcid, schemaname, funcname, calls, total_time, self_time)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT funcid, schemaname, funcname, calls,
+			total_time, self_time FROM pg_stat_user_functions')
+		AS (funcid oid, schemaname name, funcname name, calls bigint,
+			total_time bigint, self_time bigint)
+</query>
+
+<query debug="true" log="Retrieving t_statio_all_indexes">
+	INSERT INTO raw_data.t_statio_all_indexes
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname,
+		indexrelname, idx_blks_read, idx_blks_hit)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT relid, indexrelid, schemaname, relname,
+			indexrelname, idx_blks_read, idx_blks_hit FROM pg_statio_all_indexes')
+		AS (relid oid, indexrelid oid, schemaname name, relname name, indexrelname name,
+			idx_blks_read bigint, idx_blks_hit bigint)
+</query>
+
+<query debug="true" log="Calculating t_statio_all_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_statio_all_indexes_day WHERE node_id={{input:node_id}} AND database_id={{input:db_id}} AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Retrieving t_statio_all_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_statio_all_indexes_day
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname,
+		indexrelname, idx_blks_read, idx_blks_hit)
+		SELECT date_trunc('day', tstamp), node_id, database_id,
+				relid, indexrelid, schemaname, relname, indexrelname,
+				max(idx_blks_read), max(idx_blks_hit)
+			FROM raw_data.t_statio_all_indexes
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6,7,8
+</query>
+
+<query debug="true" log="Retrieving t_statio_all_schema_indexes">
+	INSERT INTO raw_data.t_statio_all_schema_indexes
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname,
+		indexrelname, idx_blks_read, idx_blks_hit)
+		WITH x AS (SELECT tstamp, node_id, database_id, relid, indexrelid, schemaname, relname, indexrelname,
+				max(idx_blks_read) as idx_blks_read, max(idx_blks_hit) as idx_blks_hit
+			FROM raw_data.t_statio_all_indexes
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}} AND tstamp = '{{input:now}}'::timestamp
+			GROUP BY 1,2,3,4,5,6,7,8)
+		SELECT tstamp, node_id, database_id, NULL::int4 AS relid, NULL::int4 AS indexrelid, schemaname,
+			NULL::text AS relname, NULL::text AS indexrelname, sum(idx_blks_read), sum(idx_blks_hit)
+			FROM x GROUP BY 1,2,3,4,5,6,7,8
+</query>
+
+<query debug="true" log="Calculating t_statio_all_schema_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_statio_all_schema_indexes_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Retrieving t_statio_all_schema_indexes_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_statio_all_schema_indexes_day
+		(tstamp, node_id, database_id, relid, indexrelid, schemaname, relname,
+		indexrelname, idx_blks_read, idx_blks_hit)
+		SELECT date_trunc('day', tstamp), node_id, database_id,
+				relid, indexrelid, schemaname, relname, indexrelname,
+				max(idx_blks_read), max(idx_blks_hit)
+			FROM raw_data.t_statio_all_schema_indexes
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6,7,8
+</query>
+
+<query debug="true" log="Retrieving t_statio_all_tables">
+	INSERT INTO raw_data.t_statio_all_tables
+		(tstamp, node_id, database_id, relid, schemaname, relname,
+		heap_blks_read, heap_blks_hit, idx_blks_hit, toast_blks_read,
+		toast_blks_hit, tidx_blks_read, tidx_blks_hit)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', *
+			FROM dblink('{{input:link}}', 'SELECT relid, schemaname, relname,
+			heap_blks_read, heap_blks_hit, idx_blks_hit, toast_blks_read,
+			toast_blks_hit, tidx_blks_read, tidx_blks_hit FROM pg_statio_all_tables')
+		AS (relid oid, schemaname name, relname name, heap_blks_read bigint,
+			heap_blks_hit bigint, idx_blks_hit bigint, toast_blks_read bigint,
+			toast_blks_hit bigint, tidx_blks_read bigint, tidx_blks_hit bigint)
+</query>
+
+<query debug="true" log="Calculating t_statio_all_tables_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_statio_all_tables_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Retrieving t_statio_all_tables_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_statio_all_tables_day
+		(tstamp, node_id, database_id, relid, schemaname, relname,
+		heap_blks_read, heap_blks_hit, idx_blks_hit, toast_blks_read,
+		toast_blks_hit, tidx_blks_read, tidx_blks_hit)
+		SELECT date_trunc('day', tstamp), node_id, database_id, relid, schemaname, relname,
+				max(heap_blks_read), max(heap_blks_hit), max(idx_blks_hit), max(toast_blks_read),
+				max(toast_blks_hit), max(tidx_blks_read), max(tidx_blks_hit)
+			FROM raw_data.t_statio_all_tables
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6
+</query>
+
+<query debug="true" log="Retrieving t_statio_all_schemas">
+	INSERT INTO raw_data.t_statio_all_schemas
+		(tstamp, node_id, database_id, relid, schemaname, relname,
+		heap_blks_read, heap_blks_hit, idx_blks_hit, toast_blks_read,
+		toast_blks_hit, tidx_blks_read, tidx_blks_hit)
+		WITH x AS (SELECT tstamp, node_id, database_id, relid, schemaname, relname,
+				max(heap_blks_read) as heap_blks_read, max(heap_blks_hit) as heap_blks_hit,
+				max(idx_blks_hit) as idx_blks_hit, max(toast_blks_read) as toast_blks_read,
+				max(toast_blks_hit) as toast_blks_hit, max(tidx_blks_read) as tidx_blks_read, max(tidx_blks_hit) as tidx_blks_hit
+			FROM raw_data.t_statio_all_tables
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}} AND tstamp='{{input:now}}'::timestamp
+			GROUP BY 1,2,3,4,5,6)
+		SELECT tstamp, node_id, database_id, NULL::int4 AS relid, schemaname, NULL::text AS relname,
+			sum(heap_blks_read), sum(heap_blks_hit), sum(idx_blks_hit), sum(toast_blks_read),
+			sum(toast_blks_hit), sum(tidx_blks_read), sum(tidx_blks_hit)
+			FROM x GROUP BY 1,2,3,4,5,6
+</query>
+
+<query debug="true" log="Calculating t_statio_all_schemas_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	DELETE FROM raw_data.t_statio_all_schemas_day
+		WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+			AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+</query>
+<query debug="true" log="Retrieving t_statio_all_schemas_day" sql_condition="true or date_trunc('hour', '{{input:now}}'::timestamp)=date_trunc('day', '{{input:now}}'::timestamp)">
+	INSERT INTO raw_data.t_statio_all_schemas_day
+		(tstamp, node_id, database_id, relid, schemaname, relname,
+		heap_blks_read, heap_blks_hit, idx_blks_hit, toast_blks_read,
+		toast_blks_hit, tidx_blks_read, tidx_blks_hit)
+		SELECT date_trunc('day', tstamp), node_id, database_id, relid, schemaname, relname,
+				max(heap_blks_read), max(heap_blks_hit), max(idx_blks_hit), max(toast_blks_read),
+				max(toast_blks_hit), max(tidx_blks_read), max(tidx_blks_hit)
+			FROM raw_data.t_statio_all_schemas
+			WHERE node_id={{input:node_id}} AND database_id={{input:db_id}}
+				AND tstamp &gt;= '{{input:now}}'::timestamp - '{{config:sync_agg_reprocess_interval}}'::interval
+			GROUP BY 1,2,3,4,5,6
+</query>
+
+<query debug="true" log="Retrieving database sizes">
+	INSERT INTO raw_data.t_database_size
+		(tstamp, node_id, database_id, size)
+		SELECT '{{input:now}}', '{{input:node_id}}', '{{input:db_id}}', * FROM dblink('{{input:link}}',
+			'SELECT pg_database_size(datname) FROM pg_stat_database WHERE datname=''{{input:dbname}}''')
+		AS (pg_database_size bigint)
+</query>
+
+</queries>

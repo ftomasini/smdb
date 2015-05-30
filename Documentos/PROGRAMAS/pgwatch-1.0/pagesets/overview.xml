@@ -1,0 +1,297 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset>
+
+<breadcrumb>
+	<item type="menu" label="Overview" href="#set=overview"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+</rightmenu>
+
+<page id="instances" default="true" timeline="false" inputs="pager">
+	<title>Database Instances Overview</title>
+	<description>We give an overview of all database instances in our setup.<br/>
+		We allow clicking on a database and get to an overview of the database then.<br/><br/>
+	</description>
+	<query varname="sql">
+		SELECT id, descr AS description, hostname, version, substr(added::timestamp::text,1,19)::timestamp AS added  FROM config.t_node ORDER BY descr
+	</query>
+	<datatable source="sql" varname="table">
+		<param name="link_column" value="description"/>
+		<param name="link_target" value="set=overview&amp;page=databases"/>
+		<param name="link_params" type="array">
+			<param value="id" name="node_id"/>
+		</param>
+		<param name="hidden_cols" type="array">
+			<param value="id" name="node_id"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="ucfirst"/>
+		<param name="sort_col" value="description"/>
+	</datatable>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="false" inputs="pager node_id">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Instance overview: {{db_result:node:descr:0}}</title>
+	<description>Here you can find the database sizes in given instance, their ratio and the timestamp of last synchronization of each.<br/>
+		Click on any chart parts or database names in the datatable to get to functions in the database.
+	</description>
+	<query varname="sql" paginate="true">
+		SELECT d.id, d.database_name, z.size, substr(z.tstamp::timestamp::text,1,19)::timestamp AS tstamp
+		FROM (SELECT max(id) AS x, node_id, database_id
+			FROM raw_data.t_database_size
+			GROUP BY 2, 3) AS y
+		JOIN raw_data.t_database_size AS z ON (y.x = z.id)
+		JOIN config.t_database AS d ON (y.database_id = d.id)
+		WHERE d.node_id = {{input:node_id}}
+		ORDER BY 3 DESC
+	</query>
+	<chart varname="chart" type="Pie3D" source="sql" hold="true">
+		<param name="label_column" value="database_name"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=overview&amp;page=functions"/>
+		<param name="link_params" type="array">
+			<param name="db_id" value="id"/>
+		</param>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="false" type="bool"/>
+		<param name="datatable_args" type="array">
+		</param>
+	</chart>
+	<chart varname="chart2" type="Bar2D" source="sql">
+		<param name="label_column" value="database_name"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=overview&amp;page=functions"/>
+		<param name="link_params" type="array">
+			<param name="db_id" value="id"/>
+		</param>
+		<param name="width" value="670" type="int"/>
+		<param name="height" value="min(300, max(200, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=overview&amp;page=databases&amp;node_id={{input:node_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">	
+				<param name="db_id" value="id"/>
+			</param>
+			<param name="link_column" value="database_name"/>
+			<param name="link_target" value="set=overview&amp;page=functions"/>
+			<param name="link_params" type="array">
+				<param name="db_id" value="id"/>
+			</param>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="replace:_: |ucfirst"/>
+			<param name="col_heads" type="array">
+				<param name="tstamp" value="Timestamp"/>
+			</param>
+		</param>
+	</chart>
+	<var name="instance" type="eval" value="config_node::get({{input:node_id}})"/>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=overview&amp;page=databases&amp;node_id={{input:node_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" value="{{var:chart}}{{var:chart2}}"/>
+		<param name="toolbar_tpl" value="overview_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="functions" timeline="false" inputs="pager db_id">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Functions in {{db_result:db:database_name:0}}</title>
+	<description>Overview of functions and their call times in the given database.
+	</description>
+	<query varname="sql">
+		SELECT a.id, b.funcid, schemaname, funcname, calls,
+			round(total_time/10.0)*10.0 AS total_time,
+			round(self_time/10.0)*10.0 AS self_time,
+			round((total_time - self_time)/10.0)*10.0 AS subfunction_time
+		FROM config.t_database AS a,
+			raw_data.t_stat_user_functions AS b
+		WHERE b.database_id = a.id
+			AND b.id IN (SELECT max(id)
+				FROM    raw_data.t_stat_user_functions AS c
+				WHERE   database_id = {{input:db_id}}
+				GROUP BY schemaname, funcname)
+		ORDER BY 2, 3, 4
+	</query>
+	<datatable source="sql" varname="table">
+		<param name="hidden_cols" type="array">
+			<param value="id"/>
+		</param>
+		<param name="link_column" value="funcname"/>
+		<param name="link_target" value="set=overview&amp;page=funcdetails"/>
+		<param name="link_params" type="array">
+			<param name="db_id" value="id"/>
+			<param name="func_id" value="funcid"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="calls" value="number"/>
+			<param name="total_time" value="usec"/>
+			<param name="self_time" value="usec"/>
+			<param name="subfunction_time" value="usec"/>
+		</param>
+		<param name="col_heads" type="array">
+			<param name="funcid" value="Function ID"/>
+			<param name="schemaname" value="Schema"/>
+			<param name="funcname" value="Function"/>
+			<param name="calls" value="Calls"/>
+			<param name="total_time" value="Total time"/>
+			<param name="self_time" value="Self time"/>
+			<param name="subfunction_time" value="Subfunction time"/>
+		</param>
+		<param name="sort_col" value="funcid"/>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=overview&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=overview&amp;page=functions&amp;db_id={{input:db_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="overview_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="funcdetails" timeline="false" inputs="pager db_id func_id">
+	<query varname="db">SELECT node_id,database_name,connect_string FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<query varname="sql" debug="false">
+		SELECT a.id, b.funcid, schemaname, funcname, calls,
+			total_time, self_time/1.0 AS self_time, (total_time - self_time)/1.0 AS subfunction_time
+		FROM config.t_database AS a,
+			raw_data.t_stat_user_functions AS b
+		WHERE b.database_id = a.id
+			AND b.id IN (SELECT max(id)
+				FROM    raw_data.t_stat_user_functions AS c
+				WHERE   database_id = {{input:db_id}}
+					AND   funcid = {{input:func_id}}
+				GROUP BY schemaname, funcname)
+		ORDER BY 2, 3, 4
+	</query>
+	<title>Function details: {{db_result:sql:schemaname}}.{{db_result:sql:funcname}}</title>
+	<description></description>
+	<query varname="sql2" debug="false">
+		SELECT 'Self time' AS colname, {{db_result:sql:self_time}} AS value
+		UNION ALL
+		SELECT 'Subfunction time' AS colname, {{db_result:sql:subfunction_time}} AS value
+	</query>
+	<chart varname="chart" type="Pie2D" source="sql2">
+		<param name="caption" value="Run durations (microsec)"/>
+		<param name="label_column" value="colname"/>
+		<param name="value_column" value="value"/>
+		<param name="width" value="300" type="int"/>
+		<param name="height" value="200" type="int"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="false" type="bool"/>
+		</param>
+		<param name="show_datatable" type="bool" value="false"/>
+		<param name="chart_layout" value="chart_layout_custom1.tpl"/>
+	</chart>
+	<var name="remote_sql">
+		SELECT n.nspname as "Schema",
+		  p.proname as "Name",
+		  pg_catalog.pg_get_function_result(p.oid) as "Result data type",
+		  pg_catalog.pg_get_function_arguments(p.oid) as "Argument data types",
+		 CASE
+		  WHEN p.proisagg THEN ''agg''
+		  WHEN p.proiswindow THEN ''window''
+		  WHEN p.prorettype = ''pg_catalog.trigger''::pg_catalog.regtype THEN ''trigger''
+		  ELSE ''normal''
+		END as "Type",
+		 CASE
+		  WHEN p.provolatile = ''i'' THEN ''immutable''
+		  WHEN p.provolatile = ''s'' THEN ''stable''
+		  WHEN p.provolatile = ''v'' THEN ''volatile''
+		END as "Volatility",
+		  pg_catalog.pg_get_userbyid(p.proowner) as "Owner",
+		  l.lanname as "Language",
+		  replace(p.prosrc,'''''''','''''''''''') as "Source code",
+		  pg_catalog.obj_description(p.oid, ''pg_proc'') as "Description"
+		FROM pg_catalog.pg_proc p
+		     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
+		     LEFT JOIN pg_catalog.pg_language l ON l.oid = p.prolang
+		WHERE p.oid = ''{{input:func_id}}''
+		  -- AND pg_catalog.pg_function_is_visible(p.oid)
+		ORDER BY 1, 2, 4
+	</var>
+	<query varname="funcsql" debug="false">
+		WITH t AS (
+			SELECT * FROM (SELECT * FROM dblink('{{db_result:db:connect_string}}', '{{var:remote_sql}}') AS (
+				"schema" name, "name" name, "restype" text, "argtypes" text, "type" text,
+				"volatility" text, "owner" name, "language" name, "sourcecode" text, "description" text) ) AS t1
+			)
+		SELECT "Property", replace(replace("Value", '&lt;', '&amp;lt;'), '&gt;',  '&amp;gt;') AS "Value" FROM (
+			SELECT 'Schema' AS "Property", (SELECT schema FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Name' AS "Property", (SELECT name FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Result type' AS "Property", (SELECT restype FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Argument types' AS "Property", (SELECT argtypes FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Type' AS "Property", (SELECT type FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Volatility' AS "Property", (SELECT volatility FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Owner' AS "Property", (SELECT owner FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Language' AS "Property", (SELECT language FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Source code' AS "Property", (SELECT sourcecode FROM t) AS "Value"
+			UNION ALL
+			SELECT 'Description' AS "Property", (SELECT description FROM t) AS "Value"
+		) AS t2
+	</query>
+	<datatable source="funcsql" varname="functable">
+		<param name="nopaginator" value="true"/>
+		<param name="nosort" value="true"/>
+		<param name="formatters" type="array">
+			<param name="Value" value="pre"/>
+		</param>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=overview&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=overview&amp;page=functions&amp;db_id={{input:db_id}}"/>
+		<item type="function" label="{{db_result:sql:schemaname}}.{{db_result:sql:funcname}}" href="#set=overview&amp;page=funcdetails&amp;db_id={{input:db_id}}&amp;func_id={{input:func_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" value="{{var:chart}}{{var:functable}}"/>
+		<param name="toolbar_tpl" value="overview_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

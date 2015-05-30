@@ -1,0 +1,223 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset>
+
+<title>Index sizes</title>
+
+<breadcrumb>
+	<item type="menu" label="Indexes" href="#set=indexes"/>
+	<item type="root" label="Index sizes" href="#set=indexes&amp;page=instances"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="indexes_right.tpl"/>
+</rightmenu>
+
+<page id="instances" default="true" timeline="false" inputs="pager">
+	<title>Index sizes per instance</title>
+	<description>To find the index sizes you are looking for please choose a database instance first.<br/>
+		In this table the total size shows the entire size of the instance, not the size of the indexes yet.<br/>
+		The column "Added" is the time when the database instance was added to the configuration.
+	</description>
+	<query varname="sql">
+		SELECT id, descr AS instance,
+			(SELECT sum(size) FROM raw_data.t_database_size WHERE node_id=n.id AND tstamp=(SELECT max(tstamp) FROM log.t_sync)) AS total_size,
+			substr(added::timestamp::text,1,19)::timestamp AS added
+			FROM config.t_node AS n ORDER BY descr
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="link_column" value="instance"/>
+		<param name="link_target" value="set=indexes&amp;page=databases"/>
+		<param name="link_params" type="array">
+			<param value="id" name="node_id"/>
+		</param>
+		<param name="hidden_cols" type="array">
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="total_size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="sort_col" value="instance"/>
+	</datatable>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="false" inputs="pager node_id">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Index sizes per db in {{db_result:node:descr:0}}</title>
+	<description>To find the index sizes you are looking for please choose a database in this step.<br/>
+		In this table the total size shows the entire size of the instance, not the size of the indexes yet.<br/>
+		Timestamp is the time of the last synchronization of the database.
+	</description>
+	<query varname="sql">
+		SELECT d.id, d.database_name, z.size AS total_size, date_trunc('second',z.tstamp)::timestamp AS tstamp
+			FROM (SELECT max(id) AS x, node_id, database_id
+				FROM raw_data.t_database_size
+				GROUP BY 2, 3) AS y
+			JOIN raw_data.t_database_size AS z ON (y.x = z.id)
+			JOIN config.t_database AS d ON (y.database_id = d.id)
+			WHERE d.node_id = {{input:node_id}}
+			ORDER BY 2
+	</query>
+	<datatable varname="table" source="sql">
+		<param name="hidden_cols" type="array">	
+		</param>
+		<param name="link_column" value="database_name"/>
+		<param name="link_target" value="set=indexes&amp;page=schemas"/>
+		<param name="link_params" type="array">
+			<param value="id" name="db_id"/>
+		</param>
+		<param name="rows_per_page" value="10"/>
+		<param name="formatters" type="array">
+			<param name="total_size" value="byte"/>
+		</param>
+		<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		<param name="col_heads" type="array">
+			<param name="tstamp" value="Timestamp"/>
+		</param>
+		<param name="sort_col" value="database_name"/>
+	</datatable>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=indexes&amp;page=databases&amp;node_id={{input:node_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="content" type="var" source="table"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="schemas" timeline="false" inputs="pager db_id">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index sizes per schema in {{db_result:db:database_name:0}}</title>
+	<description>In the chart and the datatable below you can see the summarized index sizes per schema in the given database.<br/>
+		The items are displayed in descending order of sizes.<br/>
+		Timestamp indicates the last synchronization.
+	</description>
+	<query varname="sql" paginate="true">
+		WITH a AS (SELECT node_id, database_id, schemaname, max(tstamp) FROM raw_data.t_stat_all_indexes
+				WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND tstamp>'YESTERDAY'::timestamp GROUP BY 1,2,3)
+		SELECT d.id, t.schemaname AS schema, sum(t.relation_size) AS size, date_trunc('second', tstamp)::timestamp AS timestamp
+			FROM raw_data.t_stat_all_schema_indexes AS t JOIN config.t_database AS d ON (d.id=t.database_id)
+				JOIN a ON (d.node_id=a.node_id AND d.id=a.database_id AND t.schemaname=a.schemaname AND t.tstamp=a.max)
+			WHERE d.id={{input:db_id}} AND d.node_id={{db_result:node:id}} AND t.tstamp>'YESTERDAY'::timestamp
+			GROUP BY 1,2,tstamp
+			ORDER BY 3 DESC, 2
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="schema"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=indexes&amp;page=indexes"/>
+		<param name="link_params" type="array">
+			<param name="db_id" value="id"/>
+			<param value="schema"/>
+		</param>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=indexes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">
+				<param value="id"/>
+			</param>
+			<param name="link_column" value="schema"/>
+			<param name="link_target" value="set=indexes&amp;page=indexes"/>
+			<param name="link_params" type="array">
+				<param value="id" name="db_id"/>
+				<param value="schema"/>
+			</param>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=indexes&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=indexes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="indexes" timeline="false" inputs="pager db_id schema">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index sizes in {{db_result:db:database_name:0}}</title>
+	<description>In this page you can see the each index sizes in given database and schema, with the largest indexes first.
+	</description>
+	<query varname="sql" paginate="true">
+		SELECT indexrelname AS index, relname AS table_name, relation_size AS size
+			FROM raw_data.t_stat_all_indexes
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+					AND tstamp=(
+				SELECT max(tstamp)
+					FROM raw_data.t_stat_all_indexes
+					WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+				)
+			ORDER BY 3 DESC, 1
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="index"/>
+		<param name="value_column" value="size"/>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=indexes&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">
+			</param>
+			<param name="link_column" value="schema"/>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=indexes&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=indexes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=indexes&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="indexes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

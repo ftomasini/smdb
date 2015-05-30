@@ -1,0 +1,16 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+</rightmenu>
+
+<page id="disclaimer" default="true">
+	<title>Disclaimer</title>
+	<description>This is the disclaimer...<br/>
+	Hans, the honour is yours to expand it in pagesets/disclaimer.xml ;)
+	</description>
+	<template file="generic_page.tpl" default="true"/>
+</page>
+
+</pageset>

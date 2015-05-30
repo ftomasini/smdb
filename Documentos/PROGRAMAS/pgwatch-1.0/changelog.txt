@@ -1,0 +1,35 @@
+Version 1.0
+	- PostgreSQL 9.1 support
+	- Configure menu much more user-friendly
+	- Windows installer setup.bat 
+	  (due to a windows installer idea, thanks to Filip Van Bruyssel)
+	- Generic setup.php for all platforms
+
+	Special thanks for feedback and suggestions:
+		- Brad Nicholson
+
+Version 1.0beta2: svn revision 72
+	- calculation accuracy fixes
+	- index sizes: show index size instead of table size
+	- speed improvements for timeline charts
+	- more friendly foreign key restrictions on raw_data.t_* tables
+		(on delete cascade)
+	- new schema level preaggregations
+	- introduction of a preaggregation tester
+	- synchronization improvements
+	- minor XML improvements
+	
+	Special thanks for their feedback, ideas and contributions:
+		- Philippe Rimbault
+		- Yeb Havinga
+		- Jeff Herrin
+		- Yann Delorme
+		- Duarte Carreira
+		- Selvamanickaraja Manohar
+		- Ruslan Ayupov
+		- Ivan Dimitrov
+
+Version 1.0beta1: svn revision 61
+	- first release
+
+	

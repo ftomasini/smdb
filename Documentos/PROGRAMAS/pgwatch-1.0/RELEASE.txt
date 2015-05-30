@@ -1,0 +1,34 @@
+pgwatch - Cybertec Enterprise PostgreSQL Monitor
+Version 1.0
+------------------------------------------------
+
+Cybertec Schönig & Schönig GmbH is proud to announce the final version of
+pgwatch 1.0, a simple to use tool to monitor PostgreSQL 9.0, 9.1, and higher.
+The goal of our project is to have a professional monitoring tool for PostgreSQL
+which can be used out of the box. All you need is a webbrowser.
+
+
+Key features:
+
+	- Easy configuration
+	- Large number of ready-to-use charts
+	- Dashboard for fast system checking included
+	- Automated collection of statistics
+	- Interactive Flash-charts
+	- Integrated SQL worksheet
+
+Currently we support PostgreSQL 9.0 and PostgreSQL 9.1 - older versions are not
+supported. Support for future versions of PostgreSQL will be fully provided.
+
+You can use pgwatch on most UNIX based systems as well as on Microsoft Windows.
+We strongly suggest to use some UNIX based setup, however.
+
+pgwatch is Open Source and can be used freely under the terms of the Creative
+Commons License.
+
+The code can be downloaded from http://www.cybertec.at/en/pgwatch .
+
+
+	Hans-Jürgen Schönig
+
+

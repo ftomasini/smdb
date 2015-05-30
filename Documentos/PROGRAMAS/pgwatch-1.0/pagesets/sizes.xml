@@ -1,0 +1,358 @@
+<?xml version='1.0' standalone='yes'?>
+<pageset>
+
+<breadcrumb>
+	<item type="menu" label="Storage and cache" href="#set=sizes"/>
+	<item type="root" label="Sizes" href="#set=sizes&amp;page=instances"/>
+</breadcrumb>
+
+<rightmenu>
+	<param name="file" value="right.tpl"/>
+	<param name="menufile" value="storage_cache_right.tpl"/>
+</rightmenu>
+
+<page id="instances" default="true" timeline="false" inputs="pager">
+	<title>All instance sizes</title>
+	<query varname="sql" paginate="true">
+		SELECT s.node_id, descr AS instance, sum(size) AS size
+			FROM raw_data.t_database_size AS s JOIN config.t_node AS n ON (s.node_id=n.id)
+			WHERE s.tstamp=(SELECT max(tstamp) FROM raw_data.t_database_size)
+			GROUP BY 1,2
+			ORDER BY 3 DESC, 2
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="instance"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=sizes&amp;page=databases"/>
+		<param name="link_params" type="array">
+			<param name="node_id" value="node_id"/>
+		</param>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" type="bool" value="true"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=sizes&amp;page=instances"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="link_column" value="instance"/>
+			<param name="link_target" value="set=sizes&amp;page=databases"/>
+			<param name="link_params" type="array">
+				<param value="node_id"/>
+			</param>
+			<param name="hidden_cols" type="array">
+				<param value="node_id"/>
+			</param>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="ucfirst"/>
+		</param>
+	</chart>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="databases" timeline="false" inputs="pager node_id">
+	<query varname="node">SELECT descr FROM config.t_node WHERE id={{input:node_id}}</query>
+	<title>Database sizes in {{db_result:node:descr:0}}</title>
+	<query varname="sql" paginate="true">
+		WITH a AS (SELECT database_id, max(tstamp) FROM raw_data.t_database_size
+			WHERE node_id={{input:node_id}} AND tstamp>'YESTERDAY'::timestamp GROUP BY 1)
+		SELECT s.database_id, d.database_name, s.size
+			FROM raw_data.t_database_size AS s JOIN config.t_database AS d ON (s.database_id=d.id)
+				JOIN a ON (d.id=a.database_id AND s.tstamp=a.max)
+			WHERE d.node_id={{input:node_id}} AND tstamp>'YESTERDAY'::timestamp
+			ORDER BY 3 DESC, 2
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="database_name"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=sizes&amp;page=schemas"/>
+		<param name="link_params" type="array">
+			<param name="db_id" value="database_id"/>
+		</param>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=sizes&amp;page=databases&amp;node_id={{input:node_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">	
+				<param name="db_id" value="database_id"/>
+			</param>
+			<param name="link_column" value="database_name"/>
+			<param name="link_target" value="set=sizes&amp;page=schemas"/>
+			<param name="link_params" type="array">
+				<param value="database_id" name="db_id"/>
+			</param>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		</param>
+	</chart>
+	<var name="instance" type="eval" value="config_node::get({{input:node_id}})"/>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizes&amp;page=databases&amp;node_id={{input:node_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="schemas" timeline="false" inputs="pager db_id">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Schema sizes in {{db_result:db:database_name:0}}</title>
+	<query varname="sql" paginate="true">
+		SELECT d.id, t.schemaname AS schema, sum(t.total_size) AS size
+			FROM raw_data.t_stat_all_schemas AS t JOIN config.t_database AS d ON (d.id=t.database_id AND d.node_id=t.node_id)
+			WHERE t.node_id={{db_result:node:id}} AND t.database_id={{input:db_id}} AND t.tstamp=
+			(SELECT max(tstamp) FROM raw_data.t_stat_all_schemas
+				WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}})
+			GROUP BY 1,2
+			ORDER BY 3 DESC, 2
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="schema"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=sizes&amp;page=tables"/>
+		<param name="link_params" type="array">
+			<param name="db_id" value="id"/>
+			<param value="schema"/>
+		</param>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=sizes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">
+				<param value="id"/>
+			</param>
+			<param name="link_column" value="schema"/>
+			<param name="link_target" value="set=sizes&amp;page=tables"/>
+			<param name="link_params" type="array">
+				<param name="db_id" value="id"/>
+				<param value="schema"/>
+			</param>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="ucfirst"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizes&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="tables" timeline="false" inputs="pager db_id schema">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Table sizes in {{db_result:db:database_name:0}}</title>
+	<query varname="sql" paginate="true">
+		SELECT relname AS table, total_size AS size
+			FROM raw_data.t_stat_all_tables
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+					AND tstamp=(
+				SELECT max(tstamp)
+					FROM raw_data.t_stat_all_tables
+					WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+				)
+			ORDER BY 2 DESC
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="table"/>
+		<param name="value_column" value="size"/>
+		<param name="link_target" value="set=sizes&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		<param name="link_params" type="array">
+			<param value="table"/>
+		</param>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=sizes&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">
+			</param>
+			<param name="link_column" value="schema"/>
+			<param name="link_target" value="set=sizes&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+			<param name="link_params" type="array">
+				<param value="table"/>
+			</param>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="ucfirst"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizes&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=sizes&amp;page=tables&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="indexes" timeline="false" inputs="pager db_id schema">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index sizes in {{db_result:db:database_name:0}}</title>
+	<query varname="sql" paginate="true">
+		SELECT indexrelname AS index, relname AS table_name, relation_size AS size
+			FROM raw_data.t_stat_all_indexes
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+					AND tstamp=(
+				SELECT max(tstamp)
+					FROM raw_data.t_stat_all_indexes
+					WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}'
+				)
+			ORDER BY 3 DESC, 1
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="index"/>
+		<param name="value_column" value="size"/>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=sizes&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">
+			</param>
+			<param name="link_column" value="schema"/>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="replace:_: |ucfirst"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizes&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=sizes&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+<page id="tabindexes" timeline="false" inputs="pager db_id schema table">
+	<query varname="db">SELECT node_id,database_name FROM config.t_database WHERE id={{input:db_id}}</query>
+	<query varname="node">SELECT id,descr FROM config.t_node WHERE id={{db_result:db:node_id:0}}</query>
+	<title>Index sizes of {{input:table}} in {{db_result:db:database_name:0}}</title>
+	<query varname="sql" paginate="true">
+		SELECT indexrelname AS index, relation_size AS size
+			FROM raw_data.t_stat_all_indexes
+			WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}' AND relname='{{input:table}}'
+					AND tstamp=(
+				SELECT max(tstamp)
+					FROM raw_data.t_stat_all_indexes
+					WHERE node_id={{db_result:node:id}} AND database_id={{input:db_id}} AND schemaname='{{input:schema}}' AND relname='{{input:table}}'
+				)
+			ORDER BY 2 DESC, 1
+	</query>
+	<chart varname="chart" type="Bar2D" source="sql">
+		<param name="label_column" value="index"/>
+		<param name="value_column" value="size"/>
+		<param name="height" value="min({{config:chart_size_y}}, max({{config:chart_size_y}}*2/3, {{db_method:sql:num_rows}} * 20 + 100))" type="eval"/>
+		<param name="show_legend" value="true" type="bool"/>
+		<param name="legend_args" type="array">
+			<param name="horizontal" value="true" type="bool"/>
+		</param>
+		<param name="paginator" type="array">
+			<param name="paginated_query" type="var" source="sql"/>
+			<param name="base_url" value="set=sizes&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{input:table}}"/>
+		</param>
+		<param name="show_datatable" value="true" type="bool"/>
+		<param name="datatable_args" type="array">
+			<param name="hidden_cols" type="array">
+			</param>
+			<param name="link_column" value="schema"/>
+			<param name="rows_per_page" value="10"/>
+			<param name="formatters" type="array">
+				<param name="size" value="byte"/>
+			</param>
+			<param name="format_col_heads" value="ucfirst"/>
+		</param>
+	</chart>
+	<breadcrumb>
+		<item type="instance" label="{{db_result:node:descr:0}}" href="#set=sizes&amp;page=databases&amp;node_id={{db_result:node:id:0}}"/>
+		<item type="database" label="{{db_result:db:database_name:0}}" href="#set=sizes&amp;page=schemas&amp;db_id={{input:db_id}}"/>
+		<item type="schema" label="{{input:schema}}" href="#set=sizes&amp;page=indexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}"/>
+		<item type="table" label="{{input:table}}" href="#set=sizes&amp;page=tabindexes&amp;db_id={{input:db_id}}&amp;schema={{input:schema}}&amp;table={{input:table}}"/>
+	</breadcrumb>
+	<template file="generic_page.tpl" default="true">
+		<param name="show_dashboard_button" type="bool" value="true"/>
+		<param name="content" type="var" source="chart"/>
+		<param name="toolbar_tpl" value="sizes_toolbar.tpl"/>
+	</template>
+	<template file="dashboard_item.tpl" for="dashboard">
+		<param name="content" type="var" source="chart"/>
+	</template>
+</page>
+
+</pageset>
+

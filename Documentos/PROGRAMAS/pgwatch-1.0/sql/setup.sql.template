@@ -1,0 +1,1406 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+--
+-- Name: config; Type: SCHEMA; Schema: -; Owner: __DBUSER__
+--
+
+CREATE SCHEMA config;
+
+
+ALTER SCHEMA config OWNER TO __DBUSER__;
+
+--
+-- Name: log; Type: SCHEMA; Schema: -; Owner: __DBUSER__
+--
+
+CREATE SCHEMA log;
+
+
+ALTER SCHEMA log OWNER TO __DBUSER__;
+
+--
+-- Name: raw_data; Type: SCHEMA; Schema: -; Owner: __DBUSER__
+--
+
+CREATE SCHEMA raw_data;
+
+
+ALTER SCHEMA raw_data OWNER TO __DBUSER__;
+
+--
+-- Name: users; Type: SCHEMA; Schema: -; Owner: __DBUSER__
+--
+
+CREATE SCHEMA users;
+
+
+ALTER SCHEMA users OWNER TO __DBUSER__;
+
+--
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: __DBUSER__
+--
+
+CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
+
+
+ALTER PROCEDURAL LANGUAGE plpgsql OWNER TO __DBUSER__;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: dblink_pkey_results; Type: TYPE; Schema: public; Owner: __DBUSER__
+--
+
+CREATE TYPE dblink_pkey_results AS (
+	"position" integer,
+	colname text
+);
+
+
+ALTER TYPE public.dblink_pkey_results OWNER TO __DBUSER__;
+
+--
+-- Name: dblink(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink(text) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_record';
+
+
+ALTER FUNCTION public.dblink(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink(text, text) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_record';
+
+
+ALTER FUNCTION public.dblink(text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink(text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink(text, boolean) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_record';
+
+
+ALTER FUNCTION public.dblink(text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink(text, text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink(text, text, boolean) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_record';
+
+
+ALTER FUNCTION public.dblink(text, text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_build_sql_delete(text, int2vector, integer, text[]); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_build_sql_delete(text, int2vector, integer, text[]) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_build_sql_delete';
+
+
+ALTER FUNCTION public.dblink_build_sql_delete(text, int2vector, integer, text[]) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_build_sql_insert(text, int2vector, integer, text[], text[]); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_build_sql_insert(text, int2vector, integer, text[], text[]) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_build_sql_insert';
+
+
+ALTER FUNCTION public.dblink_build_sql_insert(text, int2vector, integer, text[], text[]) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_build_sql_update(text, int2vector, integer, text[], text[]); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_build_sql_update(text, int2vector, integer, text[], text[]) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_build_sql_update';
+
+
+ALTER FUNCTION public.dblink_build_sql_update(text, int2vector, integer, text[], text[]) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_cancel_query(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_cancel_query(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_cancel_query';
+
+
+ALTER FUNCTION public.dblink_cancel_query(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_close(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_close(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_close';
+
+
+ALTER FUNCTION public.dblink_close(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_close(text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_close(text, boolean) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_close';
+
+
+ALTER FUNCTION public.dblink_close(text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_close(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_close(text, text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_close';
+
+
+ALTER FUNCTION public.dblink_close(text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_close(text, text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_close(text, text, boolean) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_close';
+
+
+ALTER FUNCTION public.dblink_close(text, text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_connect(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_connect(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_connect';
+
+
+ALTER FUNCTION public.dblink_connect(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_connect(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_connect(text, text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_connect';
+
+
+ALTER FUNCTION public.dblink_connect(text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_connect_u(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_connect_u(text) RETURNS text
+    LANGUAGE c STRICT SECURITY DEFINER
+    AS '$libdir/dblink', 'dblink_connect';
+
+
+ALTER FUNCTION public.dblink_connect_u(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_connect_u(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_connect_u(text, text) RETURNS text
+    LANGUAGE c STRICT SECURITY DEFINER
+    AS '$libdir/dblink', 'dblink_connect';
+
+
+ALTER FUNCTION public.dblink_connect_u(text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_current_query(); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_current_query() RETURNS text
+    LANGUAGE c
+    AS '$libdir/dblink', 'dblink_current_query';
+
+
+ALTER FUNCTION public.dblink_current_query() OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_disconnect(); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_disconnect() RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_disconnect';
+
+
+ALTER FUNCTION public.dblink_disconnect() OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_disconnect(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_disconnect(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_disconnect';
+
+
+ALTER FUNCTION public.dblink_disconnect(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_error_message(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_error_message(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_error_message';
+
+
+ALTER FUNCTION public.dblink_error_message(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_exec(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_exec(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_exec';
+
+
+ALTER FUNCTION public.dblink_exec(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_exec(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_exec(text, text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_exec';
+
+
+ALTER FUNCTION public.dblink_exec(text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_exec(text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_exec(text, boolean) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_exec';
+
+
+ALTER FUNCTION public.dblink_exec(text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_exec(text, text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_exec(text, text, boolean) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_exec';
+
+
+ALTER FUNCTION public.dblink_exec(text, text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_fetch(text, integer); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_fetch(text, integer) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_fetch';
+
+
+ALTER FUNCTION public.dblink_fetch(text, integer) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_fetch(text, integer, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_fetch(text, integer, boolean) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_fetch';
+
+
+ALTER FUNCTION public.dblink_fetch(text, integer, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_fetch(text, text, integer); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_fetch(text, text, integer) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_fetch';
+
+
+ALTER FUNCTION public.dblink_fetch(text, text, integer) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_fetch(text, text, integer, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_fetch(text, text, integer, boolean) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_fetch';
+
+
+ALTER FUNCTION public.dblink_fetch(text, text, integer, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_get_connections(); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_get_connections() RETURNS text[]
+    LANGUAGE c
+    AS '$libdir/dblink', 'dblink_get_connections';
+
+
+ALTER FUNCTION public.dblink_get_connections() OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_get_notify(); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_get_notify(OUT notify_name text, OUT be_pid integer, OUT extra text) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_get_notify';
+
+
+ALTER FUNCTION public.dblink_get_notify(OUT notify_name text, OUT be_pid integer, OUT extra text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_get_notify(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_get_notify(conname text, OUT notify_name text, OUT be_pid integer, OUT extra text) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_get_notify';
+
+
+ALTER FUNCTION public.dblink_get_notify(conname text, OUT notify_name text, OUT be_pid integer, OUT extra text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_get_pkey(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_get_pkey(text) RETURNS SETOF dblink_pkey_results
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_get_pkey';
+
+
+ALTER FUNCTION public.dblink_get_pkey(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_get_result(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_get_result(text) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_get_result';
+
+
+ALTER FUNCTION public.dblink_get_result(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_get_result(text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_get_result(text, boolean) RETURNS SETOF record
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_get_result';
+
+
+ALTER FUNCTION public.dblink_get_result(text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_is_busy(text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_is_busy(text) RETURNS integer
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_is_busy';
+
+
+ALTER FUNCTION public.dblink_is_busy(text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_open(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_open(text, text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_open';
+
+
+ALTER FUNCTION public.dblink_open(text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_open(text, text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_open(text, text, boolean) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_open';
+
+
+ALTER FUNCTION public.dblink_open(text, text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_open(text, text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_open(text, text, text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_open';
+
+
+ALTER FUNCTION public.dblink_open(text, text, text) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_open(text, text, text, boolean); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_open(text, text, text, boolean) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_open';
+
+
+ALTER FUNCTION public.dblink_open(text, text, text, boolean) OWNER TO __DBUSER__;
+
+--
+-- Name: dblink_send_query(text, text); Type: FUNCTION; Schema: public; Owner: __DBUSER__
+--
+
+CREATE FUNCTION dblink_send_query(text, text) RETURNS integer
+    LANGUAGE c STRICT
+    AS '$libdir/dblink', 'dblink_send_query';
+
+
+ALTER FUNCTION public.dblink_send_query(text, text) OWNER TO __DBUSER__;
+
+SET search_path = config, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: t_node; Type: TABLE; Schema: config; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_node (
+    id serial PRIMARY KEY,
+    hostname text,
+    connuser text,
+    connpass text,
+    descr text,
+    added timestamp without time zone DEFAULT now(),
+    version text,
+    port integer
+);
+
+
+--
+-- Name: t_database; Type: TABLE; Schema: config; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_database (
+    id serial PRIMARY KEY,
+    node_id integer NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_name text,
+    connect_string text,
+    added timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE config.t_database OWNER TO __DBUSER__;
+
+--
+-- Name: t_global; Type: TABLE; Schema: config; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_global (
+    id serial PRIMARY KEY,
+    config_name text,
+    config_value text,
+    type text
+);
+
+
+SET search_path = log, pg_catalog;
+
+--
+-- Name: t_log; Type: TABLE; Schema: log; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_log (
+    id serial PRIMARY KEY,
+    error_level text,
+    message text,
+    tstamp timestamp without time zone DEFAULT now(),
+    source text
+);
+
+
+--
+-- Name: t_query_log; Type: TABLE; Schema: log; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_query_log (
+    id bigserial PRIMARY KEY,
+    url text,
+    cond text,
+    query text,
+    started timestamp with time zone,
+    duration interval,
+    retrieved integer,
+    affected integer
+);
+
+
+--
+-- Name: t_sync; Type: TABLE; Schema: log; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_sync (
+    id serial PRIMARY KEY,
+    tstamp timestamp with time zone
+);
+
+SET search_path = raw_data, pg_catalog;
+
+CREATE TABLE t_database_size (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint,
+    database_id bigint,
+    size bigint
+);
+
+
+--
+-- Name: t_stat_activity; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_activity (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    datid oid,
+    datname name,
+    procpid integer,
+    usesysid oid,
+    usename name,
+    current_query text,
+    waiting boolean,
+    xact_start timestamp with time zone,
+    query_start timestamp with time zone,
+    backend_start timestamp with time zone,
+    client_addr inet,
+    client_port integer
+);
+
+--
+-- Name: t_stat_all_indexes; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_all_indexes (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_scan bigint,
+    idx_tup_read bigint,
+    idx_tup_fetch bigint,
+    relation_size bigint
+);
+
+--
+-- Name: t_stat_all_indexes_day; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_all_indexes_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_scan bigint,
+    idx_tup_read bigint,
+    idx_tup_fetch bigint,
+    relation_size bigint
+);
+
+--
+-- Name: t_stat_all_schema_indexes; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_all_schema_indexes (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_scan bigint,
+    idx_tup_read bigint,
+    idx_tup_fetch bigint,
+    relation_size bigint
+);
+
+--
+-- Name: t_stat_all_schema_indexes_day; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_all_schema_indexes_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_scan bigint,
+    idx_tup_read bigint,
+    idx_tup_fetch bigint,
+    relation_size bigint
+);
+
+--
+-- Name: t_stat_all_tables; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_all_tables (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    seq_scan bigint,
+    seq_tup_read bigint,
+    idx_scan bigint,
+    idx_tup_fetch bigint,
+    n_tup_ins bigint,
+    n_tup_upd bigint,
+    n_tup_del bigint,
+    n_tup_hot_upd bigint,
+    n_live_tup bigint,
+    n_dead_tup bigint,
+    last_vacuum timestamp with time zone,
+    last_autovacuum timestamp with time zone,
+    last_analyze timestamp with time zone,
+    last_autoanalyze timestamp with time zone,
+    table_size bigint,
+    total_size bigint
+);
+
+CREATE TABLE t_stat_all_tables_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    seq_scan bigint,
+    seq_tup_read bigint,
+    idx_scan bigint,
+    idx_tup_fetch bigint,
+    n_tup_ins bigint,
+    n_tup_upd bigint,
+    n_tup_del bigint,
+    n_tup_hot_upd bigint,
+    n_live_tup bigint,
+    n_dead_tup bigint,
+    last_vacuum timestamp with time zone,
+    last_autovacuum timestamp with time zone,
+    last_analyze timestamp with time zone,
+    last_autoanalyze timestamp with time zone,
+    table_size bigint,
+    total_size bigint
+);
+
+--
+-- Name: t_stat_all_schemas; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_all_schemas (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    seq_scan bigint,
+    seq_tup_read bigint,
+    idx_scan bigint,
+    idx_tup_fetch bigint,
+    n_tup_ins bigint,
+    n_tup_upd bigint,
+    n_tup_del bigint,
+    n_tup_hot_upd bigint,
+    n_live_tup bigint,
+    n_dead_tup bigint,
+    last_vacuum timestamp with time zone,
+    last_autovacuum timestamp with time zone,
+    last_analyze timestamp with time zone,
+    last_autoanalyze timestamp with time zone,
+    table_size bigint,
+    total_size bigint
+);
+
+CREATE TABLE t_stat_all_schemas_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    seq_scan bigint,
+    seq_tup_read bigint,
+    idx_scan bigint,
+    idx_tup_fetch bigint,
+    n_tup_ins bigint,
+    n_tup_upd bigint,
+    n_tup_del bigint,
+    n_tup_hot_upd bigint,
+    n_live_tup bigint,
+    n_dead_tup bigint,
+    last_vacuum timestamp with time zone,
+    last_autovacuum timestamp with time zone,
+    last_analyze timestamp with time zone,
+    last_autoanalyze timestamp with time zone,
+    table_size bigint,
+    total_size bigint
+);
+
+--
+-- Name: t_stat_bgwriter; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_bgwriter (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    checkpoints_timed bigint,
+    checkpoints_req bigint,
+    buffers_checkpoint bigint,
+    buffers_clean bigint,
+    maxwritten_clean bigint,
+    buffers_backend bigint,
+    buffers_alloc bigint
+);
+
+--
+-- Name: t_stat_database; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_database (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    datid oid,
+    datname name,
+    numbackends integer,
+    xact_commit bigint,
+    xact_rollback bigint,
+    blks_read bigint,
+    blks_hit bigint,
+    tup_returned bigint,
+    tup_fetched bigint,
+    tup_inserted bigint,
+    tup_updated bigint,
+    tup_deleted bigint
+);
+
+--
+-- Name: t_stat_user_functions; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_stat_user_functions (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    funcid oid,
+    schemaname name,
+    funcname name,
+    calls bigint,
+    total_time bigint,
+    self_time bigint
+);
+
+--
+-- Name: t_statio_all_indexes; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_indexes (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_blks_read bigint,
+    idx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_indexes_day; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_indexes_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_blks_read bigint,
+    idx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_schema_indexes; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_schema_indexes (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_blks_read bigint,
+    idx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_schema_indexes_day; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_schema_indexes_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    indexrelid oid,
+    schemaname name,
+    relname name,
+    indexrelname name,
+    idx_blks_read bigint,
+    idx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_tables; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_tables (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    heap_blks_read bigint,
+    heap_blks_hit bigint,
+    idx_blks_read bigint,
+    idx_blks_hit bigint,
+    toast_blks_read bigint,
+    toast_blks_hit bigint,
+    tidx_blks_read bigint,
+    tidx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_tables_day; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_tables_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    heap_blks_read bigint,
+    heap_blks_hit bigint,
+    idx_blks_read bigint,
+    idx_blks_hit bigint,
+    toast_blks_read bigint,
+    toast_blks_hit bigint,
+    tidx_blks_read bigint,
+    tidx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_schemas; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_schemas (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    heap_blks_read bigint,
+    heap_blks_hit bigint,
+    idx_blks_read bigint,
+    idx_blks_hit bigint,
+    toast_blks_read bigint,
+    toast_blks_hit bigint,
+    tidx_blks_read bigint,
+    tidx_blks_hit bigint
+);
+
+--
+-- Name: t_statio_all_schemas_day; Type: TABLE; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_statio_all_schemas_day (
+    id bigserial PRIMARY KEY,
+    tstamp timestamp with time zone,
+    node_id bigint NOT NULL REFERENCES config.t_node (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    database_id bigint NOT NULL REFERENCES config.t_database (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    relid oid,
+    schemaname name,
+    relname name,
+    heap_blks_read bigint,
+    heap_blks_hit bigint,
+    idx_blks_read bigint,
+    idx_blks_hit bigint,
+    toast_blks_read bigint,
+    toast_blks_hit bigint,
+    tidx_blks_read bigint,
+    tidx_blks_hit bigint
+);
+
+SET search_path = users, pg_catalog;
+
+--
+-- Name: t_dashboard; Type: TABLE; Schema: users; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_dashboard (
+    id serial PRIMARY KEY,
+    user_id integer,
+    idx integer,
+    target text,
+    time_related boolean
+);
+
+--
+-- Name: t_user; Type: TABLE; Schema: users; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE TABLE t_user (
+    id serial PRIMARY KEY,
+    username text,
+    fullname text,
+    password text
+);
+
+INSERT INTO t_user (id, username, fullname, password) VALUES (1,'johndoe', 'John Doe', 'johndoe');
+
+
+SET search_path = raw_data, pg_catalog;
+
+--
+-- Name: t_database_size_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_database_size_idx ON t_database_size USING btree (node_id, database_id);
+
+
+--
+-- Name: t_database_size_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_database_size_ts ON t_database_size USING btree (tstamp);
+
+
+--
+-- Name: t_stat_activity_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_activity_idx ON t_stat_activity USING btree (node_id, database_id);
+
+
+--
+-- Name: t_stat_activity_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_activity_ts ON t_stat_activity USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_indexes_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_indexes_day_idx ON t_stat_all_indexes_day USING btree (node_id, database_id, schemaname, indexrelname);
+
+
+--
+-- Name: t_stat_all_indexes_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_indexes_day_ts ON t_stat_all_indexes_day USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_schema_indexes_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schema_indexes_day_idx ON t_stat_all_schema_indexes_day USING btree (node_id, database_id, schemaname, indexrelname);
+
+
+--
+-- Name: t_stat_all_schema_indexes_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schema_indexes_day_ts ON t_stat_all_schema_indexes_day USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_indexes_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_indexes_idx ON t_stat_all_indexes USING btree (node_id, database_id, schemaname, indexrelname);
+
+
+--
+-- Name: t_stat_all_indexes_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_indexes_ts ON t_stat_all_indexes USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_schema_indexes_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schema_indexes_idx ON t_stat_all_schema_indexes USING btree (node_id, database_id, schemaname, indexrelname);
+
+
+--
+-- Name: t_stat_all_schema_indexes_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schema_indexes_ts ON t_stat_all_schema_indexes USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_tables_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_tables_day_idx ON t_stat_all_tables_day USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_stat_all_tables_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_tables_day_ts ON t_stat_all_tables_day USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_schemas_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schemas_day_idx ON t_stat_all_schemas_day USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_stat_all_schemas_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schemas_day_ts ON t_stat_all_schemas_day USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_tables_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_tables_idx ON t_stat_all_tables USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_stat_all_tables_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_tables_ts ON t_stat_all_tables USING btree (tstamp);
+
+
+--
+-- Name: t_stat_all_schemas_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schemas_idx ON t_stat_all_schemas USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_stat_all_schemas_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_all_schemas_ts ON t_stat_all_schemas USING btree (tstamp);
+
+
+--
+-- Name: t_stat_bgwriter_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_bgwriter_idx ON t_stat_bgwriter USING btree (node_id, database_id);
+
+
+--
+-- Name: t_stat_bgwriter_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_bgwriter_ts ON t_stat_bgwriter USING btree (tstamp);
+
+
+--
+-- Name: t_stat_database_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_database_idx ON t_stat_database USING btree (node_id, database_id);
+
+
+--
+-- Name: t_stat_database_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_database_ts ON t_stat_database USING btree (tstamp);
+
+
+--
+-- Name: t_stat_user_functions_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_user_functions_idx ON t_stat_user_functions USING btree (node_id, database_id, schemaname, funcname);
+
+
+--
+-- Name: t_stat_user_functions_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_stat_user_functions_ts ON t_stat_user_functions USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_indexes_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_indexes_day_idx ON t_statio_all_indexes_day USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_indexes_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_indexes_day_ts ON t_statio_all_indexes_day USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_indexes_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_indexes_idx ON t_statio_all_indexes USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_indexes_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_indexes_ts ON t_statio_all_indexes USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_schema_indexes_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schema_indexes_day_idx ON t_statio_all_schema_indexes_day USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_schema_indexes_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schema_indexes_day_ts ON t_statio_all_schema_indexes_day USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_schema_indexes_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schema_indexes_idx ON t_statio_all_schema_indexes USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_schema_indexes_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schema_indexes_ts ON t_statio_all_schema_indexes USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_tables_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_tables_day_idx ON t_statio_all_tables_day USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_tables_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_tables_day_ts ON t_statio_all_tables_day USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_schemas_day_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schemas_day_idx ON t_statio_all_schemas_day USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_schemas_day_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schemas_day_ts ON t_statio_all_schemas_day USING btree (tstamp);
+
+
+--
+-- Name: t_statio_all_tables_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_tables_idx ON t_statio_all_tables USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_tables_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_tables_ts ON t_statio_all_tables USING btree (tstamp);
+
+
+
+--
+-- Name: t_statio_all_schemas_idx; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schemas_idx ON t_statio_all_schemas USING btree (node_id, database_id, schemaname, relname);
+
+
+--
+-- Name: t_statio_all_schemas_ts; Type: INDEX; Schema: raw_data; Owner: __DBUSER__; Tablespace: 
+--
+
+CREATE INDEX t_statio_all_schemas_ts ON t_statio_all_schemas USING btree (tstamp);
+
+
+
+SET search_path = users, pg_catalog;
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: __DBUSER__
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM __DBUSER__;
+GRANT ALL ON SCHEMA public TO __DBUSER__;
+GRANT ALL ON SCHEMA public TO __DBUSER__;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: dblink_connect_u(text); Type: ACL; Schema: public; Owner: __DBUSER__
+--
+
+REVOKE ALL ON FUNCTION dblink_connect_u(text) FROM PUBLIC;
+REVOKE ALL ON FUNCTION dblink_connect_u(text) FROM __DBUSER__;
+GRANT ALL ON FUNCTION dblink_connect_u(text) TO __DBUSER__;
+
+
+--
+-- Name: dblink_connect_u(text, text); Type: ACL; Schema: public; Owner: __DBUSER__
+--
+
+REVOKE ALL ON FUNCTION dblink_connect_u(text, text) FROM PUBLIC;
+REVOKE ALL ON FUNCTION dblink_connect_u(text, text) FROM __DBUSER__;
+GRANT ALL ON FUNCTION dblink_connect_u(text, text) TO __DBUSER__;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

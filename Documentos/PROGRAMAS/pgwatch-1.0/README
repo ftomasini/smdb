@@ -1,0 +1,59 @@
+pgwatch Setup HowTo:
+===================
+
+Authors: Cybertec Schönig & Schönig GmbH 
+	 Sandor Miglecz, Hans-Jürgen Schönig
+--------------------------------------------------------------------------------
+
+pgwatch is a tool to monitor PostgreSQL database servers. It contains a set of
+predefined graphs and easy to use tools. It has been designed to provide
+sophisticated PostgreSQL monitoring without having to worry about collecting the
+data yourself. We hope our customers and users of PostgreSQL can benefit greatly
+from simplified monitoring.
+
+
+Requirements:
+-------------
+
+You will need a handful of components to make this work:
+
+	- Apache (webserver)
+	- PHP 5  (scripting language)
+	- pgsql extension for PHP (see http://www.php.net/manual/en/book.pgsql.php)
+	- PostgreSQL 9 (to store the data we collect)
+	- dblink (contribution module for PostgreSQL 9)
+
+	- For now we only support PostgreSQL >= 9.0 databases.
+	  Older systems cannot be monitored, however, we will
+	  add support for future database releases.
+	
+
+How to set it up:
+----------------- 
+
+	- Extract your package to your Apache directory
+
+	- Adjust ownership of your application if www-data is improper
+
+	- Open in browser the setup.php. It will lead you through the setup process.
+	
+	- You can choose setup.sh in linux and setup.bat in windows as alternatives.
+
+	- Start the data collection daemon by adding the proper row to cron, something like:
+		0 * * * * cd /var/www/pgwatch/util && /usr/bin/php5 getraw_d.php
+		(But setup.sh will also remind you of it)
+
+	- Log into the website and click "configure" to add new database servers
+	  / databases to make sure that your daemon will pick up the statistics.
+	
+
+	- Enjoy your tool 
+	
+
+Where can I get help?
+---------------------
+
+We (www.cybertec.at) provide support for pgwatch. 
+Drop us a line: office@cybertec.at.
+
+
