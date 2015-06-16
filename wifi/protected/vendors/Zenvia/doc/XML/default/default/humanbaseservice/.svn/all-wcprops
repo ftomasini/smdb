@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice
+END
+seturi.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/seturi.xml
+END
+getaccount.xml
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/getaccount.xml
+END
+gethost.xml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/gethost.xml
+END
+--construct.xml
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/--construct.xml
+END
+geturi.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/geturi.xml
+END
+getpassword.xml
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/getpassword.xml
+END
+send.xml
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/send.xml
+END
+sethost.xml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/doc/XML/default/default/humanbaseservice/sethost.xml
+END

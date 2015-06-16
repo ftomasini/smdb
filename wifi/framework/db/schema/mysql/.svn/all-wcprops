@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/framework/db/schema/mysql
+END
+CMysqlTableSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/framework/db/schema/mysql/CMysqlTableSchema.php
+END
+CMysqlColumnSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/framework/db/schema/mysql/CMysqlColumnSchema.php
+END
+CMysqlSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/framework/db/schema/mysql/CMysqlSchema.php
+END
+CMysqlCommandBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/framework/db/schema/mysql/CMysqlCommandBuilder.php
+END

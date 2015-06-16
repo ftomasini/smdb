@@ -1,0 +1,80 @@
+10
+
+dir
+3
+https://svn.solis.com.br/wifi/trunk/protected/vendors/Zenvia/doc/XML/default/default
+https://svn.solis.com.br/wifi
+
+
+
+2015-05-29T19:19:33.450649Z
+2
+luis_augusto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7b1988b7-34cb-4df4-b11e-a7cb3cbad1c4
+
+humanbaseservice
+dir
+
+humanautoloader
+dir
+
+humanconnectionhelper
+dir
+
+humanhttphelper
+dir
+
+constants.xml
+file
+
+
+
+
+2015-06-16T16:02:42.998933Z
+acb211afe7bb5385fa4696f7e89c1f42
+2015-05-29T19:19:33.450649Z
+2
+luis_augusto
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+985
+
+ihumanbaseservice
+dir
+
+humanmultiplesend
+dir
+

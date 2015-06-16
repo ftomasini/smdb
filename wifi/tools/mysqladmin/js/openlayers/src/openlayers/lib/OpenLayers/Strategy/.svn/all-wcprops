@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy
+END
+BBOX.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/BBOX.js
+END
+Refresh.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/Refresh.js
+END
+Save.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/Save.js
+END
+Fixed.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/Fixed.js
+END
+Cluster.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/Cluster.js
+END
+Filter.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/Filter.js
+END
+Paging.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Strategy/Paging.js
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/wifi/!svn/ver/1/trunk/framework/i18n/gettext
+END
+CGettextMoFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/i18n/gettext/CGettextMoFile.php
+END
+CGettextPoFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/i18n/gettext/CGettextPoFile.php
+END
+CGettextFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/i18n/gettext/CGettextFile.php
+END

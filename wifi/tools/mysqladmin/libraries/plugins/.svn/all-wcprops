@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins
+END
+AuthenticationPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/AuthenticationPlugin.class.php
+END
+TransformationsInterface.int.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/TransformationsInterface.int.php
+END
+ExportPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/ExportPlugin.class.php
+END
+PluginObserver.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/PluginObserver.class.php
+END
+TransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/TransformationsPlugin.class.php
+END
+ImportPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/ImportPlugin.class.php
+END
+PluginManager.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/PluginManager.class.php
+END
+UploadInterface.int.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/UploadInterface.int.php
+END

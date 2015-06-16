@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema
+END
+Interchange.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Interchange.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Exception.php
+END
+InterchangeBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/InterchangeBuilder.php
+END
+schema.ser
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema.ser
+END
+Validator.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Validator.php
+END
+ValidatorAtom.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/wifi/!svn/ver/1/trunk/framework/vendors/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/ValidatorAtom.php
+END

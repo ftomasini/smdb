@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/wifi/!svn/ver/1/trunk/framework/cli/commands
+END
+WebAppCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/framework/cli/commands/WebAppCommand.php
+END
+MessageCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/cli/commands/MessageCommand.php
+END
+ShellCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/cli/commands/ShellCommand.php
+END
+MigrateCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/cli/commands/MigrateCommand.php
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/frames
+END
+form.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/frames/form.inc.php
+END
+menu.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/frames/menu.inc.php
+END
+config.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/frames/config.inc.php
+END
+index.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/frames/index.inc.php
+END
+servers.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/frames/servers.inc.php
+END

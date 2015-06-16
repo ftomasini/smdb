@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/modification
+END
+inetOrgPerson.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/modification/inetOrgPerson.xml
+END
+posixGroup.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/modification/posixGroup.xml
+END

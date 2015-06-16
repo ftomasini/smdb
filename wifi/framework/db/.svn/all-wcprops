@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/wifi/!svn/ver/1/trunk/framework/db
+END
+CDbDataReader.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/db/CDbDataReader.php
+END
+CDbCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/framework/db/CDbCommand.php
+END
+CDbException.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/framework/db/CDbException.php
+END
+CDbConnection.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/db/CDbConnection.php
+END
+CDbTransaction.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/db/CDbTransaction.php
+END
+CDbMigration.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/framework/db/CDbMigration.php
+END

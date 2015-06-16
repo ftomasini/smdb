@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/framework/gii/views/layouts
+END
+main.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/gii/views/layouts/main.php
+END
+generator.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/gii/views/layouts/generator.php
+END
+column1.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/gii/views/layouts/column1.php
+END

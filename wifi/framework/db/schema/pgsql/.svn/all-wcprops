@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/framework/db/schema/pgsql
+END
+CPgsqlColumnSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/framework/db/schema/pgsql/CPgsqlColumnSchema.php
+END
+CPgsqlSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/framework/db/schema/pgsql/CPgsqlSchema.php
+END
+CPgsqlCommandBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/framework/db/schema/pgsql/CPgsqlCommandBuilder.php
+END
+CPgsqlTableSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/framework/db/schema/pgsql/CPgsqlTableSchema.php
+END

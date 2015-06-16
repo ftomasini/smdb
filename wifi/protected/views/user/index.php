@@ -1,0 +1,96 @@
+<?php
+
+/* @var $this UserController */
+/* @var $model LoginForm */
+/* @var $form CActiveForm  */
+
+?>
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+
+    <div class="col-md-4 title">
+        <h3><?php echo Yii::t('app', 'Bem-vindo à rede Wi-Fi'); ?></h3>
+        <p><?php echo Yii::t('app', 'Acesso para visitantes. Informe abaixo e-mail e senha ou faça seu cadastro.'); ?></p>
+
+    </div>
+
+    <div class="col-md-4">
+
+    </div>
+
+</div>
+
+<div class="row pad-top-20 pad-bot-20">
+    <div class="col-md-2 col-sm-2">
+
+    </div>
+    
+    <div class="<?php echo Yii::app()->params['preferencias']['autoCadastroHabilitado'] === false ? 'col-sm-6 col-md-4 col-md-offset-2' : 'col-md-4 col-sm-4'; ?>">
+
+        <?php if ( Yii::app()->params['preferencias']['autoCadastroHabilitado'] === true ): ?>
+            <div class="form_title">
+                <h3><?php echo Yii::t('app', 'Já estou registrado'); ?></h3>
+
+            </div>
+        <?php endif; ?>
+        
+       	<!-- FORMULÁRIO -->
+        <?php
+            $form = $this->beginWidget('CActiveForm', array(
+                'id' => 'login-form',
+                'enableClientValidation' => false,
+                'clientOptions' => array(
+                    'validateOnSubmit' => false,
+                )
+            ));
+        ?>
+            <div class="form-group">	    
+                <?php echo $form->textField($model, 'nomeUsuario', array('placeholder' => Yii::t('app', 'Email'), 'class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'nomeUsuario', array('class' => 'error-message')); ?>
+
+            </div>
+
+            <div class="form-group">
+                <?php echo $form->passwordField($model, 'senhaUsuario', array('placeholder' => Yii::t('app', 'Senha'), 'class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'senhaUsuario', array('class' => 'error-message')); ?>            	
+
+            </div>
+
+            <?php echo CHtml::submitButton(Yii::t('app', 'Entrar'), array('class' => 'btn btn-default')); ?>
+
+        <!-- /FORMULÁRIO -->
+        <?php $this->endWidget(); ?>
+
+    </div>
+
+    <?php if ( Yii::app()->params['preferencias']['autoCadastroHabilitado'] === true ): ?>
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+    
+        <div class="col-md-4 col-sm-4 col-xs-12 buttons">
+            <div class="form_title">
+                <h3><?php echo Yii::t('app', 'Não possuo cadastro'); ?></h3>
+
+            </div>
+
+            <ul>
+                <li><?php echo CHtml::link('<button type="button" class="botao btn-default">' . Yii::t('app', 'Fazer cadastro') . '</button>', array('user/registrar')); ?></li>
+
+                <li><?php echo CHtml::link('<button type="button" class="botao btn-default">' . Yii::t('app', 'Confirmar cadastro') . '</button>', array('user/confirmar')); ?></li>
+
+                <li><?php echo CHtml::link('<button type="button" class="botao btn-default">' . Yii::t('app', 'Recuperar senha') . '</button>', array('user/recuperar')); ?></li>
+
+            </ul>
+
+        </div>
+    <?php endif; ?>
+    
+    <div class="col-md-1 col-sm-1">
+
+    </div>
+
+</div>

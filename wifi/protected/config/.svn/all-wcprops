@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/wifi/!svn/ver/2/trunk/protected/config
+END
+config_en_us.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/2/trunk/protected/config/config_en_us.php
+END
+test.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/protected/config/test.php
+END
+console.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/protected/config/console.php
+END
+main.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/2/trunk/protected/config/main.php
+END
+syncConfWithDB.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/2/trunk/protected/config/syncConfWithDB.php
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/protected/config/README.txt
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/2/trunk/protected/config/config.php
+END
+config_pt_br.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/2/trunk/protected/config/config_pt_br.php
+END

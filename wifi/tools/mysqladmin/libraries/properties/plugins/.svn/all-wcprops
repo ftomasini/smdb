@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/plugins
+END
+PluginPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/plugins/PluginPropertyItem.class.php
+END
+ImportPluginProperties.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/plugins/ImportPluginProperties.class.php
+END
+ExportPluginProperties.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/plugins/ExportPluginProperties.class.php
+END

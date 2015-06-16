@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/KeyCache
+END
+SimpleKeyCacheInputStream.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/KeyCache/SimpleKeyCacheInputStream.php
+END
+DiskKeyCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/KeyCache/DiskKeyCache.php
+END
+NullKeyCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/KeyCache/NullKeyCache.php
+END
+KeyCacheInputStream.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/KeyCache/KeyCacheInputStream.php
+END
+ArrayKeyCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/KeyCache/ArrayKeyCache.php
+END

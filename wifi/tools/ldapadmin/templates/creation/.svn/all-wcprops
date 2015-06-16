@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation
+END
+mozillaOrgPerson.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/mozillaOrgPerson.xml
+END
+sambaMachine.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sambaMachine.xml
+END
+simpleSecurityObject.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/simpleSecurityObject.xml
+END
+sambaDomain.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sambaDomain.xml
+END
+sambaGroupMapping.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sambaGroupMapping.xml
+END
+dNSDomain.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/dNSDomain.xml
+END
+kolabPerson.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/kolabPerson.xml
+END
+posixAccount.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/posixAccount.xml
+END
+posixGroup.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/posixGroup.xml
+END
+sendmailMTAMapObject.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sendmailMTAMapObject.xml
+END
+ou.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/ou.xml
+END
+sendmailMTAClass.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sendmailMTAClass.xml
+END
+courierMailAlias.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/courierMailAlias.xml
+END
+courierMailAccount.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/courierMailAccount.xml
+END
+alias.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/alias.xml
+END
+example.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/example.xml
+END
+sendmailVirtualDomain.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sendmailVirtualDomain.xml
+END
+inetOrgPerson.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/inetOrgPerson.xml
+END
+sendmailMTAAliasObject.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sendmailMTAAliasObject.xml
+END
+sendmailMTACluster.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sendmailMTACluster.xml
+END
+sambaSamAccount.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sambaSamAccount.xml
+END
+sendmailVirtualUser.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/sendmailVirtualUser.xml
+END
+organizationalRole.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/templates/creation/organizationalRole.xml
+END

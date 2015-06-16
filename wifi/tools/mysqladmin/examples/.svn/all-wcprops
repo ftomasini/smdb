@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples
+END
+signon-script.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/signon-script.php
+END
+config.manyhosts.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/config.manyhosts.inc.php
+END
+create_tables.sql
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/create_tables.sql
+END
+swekey.sample.conf
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/swekey.sample.conf
+END
+create_tables_drizzle.sql
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/create_tables_drizzle.sql
+END
+signon.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/signon.php
+END
+upgrade_tables_mysql_4_1_2+.sql
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/upgrade_tables_mysql_4_1_2+.sql
+END
+openid.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/examples/openid.php
+END

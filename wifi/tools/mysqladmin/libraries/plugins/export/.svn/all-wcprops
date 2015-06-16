@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export
+END
+TableProperty.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/TableProperty.class.php
+END
+ExportCsv.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportCsv.class.php
+END
+ExportTexytext.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportTexytext.class.php
+END
+ExportSql.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportSql.class.php
+END
+ExportXml.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportXml.class.php
+END
+ExportHtmlword.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportHtmlword.class.php
+END
+ExportExcel.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportExcel.class.php
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/README
+END
+ExportYaml.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportYaml.class.php
+END
+ExportMediawiki.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportMediawiki.class.php
+END
+ExportCodegen.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportCodegen.class.php
+END
+PMA_ExportPdf.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/PMA_ExportPdf.class.php
+END
+ExportPdf.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportPdf.class.php
+END
+ExportJson.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportJson.class.php
+END
+ExportLatex.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportLatex.class.php
+END
+ExportOds.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportOds.class.php
+END
+ExportPhparray.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportPhparray.class.php
+END
+ExportOdt.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/export/ExportOdt.class.php
+END

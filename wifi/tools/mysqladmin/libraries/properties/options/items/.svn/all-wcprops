@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items
+END
+TextPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/TextPropertyItem.class.php
+END
+DocPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/DocPropertyItem.class.php
+END
+MessageOnlyPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/MessageOnlyPropertyItem.class.php
+END
+NumberPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/NumberPropertyItem.class.php
+END
+BoolPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/BoolPropertyItem.class.php
+END
+HiddenPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/HiddenPropertyItem.class.php
+END
+RadioPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/RadioPropertyItem.class.php
+END
+SelectPropertyItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/properties/options/items/SelectPropertyItem.class.php
+END

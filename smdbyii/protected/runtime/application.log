@@ -1,0 +1,9 @@
+2015/06/16 15:56:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/registrar".' in /home/solis/Área de Trabalho/PROJETO TCC/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/solis/Área de Trabalho/PROJETO TCC/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/registrar')
+#1 /home/solis/Área de Trabalho/PROJETO TCC/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /var/www/tcc/smdbyii/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/tcc/smdbyii/index.php?r=user/registrar
+HTTP_REFERER=http://localhost/tcc/smdbyii/index.php?r=site/login
+---

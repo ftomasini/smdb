@@ -1,0 +1,206 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    background-color: #999;
+    color: #FFF !important;
+}
+
+.form_title_center {
+    text-align: center;
+}
+
+.transparent {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0);
+}	
+
+.logo img {
+    padding: 5px 0;
+    max-height: 40px;
+}
+
+.navbar-button {
+    color: #FFF;
+    border: none;
+    background: transparent;
+    cursor: pointer;	
+
+}
+
+.navbar-text {
+    color: #FFF !important;
+}
+
+.navbar-text a{
+    color: #ccc !important;
+}
+
+.navbar-text a:hover{
+    color: #FFF !important;
+}
+
+.navbar-collapse .navbar-text, .navbar-button {
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+}
+
+.navbar {
+    min-height: 40px !important;
+}
+
+.starter {
+    padding: 0 15px 10px;
+    text-align: center;
+}
+
+.img-responsive {
+    display: inline !important;
+}
+
+.form-control {
+    height: 50px !important;
+    font-size: 24px !important;
+    border-radius: 0px !important;
+    border: 4px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.side-formfield-left {
+    float: left;
+    width: 25%;
+}
+
+.side-formfield-right {
+    float: right;
+    width: 70%;
+}
+
+.clear {
+    clear: both;
+}
+
+.btn-default {
+    color: #FFF !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-color:  rgba(0, 0, 0, 0) !important;
+}
+
+.btn-default:hover {
+    color: #FFF !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-color:  rgba(0, 0, 0, 0) !important;
+}
+
+.btn {
+    padding: 10px 35px !important;
+    border-radius: 0px;
+}
+
+.text {
+    text-align: left;
+    padding-top: 30px;
+}
+
+.title {
+    text-align: center;
+
+}
+
+.text p, .text h4 {
+    padding-left: 20px;
+}
+
+ul {
+    list-style: none !important;
+}
+
+.row h3 {
+    padding-top: 10px;
+}
+
+.pad-top-20 {
+    padding-top: 20px;
+}
+
+.pad-bot-20 {
+    padding-bottom: 20px;
+}
+
+.pad-top-50 {
+    padding-top: 50px;
+}
+
+.botao {
+    width: 260px;
+    height: 60px;
+    font-size: 18px;
+
+}
+
+.buttons ul {
+    padding-top: 10px;
+    margin-left: -39px;
+}
+
+.buttons ul li{
+    padding: 2px 0;
+}
+
+.form-group img {
+    margin: 0 auto;
+    padding: 10px 0 20px;
+}
+
+.footer {
+
+    margin-top: 20px;
+
+}
+
+@media (max-width:480px){
+
+    .botao {
+
+        width: 100%;
+
+        height: 67px;
+
+    }
+
+}
+
+@media (min-width:481px) and (max-width:599px){
+    .botao {
+
+        width: 100%;
+
+        height: 67px;
+
+    }
+
+}
+
+@media (min-width:600px){
+    .botao {
+
+        width: 300px;
+
+        height: 67px;
+
+    }
+
+    .footer img{
+
+        padding: 10px 0;
+
+    }
+
+}
+
+.error-message { 
+    background-color: #ee2222;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    
+}

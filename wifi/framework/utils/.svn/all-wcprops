@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/wifi/!svn/ver/1/trunk/framework/utils
+END
+CPropertyValue.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/framework/utils/CPropertyValue.php
+END
+CPasswordHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/utils/CPasswordHelper.php
+END
+CFormatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/utils/CFormatter.php
+END
+CTimestamp.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/utils/CTimestamp.php
+END
+CVarDumper.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/utils/CVarDumper.php
+END
+CDateTimeParser.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/utils/CDateTimeParser.php
+END
+mimeTypes.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/framework/utils/mimeTypes.php
+END
+CLocalizedFormatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/utils/CLocalizedFormatter.php
+END
+CFileHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/utils/CFileHelper.php
+END
+CMarkdownParser.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/utils/CMarkdownParser.php
+END

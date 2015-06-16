@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/human_gateway_client_api/service
+END
+HumanQueryMessage.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/human_gateway_client_api/service/HumanQueryMessage.php
+END
+HumanSimpleSend.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/human_gateway_client_api/service/HumanSimpleSend.php
+END
+HumanMultipleSend.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/human_gateway_client_api/service/HumanMultipleSend.php
+END

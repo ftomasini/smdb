@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/swekey
+END
+authentication.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/swekey/authentication.inc.php
+END
+swekey.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/swekey/swekey.php
+END
+swekey.auth.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/swekey/swekey.auth.lib.php
+END
+musbe-ca.crt
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/swekey/musbe-ca.crt
+END

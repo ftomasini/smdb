@@ -1,0 +1,753 @@
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "log" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "request" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "messages" application component
+in /var/www/wifi/protected/models/LoginForm.php (27)
+in /var/www/wifi/protected/components/Controller.php (27)
+in /var/www/wifi/protected/controllers/UserController.php (80)
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "db" application component
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+	AND attnum IN (1)
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.ar.CActiveRecord] Usuario.count()
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "usuario" "t" WHERE (senha LIKE :ycp0) AND (email LIKE :ycp1)
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.ar.CActiveRecord] Usuario.findAll()
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "usuario" "t" WHERE (senha LIKE :ycp0) AND (email LIKE :ycp1) LIMIT 10
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/Configuracao.php (102)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/Configuracao.php (102)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:33:33 [trace] [system.db.ar.CActiveRecord] Configuracao.count()
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "configuracao" "t" WHERE (nome LIKE :ycp2) AND (idioma LIKE :ycp3)
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:33:33 [trace] [system.db.ar.CActiveRecord] Configuracao.findAll()
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "configuracao" "t" WHERE (nome LIKE :ycp2) AND (idioma LIKE :ycp3) LIMIT 10
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/LogSistema.php (150)
+in /var/www/wifi/protected/models/LoginForm.php (62)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/LogSistema.php (150)
+in /var/www/wifi/protected/models/LoginForm.php (62)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:33:33 [trace] [system.db.ar.CActiveRecord] LogSistema.insert()
+in /var/www/wifi/protected/models/LogSistema.php (155)
+in /var/www/wifi/protected/models/LoginForm.php (62)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:33:33 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO "log_sistema" ("acao", "ip", "informacao_adicional") VALUES (:yp0, :yp1, :yp2)
+in /var/www/wifi/protected/models/LogSistema.php (155)
+in /var/www/wifi/protected/models/LoginForm.php (62)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/wifi/protected/views/user/index.php (48)
+in /var/www/wifi/protected/controllers/UserController.php (92)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:33:33 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/wifi/protected/views/user/index.php (65)
+in /var/www/wifi/protected/controllers/UserController.php (92)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "log" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "request" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "messages" application component
+in /var/www/wifi/protected/models/LoginForm.php (27)
+in /var/www/wifi/protected/components/Controller.php (27)
+in /var/www/wifi/protected/controllers/UserController.php (80)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "db" application component
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+	AND attnum IN (1)
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] Usuario.count()
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "usuario" "t" WHERE (senha LIKE :ycp0) AND (email LIKE :ycp1)
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] Usuario.findAll()
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "usuario" "t" WHERE (senha LIKE :ycp0) AND (email LIKE :ycp1) LIMIT 10
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/Configuracao.php (102)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/Configuracao.php (102)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] Configuracao.count()
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "configuracao" "t" WHERE (nome LIKE :ycp2) AND (idioma LIKE :ycp3)
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] Configuracao.findAll()
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "configuracao" "t" WHERE (nome LIKE :ycp2) AND (idioma LIKE :ycp3) LIMIT 10
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "user" application component
+in /var/www/wifi/protected/models/LoginForm.php (87)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "session" application component
+in /var/www/wifi/protected/models/LoginForm.php (87)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/LogSistema.php (120)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/LogSistema.php (120)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] Usuario.count()
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "usuario" "t" WHERE email LIKE :ycp4
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] Usuario.findAll()
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "usuario" "t" WHERE email LIKE :ycp4 LIMIT 10
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:34:29 [trace] [system.db.ar.CActiveRecord] LogSistema.insert()
+in /var/www/wifi/protected/models/LogSistema.php (127)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:34:29 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO "log_sistema" ("acao", "ip", "id_usuario") VALUES (:yp0, :yp1, :yp2)
+in /var/www/wifi/protected/models/LogSistema.php (127)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/wifi/protected/views/user/index.php (48)
+in /var/www/wifi/protected/controllers/UserController.php (92)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:34:29 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/wifi/protected/views/user/index.php (65)
+in /var/www/wifi/protected/controllers/UserController.php (92)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "log" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "request" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "messages" application component
+in /var/www/wifi/protected/models/LoginForm.php (27)
+in /var/www/wifi/protected/components/Controller.php (27)
+in /var/www/wifi/protected/controllers/UserController.php (80)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "db" application component
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+	AND attnum IN (1)
+in /var/www/wifi/protected/models/Usuario.php (122)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] Usuario.count()
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "usuario" "t" WHERE (senha LIKE :ycp0) AND (email LIKE :ycp1)
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] Usuario.findAll()
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "usuario" "t" WHERE (senha LIKE :ycp0) AND (email LIKE :ycp1) LIMIT 10
+in /var/www/wifi/protected/models/Usuario.php (126)
+in /var/www/wifi/protected/components/autenticacao/AutenticacaoAutoCadastro.php (24)
+in /var/www/wifi/protected/components/IdentidadeUsuario.php (24)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/Configuracao.php (102)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/Configuracao.php (102)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] Configuracao.count()
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "configuracao" "t" WHERE (nome LIKE :ycp2) AND (idioma LIKE :ycp3)
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] Configuracao.findAll()
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "configuracao" "t" WHERE (nome LIKE :ycp2) AND (idioma LIKE :ycp3) LIMIT 10
+in /var/www/wifi/protected/models/Configuracao.php (107)
+in /var/www/wifi/protected/models/Usuario.php (167)
+in /var/www/wifi/protected/models/Usuario.php (185)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "user" application component
+in /var/www/wifi/protected/models/LoginForm.php (87)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "session" application component
+in /var/www/wifi/protected/models/LoginForm.php (87)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef,
+	pg_catalog.col_description(a.attrelid, a.attnum) AS comment
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in /var/www/wifi/protected/models/LogSistema.php (120)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in /var/www/wifi/protected/models/LogSistema.php (120)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] Usuario.count()
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM "usuario" "t" WHERE email LIKE :ycp4
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] Usuario.findAll()
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "usuario" "t" WHERE email LIKE :ycp4 LIMIT 10
+in /var/www/wifi/protected/models/Usuario.php (149)
+in /var/www/wifi/protected/models/LogSistema.php (124)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+2015/06/16 13:35:04 [trace] [system.db.ar.CActiveRecord] LogSistema.insert()
+in /var/www/wifi/protected/models/LogSistema.php (127)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:35:04 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO "log_sistema" ("acao", "ip", "id_usuario") VALUES (:yp0, :yp1, :yp2)
+in /var/www/wifi/protected/models/LogSistema.php (127)
+in /var/www/wifi/protected/models/LoginForm.php (89)
+in /var/www/wifi/protected/controllers/UserController.php (84)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/wifi/protected/views/user/index.php (48)
+in /var/www/wifi/protected/controllers/UserController.php (92)
+in /var/www/wifi/index.php (33)
+2015/06/16 13:35:04 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/wifi/protected/views/user/index.php (65)
+in /var/www/wifi/protected/controllers/UserController.php (92)
+in /var/www/wifi/index.php (33)

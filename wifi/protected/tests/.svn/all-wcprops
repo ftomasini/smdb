@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/wifi/!svn/ver/1/trunk/protected/tests
+END
+WebTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/protected/tests/WebTestCase.php
+END
+bootstrap.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/protected/tests/bootstrap.php
+END
+phpunit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/protected/tests/phpunit.xml
+END

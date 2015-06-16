@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Filter
+END
+FeatureId.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Filter/FeatureId.js
+END
+Comparison.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Filter/Comparison.js
+END
+Logical.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Filter/Logical.js
+END
+Spatial.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Filter/Spatial.js
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 22
+/wifi/!svn/ver/3/trunk
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/wifi/!svn/ver/1/trunk/index.php
+END
+index-test.php
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/wifi/!svn/ver/1/trunk/index-test.php
+END

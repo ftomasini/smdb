@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/wifi/!svn/ver/1/trunk/tools/ldapadmin
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/LICENSE
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/.gitignore
+END
+VERSION
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/VERSION
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/INSTALL
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/index.php
+END

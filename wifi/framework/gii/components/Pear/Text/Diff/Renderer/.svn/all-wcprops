@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/framework/gii/components/Pear/Text/Diff/Renderer
+END
+inline.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/wifi/!svn/ver/1/trunk/framework/gii/components/Pear/Text/Diff/Renderer/inline.php
+END
+unified.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/wifi/!svn/ver/1/trunk/framework/gii/components/Pear/Text/Diff/Renderer/unified.php
+END
+context.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/wifi/!svn/ver/1/trunk/framework/gii/components/Pear/Text/Diff/Renderer/context.php
+END

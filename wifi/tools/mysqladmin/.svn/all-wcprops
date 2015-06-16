@@ -1,0 +1,623 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/wifi/!svn/ver/1/trunk/tools/mysqladmin
+END
+tbl_import.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_import.php
+END
+import_status.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/import_status.php
+END
+pmd_save_pos.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/pmd_save_pos.php
+END
+server_status_monitor.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_status_monitor.php
+END
+gis_data_editor.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/gis_data_editor.php
+END
+license.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/license.php
+END
+tbl_export.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_export.php
+END
+pmd_relation_upd.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/pmd_relation_upd.php
+END
+prefs_manage.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/prefs_manage.php
+END
+tbl_printview.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_printview.php
+END
+print.css
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/print.css
+END
+server_variables.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_variables.php
+END
+server_privileges.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_privileges.php
+END
+url.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/url.php
+END
+schema_edit.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/schema_edit.php
+END
+transformation_wrapper.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/transformation_wrapper.php
+END
+server_status_queries.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_status_queries.php
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/README
+END
+chk_rel.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/chk_rel.php
+END
+db_create.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_create.php
+END
+server_status.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_status.php
+END
+import.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/import.php
+END
+server_engines.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_engines.php
+END
+CONTRIBUTING.md
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/CONTRIBUTING.md
+END
+export.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/export.php
+END
+.coveralls.yml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/.coveralls.yml
+END
+error_report.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/error_report.php
+END
+themes.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/themes.php
+END
+db_operations.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_operations.php
+END
+phpmyadmin.css.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/phpmyadmin.css.php
+END
+server_collations.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_collations.php
+END
+server_replication.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_replication.php
+END
+tbl_indexes.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_indexes.php
+END
+show_config_errors.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/show_config_errors.php
+END
+server_status_variables.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_status_variables.php
+END
+tbl_move_copy.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_move_copy.php
+END
+tbl_create.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_create.php
+END
+db_structure.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_structure.php
+END
+RELEASE-DATE-4.2.3
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/RELEASE-DATE-4.2.3
+END
+db_tracking.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_tracking.php
+END
+db_events.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_events.php
+END
+db_search.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_search.php
+END
+tbl_find_replace.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_find_replace.php
+END
+db_routines.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_routines.php
+END
+config.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/config.inc.php
+END
+file_echo.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/file_echo.php
+END
+tbl_relation.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_relation.php
+END
+webapp.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/webapp.php
+END
+DCO
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/DCO
+END
+tbl_select.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_select.php
+END
+db_datadict.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_datadict.php
+END
+version_check.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/version_check.php
+END
+tbl_get_field.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_get_field.php
+END
+tbl_operations.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_operations.php
+END
+browse_foreigners.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/browse_foreigners.php
+END
+prefs_forms.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/prefs_forms.php
+END
+tbl_change.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_change.php
+END
+phpunit.xml.nocoverage
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/phpunit.xml.nocoverage
+END
+db_triggers.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_triggers.php
+END
+view_create.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/view_create.php
+END
+navigation.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/navigation.php
+END
+server_status_advisor.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_status_advisor.php
+END
+server_import.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_import.php
+END
+robots.txt
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/robots.txt
+END
+tbl_structure.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_structure.php
+END
+phpunit.xml.hhvm
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/phpunit.xml.hhvm
+END
+tbl_chart.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_chart.php
+END
+server_user_groups.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_user_groups.php
+END
+tbl_tracking.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_tracking.php
+END
+phpinfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/phpinfo.php
+END
+db_sql.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_sql.php
+END
+tbl_gis_visualization.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_gis_visualization.php
+END
+tbl_row_action.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_row_action.php
+END
+server_export.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_export.php
+END
+server_plugins.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_plugins.php
+END
+favicon.ico
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/favicon.ico
+END
+pmd_pdf.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/pmd_pdf.php
+END
+tbl_replace.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_replace.php
+END
+db_qbe.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_qbe.php
+END
+server_databases.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_databases.php
+END
+pmd_general.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/pmd_general.php
+END
+view_operations.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/view_operations.php
+END
+db_import.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_import.php
+END
+tbl_zoom_select.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_zoom_select.php
+END
+server_sql.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_sql.php
+END
+pmd_relation_new.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/pmd_relation_new.php
+END
+db_export.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_export.php
+END
+tbl_triggers.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_triggers.php
+END
+changelog.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/changelog.php
+END
+transformation_overview.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/transformation_overview.php
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/LICENSE
+END
+db_printview.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/db_printview.php
+END
+querywindow.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/querywindow.php
+END
+tbl_addfield.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_addfield.php
+END
+sql.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/sql.php
+END
+tbl_sql.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/tbl_sql.php
+END
+user_password.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/user_password.php
+END
+server_binlog.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/server_binlog.php
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/ChangeLog
+END
+schema_export.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/schema_export.php
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/index.php
+END
+pmd_display_field.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/pmd_display_field.php
+END
+composer.json
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/composer.json
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis
+END
+GIS_Linestring.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Linestring.class.php
+END
+GIS_Visualization.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Visualization.class.php
+END
+GIS_Multipolygon.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Multipolygon.class.php
+END
+GIS_Multipoint.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Multipoint.class.php
+END
+GIS_Factory.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Factory.class.php
+END
+GIS_Geometrycollection.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Geometrycollection.class.php
+END
+GIS_Polygon.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Polygon.class.php
+END
+GIS_Multilinestring.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Multilinestring.class.php
+END
+GIS_Point.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Point.class.php
+END
+GIS_Geometry.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/gis/GIS_Geometry.class.php
+END

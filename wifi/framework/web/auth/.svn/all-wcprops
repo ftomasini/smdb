@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/wifi/!svn/ver/1/trunk/framework/web/auth
+END
+CPhpAuthManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/web/auth/CPhpAuthManager.php
+END
+schema-sqlite.sql
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/web/auth/schema-sqlite.sql
+END
+CAccessControlFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/framework/web/auth/CAccessControlFilter.php
+END
+CUserIdentity.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/web/auth/CUserIdentity.php
+END
+schema-mysql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/web/auth/schema-mysql.sql
+END
+schema-pgsql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/web/auth/schema-pgsql.sql
+END
+CAuthAssignment.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/web/auth/CAuthAssignment.php
+END
+CAuthManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/web/auth/CAuthManager.php
+END
+CWebUser.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/web/auth/CWebUser.php
+END
+schema-oci.sql
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/framework/web/auth/schema-oci.sql
+END
+CAuthItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/framework/web/auth/CAuthItem.php
+END
+CDbAuthManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/framework/web/auth/CDbAuthManager.php
+END
+schema-mssql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/web/auth/schema-mssql.sql
+END
+CBaseUserIdentity.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/framework/web/auth/CBaseUserIdentity.php
+END

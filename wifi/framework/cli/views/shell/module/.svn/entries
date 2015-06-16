@@ -1,0 +1,77 @@
+10
+
+dir
+3
+https://svn.solis.com.br/wifi/trunk/framework/cli/views/shell/module
+https://svn.solis.com.br/wifi
+
+
+
+2015-05-19T17:59:36.111901Z
+1
+luis_augusto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7b1988b7-34cb-4df4-b11e-a7cb3cbad1c4
+
+components
+dir
+
+controllers
+dir
+
+messages
+dir
+
+module.php
+file
+
+
+
+
+2015-06-16T16:02:24.606934Z
+a97ef89d8542a49d40a950fd89bd1b5c
+2015-05-19T17:59:36.111901Z
+1
+luis_augusto
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+707
+
+views
+dir
+
+models
+dir
+

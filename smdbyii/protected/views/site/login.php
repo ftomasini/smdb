@@ -9,9 +9,27 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Login</h1>
 
-<p>Please fill out the following form with your login credentials:</p>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <title>Login</title>
+</head>
+
+  <body class="login-body">
+
+    <div class="container">
+
+      <form class="form-signin" action="index.html">
+        <h2 class="form-signin-heading">sign in now</h2>
+        <div class="login-wrap">
+            <div class="user-login-info">
+
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,21 +40,14 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
+		<?php echo $form->textField($model,'username',array('placeholder' => Yii::t('app', 'Nome usuário'), 'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'username'); ?>
-	</div>
 
-	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password',array('placeholder' => Yii::t('app', 'Senha'), 'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
+		
 	</div>
 
 	<div class="row rememberMe">
@@ -45,8 +56,11 @@ $this->breadcrumbs=array(
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+	<div >
+            
+                <li><?php echo CHtml::link('<button type="button" class="botao btn-default">' . Yii::t('app', 'Fazer cadastro') . '</button>', array('user/registrar')); ?></li>
+            
+		<?php echo $button = CHtml::submitButton('Login'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

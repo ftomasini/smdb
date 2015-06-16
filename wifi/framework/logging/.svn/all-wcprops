@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/wifi/!svn/ver/1/trunk/framework/logging
+END
+CWebLogRoute.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/framework/logging/CWebLogRoute.php
+END
+CLogger.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/framework/logging/CLogger.php
+END
+CFileLogRoute.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/logging/CFileLogRoute.php
+END
+CLogRoute.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/logging/CLogRoute.php
+END
+CProfileLogRoute.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/logging/CProfileLogRoute.php
+END
+CLogRouter.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/framework/logging/CLogRouter.php
+END
+CChainedLogFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/logging/CChainedLogFilter.php
+END
+CDbLogRoute.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/framework/logging/CDbLogRoute.php
+END
+CLogFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/framework/logging/CLogFilter.php
+END
+CEmailLogRoute.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/logging/CEmailLogRoute.php
+END

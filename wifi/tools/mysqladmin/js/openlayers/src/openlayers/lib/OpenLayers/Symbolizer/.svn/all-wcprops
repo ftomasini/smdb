@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Symbolizer
+END
+Raster.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Symbolizer/Raster.js
+END
+Text.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Symbolizer/Text.js
+END
+Line.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Symbolizer/Line.js
+END
+Polygon.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Symbolizer/Polygon.js
+END
+Point.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/Symbolizer/Point.js
+END

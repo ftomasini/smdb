@@ -1,0 +1,341 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport
+END
+Swift_SendmailTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_SendmailTransport.html
+END
+Swift_Transport_MailTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_MailTransport.html
+END
+Swift_Transport_SmtpAgent.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_SmtpAgent.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---FailoverTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---FailoverTransport.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---AbstractSmtpTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---AbstractSmtpTransport.php.html
+END
+Swift_Transport_LoadBalancedTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_LoadBalancedTransport.html
+END
+_vendors---swiftMailer---classes---Swift---TransportException.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---TransportException.php.html
+END
+Swift_FailoverTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_FailoverTransport.html
+END
+Swift_Transport_SendmailTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_SendmailTransport.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---SimpleMailInvoker.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---SimpleMailInvoker.php.html
+END
+_vendors---swiftMailer---classes---Swift---Plugins---Loggers---ArrayLogger.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Plugins---Loggers---ArrayLogger.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---IoBuffer.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---IoBuffer.php.html
+END
+_vendors---swiftMailer---classes---Swift---Plugins---Logger.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Plugins---Logger.php.html
+END
+Swift_Transport_FailoverTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_FailoverTransport.html
+END
+Swift_Transport_AbstractSmtpTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_AbstractSmtpTransport.html
+END
+Swift_Plugins_Loggers_ArrayLogger.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Plugins_Loggers_ArrayLogger.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---EsmtpTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---EsmtpTransport.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport.php.html
+END
+Swift_Transport_SimpleMailInvoker.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_SimpleMailInvoker.html
+END
+_vendors---swiftMailer---classes---Swift---Plugins---Pop---Pop3Exception.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Plugins---Pop---Pop3Exception.php.html
+END
+_vendors---swiftMailer---classes---Swift---MailTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---MailTransport.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Auth---LoginAuthenticator.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Auth---LoginAuthenticator.php.html
+END
+_vendors---swiftMailer---classes---Swift---SmtpTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---SmtpTransport.php.html
+END
+Swift_Transport_Esmtp_Auth_LoginAuthenticator.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_Esmtp_Auth_LoginAuthenticator.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---Esmtp---AuthHandler.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---Esmtp---AuthHandler.php.html
+END
+Swift_TransportException.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_TransportException.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---MailInvoker.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---MailInvoker.php.html
+END
+Swift_Transport_IoBuffer.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_IoBuffer.html
+END
+_vendors---swiftMailer---classes---Swift---LoadBalancedTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---LoadBalancedTransport.php.html
+END
+Swift_Plugins_Pop_Pop3Exception.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Plugins_Pop_Pop3Exception.html
+END
+Swift_Plugins_Logger.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Plugins_Logger.html
+END
+Swift_Transport_EsmtpTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_EsmtpTransport.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---StreamBuffer.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---StreamBuffer.php.html
+END
+_vendors---swiftMailer---classes---Swift---SendmailTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---SendmailTransport.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---EsmtpHandler.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---EsmtpHandler.php.html
+END
+Swift_Transport_Esmtp_AuthHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_Esmtp_AuthHandler.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Authenticator.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Authenticator.php.html
+END
+Swift_Transport_Esmtp_Auth_CramMd5Authenticator.html
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_Esmtp_Auth_CramMd5Authenticator.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Auth---CramMd5Authenticator.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Auth---CramMd5Authenticator.php.html
+END
+_vendors---swiftMailer---classes---Swift---Plugins---Loggers---EchoLogger.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Plugins---Loggers---EchoLogger.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---MailTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---MailTransport.php.html
+END
+Swift_Transport_MailInvoker.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_MailInvoker.html
+END
+Swift_Transport.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport.html
+END
+_vendors---swiftMailer---classes---Swift---FailoverTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---FailoverTransport.php.html
+END
+Swift_Transport_Esmtp_Authenticator.html
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_Esmtp_Authenticator.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---SmtpAgent.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---SmtpAgent.php.html
+END
+Swift_MailTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_MailTransport.html
+END
+Swift_SmtpTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_SmtpTransport.html
+END
+Swift_Transport_StreamBuffer.html
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_StreamBuffer.html
+END
+Swift_Plugins_Loggers_EchoLogger.html
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Plugins_Loggers_EchoLogger.html
+END
+Swift_Transport_EsmtpHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_EsmtpHandler.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---LoadBalancedTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---LoadBalancedTransport.php.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Auth---PlainAuthenticator.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---Esmtp---Auth---PlainAuthenticator.php.html
+END
+Swift_Transport_Esmtp_Auth_PlainAuthenticator.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_Transport_Esmtp_Auth_PlainAuthenticator.html
+END
+_vendors---swiftMailer---classes---Swift---Transport---SendmailTransport.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/_vendors---swiftMailer---classes---Swift---Transport---SendmailTransport.php.html
+END
+Swift_LoadBalancedTransport.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Transport/Swift_LoadBalancedTransport.html
+END

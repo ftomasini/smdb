@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies
+END
+CCacheDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CCacheDependency.php
+END
+CFileCacheDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CFileCacheDependency.php
+END
+CGlobalStateCacheDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CGlobalStateCacheDependency.php
+END
+CDirectoryCacheDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CDirectoryCacheDependency.php
+END
+CDbCacheDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CDbCacheDependency.php
+END
+CChainedCacheDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CChainedCacheDependency.php
+END
+CExpressionDependency.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/framework/caching/dependencies/CExpressionDependency.php
+END

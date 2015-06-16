@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/wifi/!svn/ver/1/trunk/framework/zii/widgets
+END
+CBreadcrumbs.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/zii/widgets/CBreadcrumbs.php
+END
+CPortlet.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/framework/zii/widgets/CPortlet.php
+END
+CDetailView.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/framework/zii/widgets/CDetailView.php
+END
+CBaseListView.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/zii/widgets/CBaseListView.php
+END
+CMenu.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/zii/widgets/CMenu.php
+END
+CListView.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/zii/widgets/CListView.php
+END

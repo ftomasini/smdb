@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc
+END
+transformations.rst
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/transformations.rst
+END
+intro.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/intro.rst
+END
+credits.rst
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/credits.rst
+END
+setup.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/setup.rst
+END
+glossary.rst
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/glossary.rst
+END
+config.rst
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/config.rst
+END
+conf.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/conf.py
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/Makefile
+END
+index.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/index.rst
+END
+faq.rst
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/faq.rst
+END
+developers.rst
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/developers.rst
+END
+copyright.rst
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/copyright.rst
+END
+privileges.rst
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/privileges.rst
+END
+make.bat
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/make.bat
+END
+require.rst
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/require.rst
+END
+user.rst
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/user.rst
+END
+vendors.rst
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/vendors.rst
+END
+other.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/doc/other.rst
+END

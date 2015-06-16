@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql
+END
+CMssqlPdoAdapter.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql/CMssqlPdoAdapter.php
+END
+CMssqlCommandBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql/CMssqlCommandBuilder.php
+END
+CMssqlTableSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql/CMssqlTableSchema.php
+END
+CMssqlColumnSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql/CMssqlColumnSchema.php
+END
+CMssqlSqlsrvPdoAdapter.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql/CMssqlSqlsrvPdoAdapter.php
+END
+CMssqlSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/framework/db/schema/mssql/CMssqlSchema.php
+END

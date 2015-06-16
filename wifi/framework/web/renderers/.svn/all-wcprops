@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/framework/web/renderers
+END
+CViewRenderer.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/web/renderers/CViewRenderer.php
+END
+CPradoViewRenderer.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/framework/web/renderers/CPradoViewRenderer.php
+END

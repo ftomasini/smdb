@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/wifi/!svn/ver/2/trunk/protected/views/user
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/2/trunk/protected/views/user/index.php
+END
+error.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/protected/views/user/error.php
+END
+recuperacao.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/2/trunk/protected/views/user/recuperacao.php
+END
+registro.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/2/trunk/protected/views/user/registro.php
+END
+confirmacao.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/2/trunk/protected/views/user/confirmacao.php
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi
+END
+DBIDummy.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi/DBIDummy.class.php
+END
+DBIMysqli.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi/DBIMysqli.class.php
+END
+DBIExtension.int.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi/DBIExtension.int.php
+END
+DBIDrizzle.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi/DBIDrizzle.class.php
+END
+DBIMysql.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi/DBIMysql.class.php
+END
+drizzle-wrappers.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/dbi/drizzle-wrappers.lib.php
+END

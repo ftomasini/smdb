@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/wifi/!svn/ver/1/trunk/framework/test
+END
+CDbTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/test/CDbTestCase.php
+END
+CDbFixtureManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/test/CDbFixtureManager.php
+END
+CWebTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/test/CWebTestCase.php
+END
+CTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/framework/test/CTestCase.php
+END

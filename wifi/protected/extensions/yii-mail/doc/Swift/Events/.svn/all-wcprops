@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events
+END
+Swift_Events_SendEvent.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_SendEvent.html
+END
+_vendors---swiftMailer---classes---Swift---Events---TransportExceptionEvent.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---TransportExceptionEvent.php.html
+END
+Swift_Events_SendListener.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_SendListener.html
+END
+_vendors---swiftMailer---classes---Swift---Events---CommandEvent.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---CommandEvent.php.html
+END
+Swift_Events_ResponseEvent.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_ResponseEvent.html
+END
+_vendors---swiftMailer---classes---Swift---Events---Event.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---Event.php.html
+END
+_vendors---swiftMailer---classes---Swift---Events---TransportExceptionListener.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---TransportExceptionListener.php.html
+END
+Swift_Events_SimpleEventDispatcher.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_SimpleEventDispatcher.html
+END
+Swift_Events_TransportChangeEvent.html
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_TransportChangeEvent.html
+END
+Swift_Events_ResponseListener.html
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_ResponseListener.html
+END
+_vendors---swiftMailer---classes---Swift---Events---CommandListener.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---CommandListener.php.html
+END
+_vendors---swiftMailer---classes---Swift---Events---EventListener.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---EventListener.php.html
+END
+Swift_Events_TransportChangeListener.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_TransportChangeListener.html
+END
+Swift_Events_EventObject.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_EventObject.html
+END
+_vendors---swiftMailer---classes---Swift---Events---EventDispatcher.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---EventDispatcher.php.html
+END
+_vendors---swiftMailer---classes---Swift---Events---SendEvent.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---SendEvent.php.html
+END
+Swift_Events_TransportExceptionEvent.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_TransportExceptionEvent.html
+END
+_vendors---swiftMailer---classes---Swift---Events---SendListener.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---SendListener.php.html
+END
+Swift_Events_CommandEvent.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_CommandEvent.html
+END
+_vendors---swiftMailer---classes---Swift---Events---ResponseEvent.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---ResponseEvent.php.html
+END
+Swift_Events_TransportExceptionListener.html
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_TransportExceptionListener.html
+END
+Swift_Events_Event.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_Event.html
+END
+_vendors---swiftMailer---classes---Swift---Events---SimpleEventDispatcher.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---SimpleEventDispatcher.php.html
+END
+Swift_Events_CommandListener.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_CommandListener.html
+END
+_vendors---swiftMailer---classes---Swift---Events---ResponseListener.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---ResponseListener.php.html
+END
+_vendors---swiftMailer---classes---Swift---Events---TransportChangeEvent.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---TransportChangeEvent.php.html
+END
+Swift_Events_EventListener.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_EventListener.html
+END
+Swift_Events_EventDispatcher.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/Swift_Events_EventDispatcher.html
+END
+_vendors---swiftMailer---classes---Swift---Events---EventObject.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---EventObject.php.html
+END
+_vendors---swiftMailer---classes---Swift---Events---TransportChangeListener.php.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/doc/Swift/Events/_vendors---swiftMailer---classes---Swift---Events---TransportChangeListener.php.html
+END

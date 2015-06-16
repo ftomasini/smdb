@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte
+END
+rte_list.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_list.lib.php
+END
+rte_footer.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_footer.lib.php
+END
+rte_words.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_words.lib.php
+END
+rte_export.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_export.lib.php
+END
+rte_events.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_events.lib.php
+END
+rte_triggers.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_triggers.lib.php
+END
+rte_main.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_main.inc.php
+END
+rte_routines.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/rte/rte_routines.lib.php
+END

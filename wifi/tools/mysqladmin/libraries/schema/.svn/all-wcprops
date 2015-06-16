@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema
+END
+Eps_Relation_Schema.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/Eps_Relation_Schema.class.php
+END
+Pdf_Relation_Schema.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/Pdf_Relation_Schema.class.php
+END
+TableStats.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/TableStats.class.php
+END
+Dia_Relation_Schema.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/Dia_Relation_Schema.class.php
+END
+Svg_Relation_Schema.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/Svg_Relation_Schema.class.php
+END
+Export_Relation_Schema.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/Export_Relation_Schema.class.php
+END
+User_Schema.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/schema/User_Schema.class.php
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth
+END
+AuthenticationConfig.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/AuthenticationConfig.class.php
+END
+AuthenticationCookie.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/AuthenticationCookie.class.php
+END
+AuthenticationSignon.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/AuthenticationSignon.class.php
+END
+recaptchalib.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/recaptchalib.php
+END
+AuthenticationHttp.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/auth/AuthenticationHttp.class.php
+END

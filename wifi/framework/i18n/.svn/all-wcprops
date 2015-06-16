@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/wifi/!svn/ver/1/trunk/framework/i18n
+END
+CMessageSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/framework/i18n/CMessageSource.php
+END
+CGettextMessageSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/framework/i18n/CGettextMessageSource.php
+END
+CDbMessageSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/i18n/CDbMessageSource.php
+END
+CNumberFormatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/i18n/CNumberFormatter.php
+END
+CPhpMessageSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/i18n/CPhpMessageSource.php
+END
+CLocale.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/framework/i18n/CLocale.php
+END
+CDateFormatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/framework/i18n/CDateFormatter.php
+END
+CChoiceFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/framework/i18n/CChoiceFormat.php
+END

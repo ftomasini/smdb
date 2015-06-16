@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/lib
+END
+index.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/lib/index.lib.php
+END
+ConfigGenerator.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/lib/ConfigGenerator.class.php
+END
+common.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/lib/common.inc.php
+END
+form_processing.lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/setup/lib/form_processing.lib.php
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Plugins/Loggers
+END
+ArrayLogger.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Plugins/Loggers/ArrayLogger.php
+END
+EchoLogger.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Plugins/Loggers/EchoLogger.php
+END

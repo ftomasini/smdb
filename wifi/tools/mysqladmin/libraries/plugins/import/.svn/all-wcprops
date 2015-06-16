@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import
+END
+ImportShp.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportShp.class.php
+END
+ImportCsv.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportCsv.class.php
+END
+AbstractImportCsv.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/AbstractImportCsv.class.php
+END
+ImportSql.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportSql.class.php
+END
+ImportXml.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportXml.class.php
+END
+ImportMediawiki.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportMediawiki.class.php
+END
+ShapeRecord.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ShapeRecord.class.php
+END
+ImportOds.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportOds.class.php
+END
+ShapeFile.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ShapeFile.class.php
+END
+ImportLdi.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/ImportLdi.class.php
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/README
+END

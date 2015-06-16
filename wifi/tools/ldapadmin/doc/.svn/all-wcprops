@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc
+END
+ldif-example-com
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/ldif-example-com
+END
+pla-test-i18n.ldif
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/pla-test-i18n.ldif
+END
+ldif-Flintstones
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/ldif-Flintstones
+END
+ldif-example.com
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/ldif-example.com
+END
+README-translation.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/README-translation.txt
+END
+ldif-Simpsons
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/ldif-Simpsons
+END
+phpldapadmin-demo.conf
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/phpldapadmin-demo.conf
+END
+uidpool.schema
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/uidpool.schema
+END
+demo-reset.sh
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/demo-reset.sh
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/config
+END
+config.php.example
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/config/config.php.example
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/config/config.php
+END

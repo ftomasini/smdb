@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/wifi/!svn/ver/2/trunk/protected/components
+END
+LangOptions.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/2/trunk/protected/components/LangOptions.php
+END
+Autenticacao.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/protected/components/Autenticacao.php
+END
+IdentidadeUsuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/2/trunk/protected/components/IdentidadeUsuario.php
+END
+SMS.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/2/trunk/protected/components/SMS.php
+END
+Controller.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/2/trunk/protected/components/Controller.php
+END
+ModelForm.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/2/trunk/protected/components/ModelForm.php
+END
+Config.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/protected/components/Config.php
+END
+Logging.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/protected/components/Logging.php
+END
+Controladora.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/protected/components/Controladora.php
+END
+Email.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/2/trunk/protected/components/Email.php
+END
+OperacoesUsuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/2/trunk/protected/components/OperacoesUsuario.php
+END

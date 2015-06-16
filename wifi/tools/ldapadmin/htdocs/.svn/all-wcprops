@@ -1,0 +1,287 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs
+END
+add_oclass_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/add_oclass_form.php
+END
+create_confirm.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/create_confirm.php
+END
+export.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/export.php
+END
+server_info.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/server_info.php
+END
+entry_chooser.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/entry_chooser.php
+END
+rdelete.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/rdelete.php
+END
+delete_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/delete_form.php
+END
+password_checker.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/password_checker.php
+END
+monitor.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/monitor.php
+END
+rename_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/rename_form.php
+END
+login_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/login_form.php
+END
+import_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/import_form.php
+END
+refresh.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/refresh.php
+END
+modify_member_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/modify_member_form.php
+END
+show_cache.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/show_cache.php
+END
+purge_cache.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/purge_cache.php
+END
+mass_update.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/mass_update.php
+END
+add_attr_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/add_attr_form.php
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/index.php
+END
+rename.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/rename.php
+END
+mass_edit.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/mass_edit.php
+END
+logout.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/logout.php
+END
+copy.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/copy.php
+END
+expand.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/expand.php
+END
+draw_tree_node.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/draw_tree_node.php
+END
+update.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/update.php
+END
+mass_delete.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/mass_delete.php
+END
+compare.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/compare.php
+END
+common.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/common.php
+END
+view_jpeg_photo.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/view_jpeg_photo.php
+END
+query_engine.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/query_engine.php
+END
+welcome.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/welcome.php
+END
+delete_attr.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/delete_attr.php
+END
+copy_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/copy_form.php
+END
+update_confirm.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/update_confirm.php
+END
+schema.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/schema.php
+END
+template_engine.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/template_engine.php
+END
+delete.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/delete.php
+END
+collapse.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/collapse.php
+END
+create.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/create.php
+END
+cmd.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/cmd.php
+END
+export_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/export_form.php
+END
+download_binary_attr.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/download_binary_attr.php
+END
+add_value_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/add_value_form.php
+END
+login.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/login.php
+END
+compare_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/compare_form.php
+END
+import.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/htdocs/import.php
+END

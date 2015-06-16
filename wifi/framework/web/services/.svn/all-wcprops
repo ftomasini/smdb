@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/wifi/!svn/ver/1/trunk/framework/web/services
+END
+CWebService.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/web/services/CWebService.php
+END
+CWsdlGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/framework/web/services/CWsdlGenerator.php
+END
+CWebServiceAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/framework/web/services/CWebServiceAction.php
+END

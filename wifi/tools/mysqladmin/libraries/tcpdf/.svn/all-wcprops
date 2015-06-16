@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/tcpdf
+END
+README.TXT
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/tcpdf/README.TXT
+END
+LICENSE.TXT
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/tcpdf/LICENSE.TXT
+END
+tcpdf_autoconfig.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/tcpdf/tcpdf_autoconfig.php
+END
+tcpdf.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/tcpdf/tcpdf.php
+END

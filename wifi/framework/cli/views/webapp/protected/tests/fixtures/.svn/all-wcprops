@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/framework/cli/views/webapp/protected/tests/fixtures
+END
+git-gitkeep
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/framework/cli/views/webapp/protected/tests/fixtures/git-gitkeep
+END
+hg-hgkeep
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/framework/cli/views/webapp/protected/tests/fixtures/hg-hgkeep
+END

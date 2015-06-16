@@ -1,0 +1,287 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib
+END
+DateAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/DateAttribute.php
+END
+Attribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/Attribute.php
+END
+MassRender.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/MassRender.php
+END
+AJAXTree.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/AJAXTree.php
+END
+QueryRender.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/QueryRender.php
+END
+Query.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/Query.php
+END
+ds.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ds.php
+END
+BinaryAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/BinaryAttribute.php
+END
+functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/functions.php
+END
+config_default.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/config_default.php
+END
+ShadowAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ShadowAttribute.php
+END
+Template.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/Template.php
+END
+TemplateRender.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/TemplateRender.php
+END
+PageRender.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/PageRender.php
+END
+blowfish.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/blowfish.php
+END
+xmlTemplates.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/xmlTemplates.php
+END
+ObjectClassAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ObjectClassAttribute.php
+END
+GidAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/GidAttribute.php
+END
+RandomPasswordAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/RandomPasswordAttribute.php
+END
+common.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/common.php
+END
+schema_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/schema_functions.php
+END
+SambaPasswordAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/SambaPasswordAttribute.php
+END
+AttributeFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/AttributeFactory.php
+END
+query_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/query_functions.php
+END
+ldap_error_codes.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ldap_error_codes.txt
+END
+Visitor.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/Visitor.php
+END
+Tree.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/Tree.php
+END
+ds_ldap_pla.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ds_ldap_pla.php
+END
+import_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/import_functions.php
+END
+template_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/template_functions.php
+END
+ds_ldap.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ds_ldap.php
+END
+JpegAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/JpegAttribute.php
+END
+SelectionAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/SelectionAttribute.php
+END
+export_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/export_functions.php
+END
+session_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/session_functions.php
+END
+page.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/page.php
+END
+TreeItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/TreeItem.php
+END
+syslog.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/syslog.php
+END
+xml2array.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/xml2array.php
+END
+emuhash_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/emuhash_functions.php
+END
+hooks.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/hooks.php
+END
+HTMLTree.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/HTMLTree.php
+END
+DnAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/DnAttribute.php
+END
+MultiLineAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/MultiLineAttribute.php
+END
+PasswordAttribute.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/PasswordAttribute.php
+END
+ldap_supported_oids.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/ldap_supported_oids.txt
+END
+createlm.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/lib/createlm.php
+END

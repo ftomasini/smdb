@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia
+END
+humangw_integration_test_multiple_csv.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/humangw_integration_test_multiple_csv.php
+END
+humangw_integration_test_multiple_list.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/humangw_integration_test_multiple_list.php
+END
+humangw_integration_query_received.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/humangw_integration_query_received.php
+END
+humangw_integration_simple_query.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/humangw_integration_simple_query.php
+END
+humangw_integration_multiple_query.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/humangw_integration_multiple_query.php
+END
+humangw_integration_test_simple_send.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/2/trunk/protected/vendors/Zenvia/humangw_integration_test_simple_send.php
+END

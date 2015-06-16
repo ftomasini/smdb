@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/framework/db/schema/oci
+END
+COciCommandBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/framework/db/schema/oci/COciCommandBuilder.php
+END
+COciTableSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/framework/db/schema/oci/COciTableSchema.php
+END
+COciColumnSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/framework/db/schema/oci/COciColumnSchema.php
+END
+COciSchema.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/db/schema/oci/COciSchema.php
+END

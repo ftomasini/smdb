@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes
+END
+Element.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes/Element.js
+END
+LonLat.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes/LonLat.js
+END
+Bounds.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes/Bounds.js
+END
+Size.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes/Size.js
+END
+Pixel.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes/Pixel.js
+END
+Class.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/openlayers/src/openlayers/lib/OpenLayers/BaseTypes/Class.js
+END

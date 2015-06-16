@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract
+END
+InlineTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/InlineTransformationsPlugin.class.php
+END
+PreApPendTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/PreApPendTransformationsPlugin.class.php
+END
+SQLTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/SQLTransformationsPlugin.class.php
+END
+ImageLinkTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/ImageLinkTransformationsPlugin.class.php
+END
+SubstringTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/SubstringTransformationsPlugin.class.php
+END
+Bool2TextTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/Bool2TextTransformationsPlugin.class.php
+END
+ExternalTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/ExternalTransformationsPlugin.class.php
+END
+TextLinkTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/TextLinkTransformationsPlugin.class.php
+END
+HexTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/HexTransformationsPlugin.class.php
+END
+FormattedTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/FormattedTransformationsPlugin.class.php
+END
+LongToIPv4TransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/LongToIPv4TransformationsPlugin.class.php
+END
+TextImageLinkTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/TextImageLinkTransformationsPlugin.class.php
+END
+DateFormatTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/DateFormatTransformationsPlugin.class.php
+END
+DownloadTransformationsPlugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/transformations/abstract/DownloadTransformationsPlugin.class.php
+END

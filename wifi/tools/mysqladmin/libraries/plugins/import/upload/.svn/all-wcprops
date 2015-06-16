@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/upload
+END
+UploadApc.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/upload/UploadApc.class.php
+END
+UploadSession.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/upload/UploadSession.class.php
+END
+UploadProgress.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/upload/UploadProgress.class.php
+END
+UploadNoplugin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/libraries/plugins/import/upload/UploadNoplugin.class.php
+END

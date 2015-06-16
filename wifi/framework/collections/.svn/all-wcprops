@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/wifi/!svn/ver/1/trunk/framework/collections
+END
+CMap.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/framework/collections/CMap.php
+END
+CQueueIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/framework/collections/CQueueIterator.php
+END
+CAttributeCollection.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/framework/collections/CAttributeCollection.php
+END
+CStackIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/framework/collections/CStackIterator.php
+END
+CTypedList.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/framework/collections/CTypedList.php
+END
+CTypedMap.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/framework/collections/CTypedMap.php
+END
+CQueue.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/framework/collections/CQueue.php
+END
+CListIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/framework/collections/CListIterator.php
+END
+CStack.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/framework/collections/CStack.php
+END
+CConfiguration.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/framework/collections/CConfiguration.php
+END
+CMapIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/framework/collections/CMapIterator.php
+END
+CList.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/framework/collections/CList.php
+END

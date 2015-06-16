@@ -1,0 +1,287 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js
+END
+server_status_sorter.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_status_sorter.js
+END
+replication.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/replication.js
+END
+import.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/import.js
+END
+db_qbe.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/db_qbe.js
+END
+get_scripts.js.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/get_scripts.js.php
+END
+columndelete.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/columndelete.js
+END
+gis_data_editor.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/gis_data_editor.js
+END
+messages.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/messages.php
+END
+ajax.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/ajax.js
+END
+error_report.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/error_report.js
+END
+OpenStreetMap.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/OpenStreetMap.js
+END
+db_operations.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/db_operations.js
+END
+navigation.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/navigation.js
+END
+server_privileges.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_privileges.js
+END
+tbl_structure.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_structure.js
+END
+chart.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/chart.js
+END
+server_user_groups.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_user_groups.js
+END
+config.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/config.js
+END
+get_image.js.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/get_image.js.php
+END
+server_plugins.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_plugins.js
+END
+functions.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/functions.js
+END
+db_search.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/db_search.js
+END
+tbl_find_replace.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_find_replace.js
+END
+tbl_zoom_plot_jqplot.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_zoom_plot_jqplot.js
+END
+server_databases.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_databases.js
+END
+tbl_relation.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_relation.js
+END
+server_status_monitor.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_status_monitor.js
+END
+tbl_select.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_select.js
+END
+export.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/export.js
+END
+makegrid.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/makegrid.js
+END
+keyhandler.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/keyhandler.js
+END
+tbl_change.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_change.js
+END
+common.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/common.js
+END
+rte.js
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/rte.js
+END
+querywindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/querywindow.js
+END
+line_counts.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/line_counts.php
+END
+server_variables.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_variables.js
+END
+sql.js
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/sql.js
+END
+indexes.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/indexes.js
+END
+server_status_advisor.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_status_advisor.js
+END
+server_status_variables.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_status_variables.js
+END
+tbl_chart.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_chart.js
+END
+cross_framing_protection.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/cross_framing_protection.js
+END
+tbl_gis_visualization.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/tbl_gis_visualization.js
+END
+db_structure.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/db_structure.js
+END
+doclinks.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/doclinks.js
+END
+server_status_queries.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/server_status_queries.js
+END

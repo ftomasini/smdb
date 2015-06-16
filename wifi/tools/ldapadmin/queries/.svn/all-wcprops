@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/queries
+END
+SambaUsers.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/queries/SambaUsers.xml
+END
+UserList.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/queries/UserList.xml
+END
+query.dtd
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/queries/query.dtd
+END

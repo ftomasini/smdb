@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/certs
+END
+ca-bundle.crt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/certs/ca-bundle.crt
+END
+slapd.crt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/certs/slapd.crt
+END
+slapd.key
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/wifi/!svn/ver/1/trunk/tools/ldapadmin/doc/certs/slapd.key
+END

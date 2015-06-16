@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins
+END
+jqplot.barRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.barRenderer.js
+END
+jqplot.pointLabels.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.pointLabels.js
+END
+jqplot.cursor.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.cursor.js
+END
+jqplot.highlighter.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.highlighter.js
+END
+jqplot.pieRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.pieRenderer.js
+END
+jqplot.byteFormatter.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.byteFormatter.js
+END
+jqplot.canvasAxisLabelRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.js
+END
+jqplot.canvasTextRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.canvasTextRenderer.js
+END
+jqplot.categoryAxisRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.categoryAxisRenderer.js
+END
+jqplot.dateAxisRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/wifi/!svn/ver/1/trunk/tools/mysqladmin/js/jqplot/plugins/jqplot.dateAxisRenderer.js
+END

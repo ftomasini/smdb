@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Mime/HeaderEncoder
+END
+QpHeaderEncoder.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Mime/HeaderEncoder/QpHeaderEncoder.php
+END
+Base64HeaderEncoder.php
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/wifi/!svn/ver/1/trunk/protected/extensions/yii-mail/vendors/swiftMailer/classes/Swift/Mime/HeaderEncoder/Base64HeaderEncoder.php
+END
