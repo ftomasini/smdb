@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/i18n/data/ru
+END
+test.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/yiisoft/yii/!svn/ver/1914/trunk/tests/framework/i18n/data/ru/test.php
+END
+test.mo
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/i18n/data/ru/test.mo
+END
+test.po
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/i18n/data/ru/test.po
+END

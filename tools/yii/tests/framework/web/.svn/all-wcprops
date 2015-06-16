@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/yiisoft/yii/!svn/ver/5363/trunk/tests/framework/web
+END
+CActiveDataProviderTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CActiveDataProviderTest.php
+END
+CHttpSessionTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CHttpSessionTest.php
+END
+CControllerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/yiisoft/yii/!svn/ver/2397/trunk/tests/framework/web/CControllerTest.php
+END
+CArrayDataProviderTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CArrayDataProviderTest.php
+END
+CCookieCollectionTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CCookieCollectionTest.php
+END
+CSortTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/yiisoft/yii/!svn/ver/5363/trunk/tests/framework/web/CSortTest.php
+END
+CHttpRequestTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CHttpRequestTest.php
+END
+CUrlRuleTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/yiisoft/yii/!svn/ver/5350/trunk/tests/framework/web/CUrlRuleTest.php
+END
+CUrlManagerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/yiisoft/yii/!svn/ver/5363/trunk/tests/framework/web/CUrlManagerTest.php
+END
+CUploadedFileTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/yiisoft/yii/!svn/ver/5363/trunk/tests/framework/web/CUploadedFileTest.php
+END
+CDataProviderIteratorTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CDataProviderIteratorTest.php
+END
+CSortTest.sql
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/yiisoft/yii/!svn/ver/1914/trunk/tests/framework/web/CSortTest.sql
+END
+CClientScriptTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/yiisoft/yii/!svn/ver/5363/trunk/tests/framework/web/CClientScriptTest.php
+END
+CSqlDataProviderTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CSqlDataProviderTest.php
+END
+CHttpCookieTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/CHttpCookieTest.php
+END
+CAssetManagerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/yiisoft/yii/!svn/ver/1914/trunk/tests/framework/web/CAssetManagerTest.php
+END

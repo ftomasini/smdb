@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services
+END
+SoapPovCalculationResult.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/SoapPovCalculationResult.php
+END
+SoapPovCalculationInput.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/SoapPovCalculationInput.php
+END
+SoapPovCalculationOutput.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/SoapPovCalculationOutput.php
+END
+SoapInsurerPersonJuristic.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/SoapInsurerPersonJuristic.php
+END
+SoapInsurerPersonPhysical.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/SoapInsurerPersonPhysical.php
+END
+SoapInsurerPerson.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/SoapInsurerPerson.php
+END
+CWsdlGeneratorTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/yiisoft/yii/!svn/ver/5256/trunk/tests/framework/web/services/CWsdlGeneratorTest.php
+END
