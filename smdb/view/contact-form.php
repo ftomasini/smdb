@@ -20,7 +20,7 @@
             <label for="name">Name:</label><br/>
             <input type="text" name="name" value="<?php print htmlentities($name) ?>"/>
             <br/>
-            
+
             <label for="phone">Phone:</label><br/>
             <input type="text" name="phone" value="<?php print htmlentities($phone) ?>"/>
             <br/>
@@ -33,6 +33,6 @@
             <input type="hidden" name="form-submitted" value="1" />
             <input type="submit" value="Submit" />
         </form>
-        
+
     </body>
 </html>
