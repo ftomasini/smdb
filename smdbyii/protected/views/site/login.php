@@ -25,7 +25,7 @@ $this->breadcrumbs=array(
 
     <div class="container">
 
-      <form class="form-signin" action="index.html">
+      <form class="form-signin">
         <h2 class="form-signin-heading">sign in now</h2>
         <div class="login-wrap">
             <div class="user-login-info">
@@ -47,7 +47,7 @@ $this->breadcrumbs=array(
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password',array('placeholder' => Yii::t('app', 'Senha'), 'class' => 'form-control')); ?>
 		<?php echo $form->error($model,'password'); ?>
-		
+
 	</div>
 
 	<div class="row rememberMe">
@@ -57,9 +57,8 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div >
-            
-                <li><?php echo CHtml::link('<button type="button" class="botao btn-default">' . Yii::t('app', 'Fazer cadastro') . '</button>', array('user/registrar')); ?></li>
-            
+
+
 		<?php echo $button = CHtml::submitButton('Login'); ?>
 	</div>
 
