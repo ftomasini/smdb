@@ -1,7 +1,5 @@
 <?php
-
-$core = new Core();
-$core->autoload();
+require_once '../../core/Autoload.php';
 $controller = new ContactsController();
 $controller->handleRequest();
 ?>

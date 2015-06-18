@@ -60,14 +60,19 @@ class LoginController extends Controller
 			}
 			else
 			{
-				if (!isset($_SESSION))
+                $core = new Core();
+				if (!isset($_SESSION) && !($core->isLoged()))
 				{
 					session_start();
 				}
+                if(!($core->isLoged()))
+                {
 					// Salva os dados encontrados na sess�o
-				$_SESSION['UsuarioID'] = $resultado['id'];
-				$_SESSION['UsuarioNome'] = $resultado['nome'];
+				$_SESSION['UsuarioID'] = $usuario;//$resultado['id'];
+				$_SESSION['UsuarioNome'] = $usuario;//$resultado['nome'];
+                }
 
+                    //var_dump($_SESSION);die();
 			$this->redirect('view/handler/handlerContacts.php');
 			}
 		}

@@ -8,9 +8,16 @@ class ContactsController extends Controller
 {
 
     private $contactsModel = NULL;
+    private $core = NULL;
 
     public function __construct()
     {
+
+        $this->core = new Core();
+        if (!$this->core->isLogged())
+        {
+            $this->redirect('../../index.php');
+        }
         $this->contactsModel = new ContactsModel();
     }
 
@@ -38,7 +45,7 @@ class ContactsController extends Controller
             try
             {
                 $this->contactsModel->createNewContact($name, $phone, $email, $address);
-                $this->redirect('index.php');
+                $this->redirect('handlerContacts.php');
                 return;
             }
             catch (ValidationException $e)
@@ -47,15 +54,16 @@ class ContactsController extends Controller
             }
         }
 
-        include 'view/contact-form.php';
+        include '/var/www/tcc/smdb/view/contact-form.php';
     }
 
     public function listar()
     {
         $orderby = isset($_GET['orderby'])?$_GET['orderby']:NULL;
         $contacts = $this->contactsModel->getAllContacts($orderby);
+        var_dump('aa');
 
-        include 'view/contacts.php';
+        include '/var/www/tcc/smdb/view/contacts.php';
     }
 
 
@@ -69,7 +77,7 @@ class ContactsController extends Controller
 
         $this->contactsModel->deleteContact($id);
 
-        $this->redirect('index.php');
+        $this->redirect('handlerContacts.php');
     }
 
     public function show()

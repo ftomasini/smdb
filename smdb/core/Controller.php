@@ -11,7 +11,7 @@ class Controller
         header('Location: '.$location);
     }
 
-    protected function handleRequest()
+    public function handleRequest()
     {
         $op = isset($_GET['op'])?$_GET['op']:NULL;
         try

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'core/ValidationException.php';
+//require_once 'core/ValidationException.php';
 
 class DbConection
 {

@@ -16,7 +16,7 @@
             print '</ul>';
         }
         ?>
-        <form method="POST" action="">
+        <form method="POST" action="handlerContacts.php?op=new">
             <label for="name">Name:</label><br/>
             <input type="text" name="name" value="<?php print htmlentities($name) ?>"/>
             <br/>

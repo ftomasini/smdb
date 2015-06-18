@@ -7,7 +7,7 @@
  *  This will do for simple apps but for serious apps you should use PDO.
  */
 
- require_once 'core/DbConection.php';
+//require_once 'core/DbConection.php';
 
 class ContactsModel extends DbConection
 {
@@ -139,10 +139,13 @@ class ContactsModel extends DbConection
     {
         try
         {
+            $this->openDb();
             $res = $this->delete($id);
+            $this->closeDb();
         }
         catch (Exception $e)
         {
+            $this->closeDb();
             throw $e;
         }
     }
