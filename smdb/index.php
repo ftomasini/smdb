@@ -9,15 +9,26 @@
 
 <body>
 
-<form action="view/restrito.php" method="post">
+<?php
+$webRoot = dirname(__FILE__);
+global $webRoot;
+require_once $webRoot .'/core/Core.php';
+$core = new Core();
+$core->autoload();
+$controller = new LoginController();
+$controller->handleRequest();
+
+?>
+
+<form method="post" action="index.php?op=check">
 <fieldset>
 <legend>Dados de Login</legend>
-	<label for="txUsuario">Usuário</label>
+	<label for="txUsuario">Usuï¿½rio</label>
 	<input type="text" name="usuario" id="txUsuario" maxlength="25" />
 	<label for="txSenha">Senha</label>
 	<input type="password" name="senha" id="txSenha" />
 
-	<input type="submit" value="Entrar" />
+    <input type="submit" value="Entrar" />
 </fieldset>
 </form>
 

@@ -32,7 +32,6 @@ class ContactsModel extends DbConection
                          ORDER BY $dbOrder ASC");
 
         $contacts = array();
-        var_dump($dbres);
         while ( ($obj = pg_fetch_object($dbres)) != NULL )
         {
             $contacts[] = $obj;
@@ -102,7 +101,7 @@ class ContactsModel extends DbConection
             $this->closeDb();
             throw $e;
         }
-        return $this->contactsGateway->find($id);
+        return $this->find($id);
     }
 
     private function validateContactParams( $name, $phone, $email, $address )

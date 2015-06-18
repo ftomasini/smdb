@@ -18,7 +18,7 @@ class Controller
         {
             if ( !$op || $op == 'list' )
             {
-                $this->list();
+                $this->listar();
             }
             elseif ( $op == 'new' )
             {

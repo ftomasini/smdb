@@ -1,7 +1,8 @@
 <?php
 
-require_once 'model/ContactsModel.php';
-require_once 'core/Controller.php';
+
+//require_once 'model/ContactsModel.php';
+//require_once 'core/Controller.php';
 
 class ContactsController extends Controller
 {
@@ -13,13 +14,6 @@ class ContactsController extends Controller
         $this->contactsModel = new ContactsModel();
     }
 
-    public function list()
-    {
-        $orderby = isset($_GET['orderby'])?$_GET['orderby']:NULL;
-        $contacts = $this->contactsModel->getAllContacts($orderby);
-
-        include 'view/contacts.php';
-    }
 
     public function save()
     {
@@ -55,6 +49,15 @@ class ContactsController extends Controller
 
         include 'view/contact-form.php';
     }
+
+    public function listar()
+    {
+        $orderby = isset($_GET['orderby'])?$_GET['orderby']:NULL;
+        $contacts = $this->contactsModel->getAllContacts($orderby);
+
+        include 'view/contacts.php';
+    }
+
 
     public function delete()
     {
