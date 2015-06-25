@@ -4,14 +4,15 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Application error</title>
-    </head>
-    <body>
-        <h1><?php print htmlentities($title) ?></h1>
-        <p>
-            <?php print htmlentities($message) ?>
-        </p>
-    </body>
+<link href="../../html/custom/login.css" rel="stylesheet">
+<link href="../../html/bs3/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="login-wrap">
+
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <?php print htmlentities($message . '') ?>
+</div>
+</div>
 </html>

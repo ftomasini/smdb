@@ -4,8 +4,18 @@ $webRoot = dirname(__FILE__);
 global $webRoot;
 require_once $webRoot .'/core/Autoload.php';
 $controller = new LoginController();
-$controller->handleRequest();
-
+try
+{
+    $controller->handleRequest();
+}
+catch(Exception $e)
+{
+?>
+    <div class="container">
+errouuu
+    </div>
+    <?php
+}
 ?>
 
 
@@ -16,18 +26,22 @@ $controller->handleRequest();
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="html/images/favicon.png">
 
     <title>Login</title>
 
     <!--Core CSS -->
     <link href="html/bs3/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="html/custom/login.css" rel="stylesheet">
+
+    <!-- Custom styles for this template
+
     <link href="html/css/bootstrap-reset.css" rel="stylesheet">
     <link href="html/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
-    <!-- Custom styles for this template -->
     <link href="html/css/style.css" rel="stylesheet">
-    <link href="html/css/style-responsive.css" rel="stylesheet" />
+    <link href="html/css/style-responsive.css" rel="stylesheet" />-->
 
 </head>
 
@@ -39,8 +53,8 @@ $controller->handleRequest();
         <h2 class="form-signin-heading">SMDB</h2>
         <div class="login-wrap">
             <div class="user-login-info">
-                <input type="text" name="usuario" id="txUsuario" class="form-control" placeholder="User ID" autofocus>
-                <input type="password" name="senha" id="txSenha" class="form-control" placeholder="Password">
+                <input type="text" name="usuario" id="txUsuario" class="form-control" placeholder="Usuário" autofocus>
+                <input type="password" name="senha" id="txSenha" class="form-control" placeholder="Senha">
             </div>
 
             <button class="btn btn-lg btn-login btn-block" type="submit">Entrar</button>
