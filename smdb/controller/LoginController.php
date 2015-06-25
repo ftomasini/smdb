@@ -1,8 +1,8 @@
 
 <?php
 
-require_once 'model/LoginModel.php';
-require_once 'core/Controller.php';
+//require_once 'model/LoginModel.php';
+//require_once 'core/Controller.php';
 
 class LoginController extends Controller
 {
@@ -20,6 +20,11 @@ class LoginController extends Controller
 		$op = isset($_GET['op'])?$_GET['op']:NULL;
 		try
 		{
+            $core = new Core();
+            if($core->isLogged())
+            {
+                $this->redirect('view/handler/handlerContacts.php');
+            }
 			if ( $op == 'check' )
 			{
 				$this->login();
@@ -61,19 +66,17 @@ class LoginController extends Controller
 			else
 			{
                 $core = new Core();
-				if (!isset($_SESSION) && !($core->isLoged()))
+				if (!isset($_SESSION))
 				{
 					session_start();
 				}
-                if(!($core->isLoged()))
+                if(!$core->isLogged())
                 {
 					// Salva os dados encontrados na sess�o
 				$_SESSION['UsuarioID'] = $usuario;//$resultado['id'];
 				$_SESSION['UsuarioNome'] = $usuario;//$resultado['nome'];
                 }
-
-                    //var_dump($_SESSION);die();
-			$this->redirect('view/handler/handlerContacts.php');
+                    $this->redirect('view/handler/handlerContacts.php');
 			}
 		}
 		catch (Exception $e)

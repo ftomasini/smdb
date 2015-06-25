@@ -54,16 +54,15 @@ class ContactsController extends Controller
             }
         }
 
-        include '/var/www/tcc/smdb/view/contact-form.php';
+        include '../../view/contact-form.php';
     }
 
     public function listar()
     {
         $orderby = isset($_GET['orderby'])?$_GET['orderby']:NULL;
         $contacts = $this->contactsModel->getAllContacts($orderby);
-        var_dump('aa');
 
-        include '/var/www/tcc/smdb/view/contacts.php';
+        include '../../view/contacts.php';
     }
 
 
@@ -89,7 +88,7 @@ class ContactsController extends Controller
         }
         $contact = $this->contactsModel->getContact($id);
 
-        include 'view/contact.php';
+        include '../../view/contact.php';
     }
 
 
