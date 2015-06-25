@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
 <?php include 'principal.php' ?>
-        <header class="panel-heading">
-            Contatos
-        </header>
+<div class="row" style="margin-bottom:5px;">
         <div class="panel-body">
             <div class="adv-table editable-table ">
                 <div class="clearfix">
@@ -48,5 +44,4 @@
                 </table>
             </div>
         </div>
-    </body>
-</html>
+        <?php include 'principalFim.php' ?>

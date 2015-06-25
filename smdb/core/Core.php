@@ -19,7 +19,7 @@ class Core
     {
     }
 
-}
+
 
 
     public function isLogged()
