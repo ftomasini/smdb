@@ -11,9 +11,7 @@ try
 catch(Exception $e)
 {
 ?>
-    <div class="container">
-errouuu
-    </div>
+
     <?php
 }
 ?>
