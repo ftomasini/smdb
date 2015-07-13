@@ -51,7 +51,9 @@ class ContactsController extends Controller
             catch (ValidationException $e)
             {
                 $errors = $e->getErrors();
-            }
+
+
+
         }
 
         include '../../view/contact-form.php';
