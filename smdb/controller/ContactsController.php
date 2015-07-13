@@ -67,7 +67,6 @@ class ContactsController extends Controller
         include '../../view/contacts.php';
     }
 
-
     public function delete()
     {
         $id = isset($_GET['id'])?$_GET['id']:NULL;
