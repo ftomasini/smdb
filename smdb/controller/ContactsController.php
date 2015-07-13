@@ -82,16 +82,13 @@ class ContactsController extends Controller
 
     public function show()
     {
-        $id = isset($_GET['id'])?$_GET['id']:NULL;
-        if ( !$id )
-        {
+        $id = isset($_GET['id']) ? $_GET['id'] : NULL;
+        if ( ! $id) {
             throw new Exception('Internal error.');
         }
         $contact = $this->contactsModel->getContact($id);
 
         include '../../view/contact.php';
     }
-
-
 }
 ?>
