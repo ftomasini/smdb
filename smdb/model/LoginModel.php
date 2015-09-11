@@ -25,14 +25,13 @@ class LoginModel extends DbConection
             $this->openDb();
 
             $usuario = pg_escape_string($usuario);
-            $senha = sha1(pg_escape_string($senha));
+            $senha = md5(pg_escape_string($senha));
 
             // Validação do usuário/senha digitados
             $sql = "SELECT id,
-                           nome,
-                           nivel
-                      FROM usuarios
-                     WHERE (usuario = '$usuario')
+                           nome
+                      FROM usuario
+                     WHERE (email = '$usuario')
                        AND (senha = '$senha')
                        AND (ativo = true) LIMIT 1";
 

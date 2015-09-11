@@ -46,7 +46,12 @@ class Controller
 
     protected function showError($title, $message)
     {
-        include 'view/error.php';
+        include file_exists('view/error.php') ? 'view/error.php' : '../../view/error.php';
+    }
+
+    protected function showSuccess($title, $message)
+    {
+        include file_exists('view/success.php') ? 'view/success.php' : '../../view/success.php';
     }
 }
 ?>

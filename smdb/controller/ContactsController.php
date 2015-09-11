@@ -34,25 +34,21 @@ class ContactsController extends Controller
 
         $errors = array();
 
-        if ( isset($_POST['form-submitted']) )
-        {
+        if ( isset($_POST['form-submitted']) ) {
 
-            $name = isset($_POST['name']) ?   $_POST['name']  :NULL;
-            $phone = isset($_POST['phone'])?   $_POST['phone'] :NULL;
-            $email = isset($_POST['email'])?   $_POST['email'] :NULL;
-            $address = isset($_POST['address'])? $_POST['address']:NULL;
+            $name = isset($_POST['name']) ? $_POST['name'] : NULL;
+            $phone = isset($_POST['phone']) ? $_POST['phone'] : NULL;
+            $email = isset($_POST['email']) ? $_POST['email'] : NULL;
+            $address = isset($_POST['address']) ? $_POST['address'] : NULL;
 
-            try
-            {
+            try {
                 $this->contactsModel->createNewContact($name, $phone, $email, $address);
                 $this->redirect('handlerContacts.php');
                 return;
-            }
-            catch (ValidationException $e)
-            {
+            } catch (ValidationException $e) {
                 $errors = $e->getErrors();
             }
-
+        }
         include '../../view/contact-form.php';
     }
 

@@ -23,7 +23,7 @@ class LoginController extends Controller
             $core = new Core();
             if($core->isLogged())
             {
-                $this->redirect('view/handler/handlerContacts.php');
+                $this->redirect('view/handler/handlerPainel.php?op=show');
             }
 			if ( $op == 'check' )
 			{
@@ -56,7 +56,6 @@ class LoginController extends Controller
 
 		$retorno = $this->validateLogin($usuario, $senha);
 
-
 		try
 		{
 			if (!$retorno)
@@ -76,7 +75,7 @@ class LoginController extends Controller
 				$_SESSION['UsuarioID'] = $usuario;//$resultado['id'];
 				$_SESSION['UsuarioNome'] = $usuario;//$resultado['nome'];
                 }
-                    $this->redirect('view/handler/handlerContacts.php');
+                    $this->redirect('view/handler/handlerPainel.php?op=show');
 			}
 		}
 		catch (Exception $e)

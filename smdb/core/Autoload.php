@@ -11,6 +11,7 @@ spl_autoload_register(function($class)
     $locations[] = $loc . "/core/". str_replace('\\', '/', $class) . '.php';
     $locations[] = $loc . "/controller/". str_replace('\\', '/', $class) . '.php';
     $locations[] = $loc . "/model/". str_replace('\\', '/', $class) . '.php';
+    $locations[] = $loc . "/core/PHPMailer-master". str_replace('\\', '/', $class) . '.php';
 
     foreach ($locations as $location)
     {
