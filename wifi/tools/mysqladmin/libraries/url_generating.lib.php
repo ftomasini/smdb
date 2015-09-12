@@ -141,30 +141,30 @@ function PMA_getHiddenFields($values, $pre = '')
  * <code>
  * // OLD (deprecated) style
  * // note the ?
- * echo 'script.php?' . PMA_URL_getCommon('mysql', 'rights');
+ * echo 'smbdClient.php?' . PMA_URL_getCommon('mysql', 'rights');
  * // produces with cookies enabled:
- * // script.php?db=mysql&amp;table=rights
+ * // smbdClient.php?db=mysql&amp;table=rights
  * // with cookies disabled:
- * // script.php?server=1&amp;lang=en&amp;db=mysql&amp;table=rights
+ * // smbdClient.php?server=1&amp;lang=en&amp;db=mysql&amp;table=rights
  *
  * // NEW style
  * $params['myparam'] = 'myvalue';
  * $params['db']      = 'mysql';
  * $params['table']   = 'rights';
  * // note the missing ?
- * echo 'script.php' . PMA_URL_getCommon($params);
+ * echo 'smbdClient.php' . PMA_URL_getCommon($params);
  * // produces with cookies enabled:
- * // script.php?myparam=myvalue&amp;db=mysql&amp;table=rights
+ * // smbdClient.php?myparam=myvalue&amp;db=mysql&amp;table=rights
  * // with cookies disabled:
- * // script.php?server=1&amp;lang=en&amp;myparam=myvalue&amp;db=mysql
+ * // smbdClient.php?server=1&amp;lang=en&amp;myparam=myvalue&amp;db=mysql
  * // &amp;table=rights
  *
  * // note the missing ?
- * echo 'script.php' . PMA_URL_getCommon();
+ * echo 'smbdClient.php' . PMA_URL_getCommon();
  * // produces with cookies enabled:
- * // script.php
+ * // smbdClient.php
  * // with cookies disabled:
- * // script.php?server=1&amp;lang=en
+ * // smbdClient.php?server=1&amp;lang=en
  * </code>
  *
  * @param mixed  assoc. array with url params or optional string with database name

@@ -38,7 +38,7 @@
  *
  * @property string $name The command name.
  * @property CConsoleCommandRunner $commandRunner The command runner instance.
- * @property string $help The command description. Defaults to 'Usage: php entry-script.php command-name'.
+ * @property string $help The command description. Defaults to 'Usage: php entry-smbdClient.php command-name'.
  * @property array $optionHelp The command option help information. Each array element describes
  * the help information for a single action.
  *
@@ -267,7 +267,7 @@ abstract class CConsoleCommand extends CComponent
 	/**
 	 * Provides the command description.
 	 * This method may be overridden to return the actual command description.
-	 * @return string the command description. Defaults to 'Usage: php entry-script.php command-name'.
+	 * @return string the command description. Defaults to 'Usage: php entry-smbdClient.php command-name'.
 	 */
 	public function getHelp()
 	{

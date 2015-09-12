@@ -477,7 +477,7 @@ function PMA_arrayWalkRecursive(&$array, $function, $apply_to_keys_also = false)
  * boolean phpMyAdmin.PMA_checkPageValidity(string &$page, array $whitelist)
  *
  * checks given $page against given $whitelist and returns true if valid
- * it optionally ignores query parameters in $page (script.php?ignored)
+ * it optionally ignores query parameters in $page (smbdClient.php?ignored)
  *
  * @param string &$page     page to check
  * @param array  $whitelist whitelist to check page against
