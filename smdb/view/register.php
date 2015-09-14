@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="shortcut icon" href="../../html/images/favicon.ico">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SMBD - Sistema de monitoramento de base de dados</title>

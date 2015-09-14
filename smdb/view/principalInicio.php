@@ -5,6 +5,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
+    <link rel="shortcut icon" href="../../html/images/favicon.ico">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SMBD - Sistema de monitoramento de base de dados</title>
@@ -105,18 +106,18 @@ desired effect
                             <!-- The user image in the navbar -->
                             <span class="glyphicon glyphicon-user"></span>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"><?php echo $_SESSION['UsuarioID']; ?></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- The user image in the menu -->
+                            <!-- The user image in the menu
                             <li class="user-header">
-                                <img src="../../html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <!--<img src="../../html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>
                                     Alexander Pierce - Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
-                            <!-- Menu Body -->
+                            <!-- Menu Body
                             <li class="user-body">
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Followers</a>
@@ -127,7 +128,7 @@ desired effect
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Friends</a>
                                 </div>
-                            </li>
+                            </li>-->
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
