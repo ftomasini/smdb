@@ -87,8 +87,8 @@ class Core
         $mail->SMTPSecure = "tls";                 // sets the prefix to the servier
         $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
         $mail->Port       = 587;                   // set the SMTP port for the GMAIL server
-        $mail->Username   = "ftomasini.rs@gmail.com";  // GMAIL username
-        $mail->Password   = "ft366042";            // GMAIL password
+        $mail->Username   = "smbd.ftomasini@gmail.com";  // GMAIL username
+        $mail->Password   = "smbdroot";            // GMAIL password
 
         $mail->SetFrom('naoresponda@smbd.com', 'SMBD - Sistema de monitoramento de base de dados');
 
