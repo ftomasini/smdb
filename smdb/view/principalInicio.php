@@ -31,6 +31,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="../../html/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../../html/bootstrap/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../html/dist/js/app.min.js"></script>
+    <script src="../../html/plugins/morris/morris.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -59,7 +71,7 @@ desired effect
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index.php" class="logo">
+        <a href="handlerPainel.php?op=show" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini glyphicon glyphicon-cloud"></span>
             <!-- logo for regular state and mobile devices -->
@@ -100,45 +112,13 @@ desired effect
                     </li>
                     <!-- Tasks Menu -->
                     <!-- User Account Menu -->
-                    <li class="dropdown user user-menu">
-                        <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <!-- The user image in the navbar -->
-                            <span class="glyphicon glyphicon-user"></span>
-                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs"><?php echo $_SESSION['UsuarioID']; ?></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- The user image in the menu
-                            <li class="user-header">
-                                <!--<img src="../../html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
-                                </p>
-                            </li>
-                            <!-- Menu Body
-                            <li class="user-body">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </li>-->
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
-                            </li>
-                        </ul>
+                    <li class="dropdown">
+
+                            <a href="handlerUsuario.php?op=show" class="glyphicon glyphicon-user" > Perfil </a>
+
+                    </li>
+                    <li class="dropdown">
+                        <a href="logout.php" class="glyphicon glyphicon-off"> Sair </a>
                     </li>
 
                 </ul>
@@ -155,16 +135,12 @@ desired effect
             <ul class="sidebar-menu">
                 <li class="header">MENU</li>
                 <li><a href="handlerPainel.php?op=show"><i class="fa fa-dashboard"></i> <span>Painel principal</span></a></li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i> <span>Configurações</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Geral</a></li>
-                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Banco de dados</a></li>
-                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Alarmisticas</a></li>
-                    </ul>
+
+
+                <li><a href="handlerPainel.php?op=show"><i class="fa fa-edit"></i> <span>Configurações</span></a></li>
+
+
+
                 </li>
                 <li class="treeview">
                     <a href="#">
@@ -173,18 +149,19 @@ desired effect
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../../html/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Geral</a></li>
-                        <li><a href="../../html/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Por tabela</a></li>
+                        <li><a href="handlerPainel.php?op=show"><i class="fa fa-circle-o"></i> Base de dados</a></li>
+                        <li><a href="handlerPainel.php?op=show"><i class="fa fa-circle-o"></i> Tabela da base de dados</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="pages/mailbox/mailbox.html">
+                    <a href="handlerPainel.php?op=show">
                         <i class="fa fa-envelope"></i> <span>Alarmísticas</span>
                         <small class="label pull-right bg-yellow">12</small>
                     </a>
                 </li>
                 <li><a href="handlerPainel.php?op=show"><i class="fa fa-laptop"></i> <span>Processos em execução</span></a></li>
-                <li><a href="handlerContacts.php"><i class="glyphicon glyphicon-calendar"></i> <span>Agendamento de tarefas</span></a></li>
+                <li><a href="handlerPainel.php?op=show"><i class="glyphicon glyphicon-calendar"></i> <span>Agendamento de tarefas</span></a></li>
+                <li><a href="handlerPainel.php?op=show"><i class="glyphicon glyphicon-globe"></i> <span>Coletor de dados</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -194,4 +171,3 @@ desired effect
 
         <!-- Main content -->
         <section class="content">
-

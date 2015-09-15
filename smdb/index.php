@@ -83,9 +83,9 @@ catch(Exception $e)
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
             <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
         -->
-        </div><!-- /.social-auth-links -->
+        </div><!-- /.social-auth-links
 
-        <a href="#">Esqueci minha senha</a><br>
+        <a href="#">Esqueci minha senha</a><br>-->
         <a href="view/handler/handlerRegister.php?op=show" class="text-center">Registrar um novo usuário</a>
 
     </div><!-- /.login-box-body -->
