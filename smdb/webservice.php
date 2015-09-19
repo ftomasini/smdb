@@ -14,7 +14,7 @@ $logFile = $tmpDir . '/webservices.log';
 
 ob_start();
 
-$uri = 'http://localhost/tcc/smdb/';
+$uri = 'http://smbd.com.br/tcc/smdb/';
 
 //echo "Requested Data:\n";
 

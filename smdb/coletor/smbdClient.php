@@ -14,7 +14,8 @@ while(1)
     {
         if($contadorWs1 <= 1)
         {
-            $returnWs1 = $smbdColetor->ws2();
+            $smbdColetor->stat_sgbd_versao();
+            //$returnWs1 = $smbdColetor->stat_base_de_dados();
             $contadorWs1++;
         }
     }
@@ -35,9 +36,11 @@ class smbdColetor
     private $user     ='postgres';
     private $password ='postgres';
     private $dbname   ='avaliacao';
-    private $url = 'http://46.101.150.238';
+    private $url = 'http://smbd.com.br';
     private $clientOptions = array();
     private $client;
+    private $sgbdVersao = '9.3';
+
 
     public function __construct()
     {
@@ -57,27 +60,62 @@ class smbdColetor
     }
 
 
-    public function ws2()
+
+    public function stat_sgbd_versao()
     {
-
         $this->openDb();
-
-        $dbres = pg_query("SELECT *
-                             FROM ONLY basperson limit 10");
+        $dbres = pg_query("SELECT version()");
 
         $dados = $this->fetchObject($dbres);
         $this->closeDb();
 
-        echo date("H:i");
+        $result = $this->client->wsTeste($dados);
+    }
 
-        //echo date("H:i",strtotime("10:10 + 5 minutes"));
+
+    public function stat_base_de_dados()
+    {
+
+        $this->openDb();
+
+        $colunas = '';
+        if ($this->sgbdVersao >= '8.3')
+        {
+            $colunas .= ", tup_returned, tup_fetched, tup_inserted, tup_updated, tup_deleted";
+        }
+        if ($this->sgbdVersao >= '9.1')
+        {
+            $colunas .= "conflicts, date_trunc('seconds', stats_reset) AS stats_reset";
+        }
+        if ($this->sgbdVersao >= '9.2')
+        {
+            $colunas .= ", temp_files, temp_bytes, deadlocks, blk_read_time, blk_write_time";
+        }
+
+        $dbres = pg_query("SELECT date_trunc('seconds', now()),
+                                  datid,
+                                  datname,
+                                  numbackends,
+                                  xact_commit,
+                                  xact_rollback,
+                                  blks_read,
+                                  blks_hit ".
+                                  {$colunas} .
+                            "FROM pg_stat_database");
+
+        $dados = $this->fetchObject($dbres);
+        $this->closeDb();
+
         $result = $this->client->wsTeste($dados);
 
     }
 
+
+
+
     protected function defineClientOptions()
     {
-        $this->clientOptions["location"] = $this->url . "/tcc/smdb/webservice.php";
+        $this->clientOptions["location"] = $this->url . "/webservice.php";
         $this->clientOptions["uri"] = "$this->url";
         $this->clientOptions["encoding"] = "UTF-8";
     }
@@ -116,8 +154,53 @@ class smbdColetor
         }
         return $returnData;
     }
+
 }
 
+/*
+
+$horafixa = strtotime("12:00:00");
+$horaatual = strtotime("now");
+
+strtotime("+1 minute",$suaData)
+
+
+if($horaatual > $horafixa){
+print("Agora a hora é maior\n");
+print($horaatual);
+}
+
+
+
+$novaHora1 = $turno1_inicio;
+
+for ($i=0; $i <= $turno1_fim; $i++){
+
+    $horaNova = strtotime("$novaHora1 + $duracao minutes");
+    $horaFormatada = date("H:i",$horaNova);
+
+    echo "Nova Hora :".$horaFormatada."<br>";
+    $novaHora1 = $horaFormatada;
+}
+
+
+//hora inicial
+$horaInicial = new DateTime('07:00');
+
+//hora final
+$horaFinal = new DateTime('08:00');
+
+echo 'Hora Inicial: '.$horaInicial->format('H:i')."<br />";
+
+//O valor é somado dentro do while, para evitar que repita a hora final
+while($horaInicial->add(new DateInterval('PT20M')) < $horaFinal) {
+    echo 'Hora intermediária: '.$horaInicial->format('H:i')."<br />";
+}
+echo 'Hora Final: '.$horaFinal->format('H:i')."<br />";
+
+
+
+*/
 
 
 

@@ -1,0 +1,1 @@
+date_trunc;pid;usesysid;usename;application_name;client_addr;client_hostname;client_port;backend_start;state;master_location;sent_location;write_location;flush_location;replay_location;sync_priority;sync_state
