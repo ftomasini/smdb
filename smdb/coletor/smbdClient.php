@@ -99,8 +99,8 @@ class smbdColetor
                                   xact_commit,
                                   xact_rollback,
                                   blks_read,
-                                  blks_hit ".
-                                  {$colunas} .
+                                  blks_hit " .
+                                  $colunas .
                             "FROM pg_stat_database");
 
         $dados = $this->fetchObject($dbres);

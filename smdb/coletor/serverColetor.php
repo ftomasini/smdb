@@ -27,7 +27,9 @@ class serverColetor
         try {
             $f = fopen('/tmp/resultWs.log', 'a+');
 
-            foreach ($data as $key => $line) {
+            foreach ($data as $key1 => $line1)
+            {
+                foreach($line1 as $key=>$line)
                 fwrite($f, "{$key}: {$line} \n");
             }
 
