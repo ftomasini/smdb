@@ -29,8 +29,9 @@ class serverColetor
 
             foreach ($data as $key1 => $line1)
             {
-                foreach($line1 as $key=>$line)
-                fwrite($f, "{$key}: {$line} \n");
+                foreach($line1 as $key=>$line) {
+                    fwrite($f, "{$key}: {$line} \n");
+                }
             }
 
             $ok = true;
