@@ -1,0 +1,7 @@
+{
+    "name": "pg_proctab",
+    "abstract": "Access operating system process table",
+    "version": "0.0.1",
+    "maintainer": "Mark Wong <markwkm@gmail.com>",
+    "license": "New BSD License"
+}

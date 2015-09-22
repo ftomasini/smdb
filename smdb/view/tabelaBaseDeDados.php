@@ -122,6 +122,9 @@
             hideHover: 'auto'
         });
 
+
+
+
         // LINE CHART
         var line = new Morris.Line({
             element: 'line-chart',

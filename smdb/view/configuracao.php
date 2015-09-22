@@ -42,4 +42,24 @@
         </div><!-- /.box -->
       </section><!-- /.content -->
 
+
+      <!-- jQuery 2.1.4 -->
+
+      <script src="../../html/plugins/datatables/jquery.dataTables.min.js"></script>
+      <script src="../../html/plugins/datatables/dataTables.bootstrap.min.js"></script>
+      <!-- SlimScroll -->
+
+
+      <script>
+        $(function () {
+          $('#example1').DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": false,
+            "autoWidth": true
+          });
+        });
+      </script>
 <?php include 'principalFim.php' ?>

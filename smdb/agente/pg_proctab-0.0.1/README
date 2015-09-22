@@ -1,0 +1,22 @@
+Currently only testing Linux, but support for other platforms will be added.
+
+Install
+-------
+make
+make install
+psql -f pg_proctab.sql
+psql -f pg_loadavg.sql
+psql -f pg_cputime.sql
+psql -f pg_memusage.sql
+
+Examples
+--------
+SELECT procpid
+FROM pg_stat_activity;
+
+SELECT *
+FROM pg_proctab();
+
+SELECT *
+FROM pg_stat_activity, pg_proctab()
+WHERE procpid = pid;

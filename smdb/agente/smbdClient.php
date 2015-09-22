@@ -17,6 +17,7 @@ $config = array(
     'tempo_coleta_base_de_dados' => '2 minutes',
     'tempo_coleta_tabela' => '2 minutes',
     'tempo_coleta_indice' => '2 minutes',
+    'tempo_coleta_configuracoes' => '2 minutes',
 );
 
 //Arquivo de log de erros
@@ -32,6 +33,8 @@ $coletaBaseDeDados = new Coleta($config['tempo_coleta_base_de_dados']);
 $coletaTabela = new Coleta($config['tempo_coleta_tabela']);
 //Define configurações de coleta para índices do banco de dados
 $coletaIndice = new Coleta($config['tempo_coleta_indice']);
+//Define configurações de coleta para configurações da base de dados
+$coletaConfiguracao = new Coleta($config['tempo_coleta_configuracoes']);
 
 echo "[OK] Serviço inicializado com sucesso! \n";
 
@@ -48,6 +51,8 @@ while(1)
         $smbdColetor->stat_tabela($coletaTabela);
         //Coleta de estatísticas dos índices do banco de dados
         $smbdColetor->stat_indice($coletaIndice);
+        //Coleta de configurações do bando de dados
+        $smbdColetor->stat_configuracao_base_de_dados($coletaConfiguracao);
     }
     catch ( Exception $e )
     {
@@ -294,6 +299,36 @@ class smbdColetor
             }
         }
     }
+
+    /**
+     * Obtém configurações
+     * da base de dados que está sendo analisada
+     *
+     * @throws Exception
+     */
+    public function stat_configuracao_base_de_dados($coleta)
+    {
+        if( $coleta->verificaColeta() )
+        {
+            $this->openDb();
+
+            $dbres = pg_query("SHOW ALL");
+            $dados = $this->fetchObject($dbres);
+            $this->closeDb();
+            $result = $this->client->wsTeste($dados);
+            $result = true;
+            if ($result && $dados)
+            {
+                echo "Configurações da base de dados coletadas!! \n ";
+                $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            }
+            else
+            {
+                throw new Exception('Não foi possível obter estatatísticas de índices');
+            }
+        }
+    }
+
 
     /**
      * Define parâmetros de conexão
