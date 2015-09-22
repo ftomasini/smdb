@@ -1,6 +1,6 @@
 <?php
 
-class PainelController extends Controller
+class TabelaBaseDeDadosController extends Controller
 {
     private $painelModel = NULL;
     private $core = NULL;
@@ -18,7 +18,7 @@ class PainelController extends Controller
 
     public function show()
     {
-        include '../../view/painel.php';
+        include '../../view/tabelaBaseDeDados.php';
     }
 }
 ?>

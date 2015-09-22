@@ -135,9 +135,7 @@ desired effect
             <ul class="sidebar-menu">
                 <li class="header">MENU</li>
                 <li><a href="handlerPainel.php?op=show"><i class="fa fa-dashboard"></i> <span>Painel principal</span></a></li>
-
-
-                <li><a href="handlerPainel.php?op=show"><i class="fa fa-edit"></i> <span>Configurações</span></a></li>
+                <li><a href="handlerConfiguracaoSGBD.php?op=show"><i class="fa fa-edit"></i> <span>Configurações do SGBD</span></a></li>
 
 
 
@@ -149,19 +147,21 @@ desired effect
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="handlerPainel.php?op=show"><i class="fa fa-circle-o"></i> Base de dados</a></li>
-                        <li><a href="handlerPainel.php?op=show"><i class="fa fa-circle-o"></i> Tabela da base de dados</a></li>
+                        <li><a href="handlerBaseDeDados.php?op=show"><i class="fa fa-circle-o"></i> Base de dados</a></li>
+                        <li><a href="handlerTabelaBaseDeDados.php?op=show"><i class="fa fa-circle-o"></i> Tabela da base de dados</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="handlerPainel.php?op=show">
+                    <a href="handlerAlarmistica.php?op=show">
                         <i class="fa fa-envelope"></i> <span>Alarmísticas</span>
                         <small class="label pull-right bg-yellow">12</small>
                     </a>
                 </li>
-                <li><a href="handlerPainel.php?op=show"><i class="fa fa-laptop"></i> <span>Processos em execução</span></a></li>
+                <li><a href="handlerProcessos.php?op=show"><i class="fa fa-laptop"></i> <span>Processos em execução</span></a></li>
+                <!--
                 <li><a href="handlerPainel.php?op=show"><i class="glyphicon glyphicon-calendar"></i> <span>Agendamento de tarefas</span></a></li>
-                <li><a href="handlerPainel.php?op=show"><i class="glyphicon glyphicon-globe"></i> <span>Coletor de dados</span></a></li>
+                -->
+                <li><a href="handlerColetor.php?op=show"><i class="glyphicon glyphicon-globe"></i> <span>Coletor de dados</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->

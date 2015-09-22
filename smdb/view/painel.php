@@ -4,22 +4,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Page Header
-            <small>Optional description</small>
+            Painel principal
+            <small>Estatísticas que estão sendo monitoradas</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol>
-
-
 
             <!-- Main content -->
             <section class="content">
-                <div class="callout callout-warning">
-                    <h4>Warning!</h4>
-                    <p><b>Morris.js</b> charts are no longer maintained by its author. We would recommend using any of the other charts that come with the template.</p>
-                </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <!-- AREA CHART -->
