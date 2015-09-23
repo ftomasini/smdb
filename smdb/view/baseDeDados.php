@@ -12,7 +12,6 @@
         <section class="content">
 
             <div class="row">
-                <div class="col-md-6">
                     <!-- AREA CHART -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -41,8 +40,6 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
 
-                </div><!-- /.col (LEFT) -->
-                <div class="col-md-6">
                     <!-- LINE CHART -->
                     <div class="box box-info">
                         <div class="box-header with-border">
@@ -71,11 +68,7 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
 
-                </div><!-- /.col (RIGHT) -->
             </div><!-- /.row -->
-
-        </section><!-- /.content -->
-</div><!-- /.content-wrapper -->
 
 
 
