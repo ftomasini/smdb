@@ -6,18 +6,25 @@
  */
 
 $config = array(
+    //base de dados
     'host' => 'localhost',
     'port' => '5432',
     'user' => 'postgres',
     'password' => 'postgres',
-    'dbname' => 'sagu_fametro',
+    'dbname' => 'avaliacao',
+    //smbd
     'url' => 'http://smbd.com.br',
-    //tempo de coleta
-    'tempo_coleta_sgbd_versao' => '1 minute',
-    'tempo_coleta_base_de_dados' => '2 minutes',
-    'tempo_coleta_tabela' => '2 minutes',
-    'tempo_coleta_indice' => '2 minutes',
-    'tempo_coleta_configuracoes' => '2 minutes',
+    'sgbd > 9.2' => true,
+    'usuario' => 'ftomasini.rs@gmail.com',
+    //intervalo de coleta
+    'tempo_coleta_sgbd_versao' => '10000 minutes',
+    'tempo_coleta_base_de_dados' => '1440 minutes',
+    'tempo_coleta_tabela' => '1440 minutes',
+    'tempo_coleta_indice' => '1440 minutes',
+    'tempo_coleta_configuracoes' => '1440 minutes',
+    'tempo_coleta_loadavg' => '5 minutes',
+    'tempo_coleta_memoria' => '5 minutes',
+    'tempo_coleta_processos' => '5 minutes',
 );
 
 //Arquivo de log de erros
@@ -35,6 +42,13 @@ $coletaTabela = new Coleta($config['tempo_coleta_tabela']);
 $coletaIndice = new Coleta($config['tempo_coleta_indice']);
 //Define configurações de coleta para configurações da base de dados
 $coletaConfiguracao = new Coleta($config['tempo_coleta_configuracoes']);
+//Define configurações de coleta para loadavg
+$coletaLoadavg = new Coleta($config['tempo_coleta_loadavg']);
+//Define configurações de coleta para memória do servidor
+$coletaMemoria = new Coleta($config['tempo_coleta_memoria']);
+//Define configurações de coleta para processos em execução
+$coletaProcessos = new Coleta($config['tempo_coleta_processos']);
+
 
 echo "[OK] Serviço inicializado com sucesso! \n";
 
@@ -53,6 +67,13 @@ while(1)
         $smbdColetor->stat_indice($coletaIndice);
         //Coleta de configurações do bando de dados
         $smbdColetor->stat_configuracao_base_de_dados($coletaConfiguracao);
+        //Coleta do load do servidor
+        $smbdColetor->stat_loadavg($coletaLoadavg);
+        //Coleta do uso da memória do servidor
+        $smbdColetor->stat_memoria($coletaMemoria);
+        //Coleta dos processos em execução no servidor
+        $smbdColetor->stat_processos($coletaProcessos);
+
     }
     catch ( Exception $e )
     {
@@ -111,16 +132,20 @@ class smbdColetor
         {
             $this->openDb();
             $dbres = pg_query("SELECT version()");
-            $dados = $this->fetchObject($dbres);
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
             $this->closeDb();
 
             $result = $this->client->wsTeste($dados);
 
             $result = true;
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             if ($result)
             {
-                echo "Estatística versão do servidor coletada!! \n ";
-                $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+                echo "Estatística versão do servidor coletada!! \n";
             }
             else
             {
@@ -174,16 +199,21 @@ class smbdColetor
                                    ON pg_stat_database.datname = pg_stat_database_conflicts.datname
                                 WHERE pg_stat_database.datname= '$bdNome'");
 
-            $dados = $this->fetchObject($dbres);
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
             $this->closeDb();
 
             $result = $this->client->wsTeste($dados);
 
             $result = true;
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+
             if ($result)
             {
-                echo "Estatísticas de base de dados coletadas!! \n ";
-                $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+                echo "Estatísticas de base de dados coletadas!! \n";
             }
             else
             {
@@ -242,14 +272,19 @@ class smbdColetor
                                          AND (heap_blks_read + COALESCE(toast_blks_read, 0)) + heap_blks_hit + COALESCE(toast_blks_hit) > 0) as aproveitamento_cache
                                  FROM pg_stat_user_tables");
 
-            $dados = $this->fetchObject($dbres);
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+
             if ($result)
             {
-                echo "Estatísticas de tabela coletada!! \n ";
-                $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+                echo "Estatísticas de tabela coletada!! \n";
             }
             else
             {
@@ -284,18 +319,22 @@ class smbdColetor
                                       pg_size_pretty(pg_relation_size(relid)) as tamanhoformatado,
                                       pg_size_pretty(pg_total_relation_size(relid)) as tamanhocomindicesformatado
                                  FROM pg_stat_user_indexes");
-            $dados = $this->fetchObject($dbres);
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            if ($result && $dados)
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            if ($result)
             {
-                echo "Estatistica de índice coletada!! \n ";
-                $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+                echo "Estatistica de índice coletada!! \n";
             }
             else
             {
-                throw new Exception('Não foi possível obter estatatísticas de índices');
+                throw new Exception('Não foi possível obter estatísticas de índices');
             }
         }
     }
@@ -313,22 +352,168 @@ class smbdColetor
             $this->openDb();
 
             $dbres = pg_query("SHOW ALL");
-            $dados = $this->fetchObject($dbres);
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            if ($result && $dados)
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            if ($result)
             {
-                echo "Configurações da base de dados coletadas!! \n ";
-                $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+                echo "Configurações da base de dados coletadas!! \n";
             }
             else
             {
-                throw new Exception('Não foi possível obter estatatísticas de índices');
+                throw new Exception('Não foi possível as configurações da base de dados');
             }
         }
     }
 
+    /**
+     * Obtém loadavg do servidor
+     * da base de dados que está sendo analisada
+     *
+     * @throws Exception
+     */
+    public function stat_loadavg($coleta)
+    {
+        if( $coleta->verificaColeta() )
+        {
+            $this->openDb();
+
+            $dbres = pg_query("SELECT load1 as loadultimominuto,
+                                      load5 as loadultimos5minutos,
+                                      load15 as loadultimos15minutos
+                                 FROM pg_loadavg();");
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
+            $this->closeDb();
+            $result = $this->client->wsTeste($dados);
+            $result = true;
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            if ($result && $dados)
+            {
+                echo "Loadavg do servidor coletado!! \n";
+            }
+            else
+            {
+                throw new Exception('Não foi possível obter o load do servidor');
+            }
+        }
+    }
+
+    /**
+     * Obtém memoria do servidor
+     * da base de dados que está sendo analisada
+     *
+     * @throws Exception
+     */
+    public function stat_memoria($coleta)
+    {
+        if( $coleta->verificaColeta() )
+        {
+            $this->openDb();
+
+            $dbres = pg_query("SELECT pg_size_pretty(memused * 1024) as format_memused,
+                                      pg_size_pretty(memfree * 1024) as format_memfree,
+                                      pg_size_pretty(memshared * 1024) as format_memshared,
+                                      pg_size_pretty(membuffers * 1024) as format_membuffers,
+                                      pg_size_pretty(memcached * 1024) as format_memcached,
+                                      pg_size_pretty(swapused * 1024) as format_swapused,
+                                      pg_size_pretty(swapfree * 1024) as format_swapfree,
+                                      pg_size_pretty(swapcached * 1024) as format_swapcached,
+                                      memused,
+                                      memfree,
+                                      memshared,
+                                      membuffers,
+                                      memcached,
+                                      swapused,
+                                      swapfree,
+                                      swapcached
+                                 FROM pg_memusage();");
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
+
+            $this->closeDb();
+            $result = $this->client->wsTeste($dados);
+            $result = true;
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+
+            if ($result)
+            {
+                echo "Memória do servidor coletada coletadas!! \n";
+            }
+            else
+            {
+                throw new Exception('Não foi possível obter status da memória do servidor');
+            }
+        }
+    }
+
+    /**
+     * Obtém processos em exucução na base de dados
+     * da base de dados que está sendo analisada
+     *
+     * @throws Exception
+     */
+    public function stat_processos($coleta)
+    {
+        if( $coleta->verificaColeta() )
+        {
+            $this->openDb();
+
+            $bdNome = pg_escape_string($this->dbname);
+
+            $dbres = pg_query(" SELECT pg_stat_activity.datname,
+                                       pg_stat_activity.usename,
+                                       pg_stat_activity.pid,
+                                       priority,
+                                       pg_size_pretty(B.rss * 1024) as memoria,
+                                       B.state,
+                                       pg_stat_activity.query,
+                                       C.mode,
+                                       C.granted,
+                                       'PROC_SMBD_COLETOR' as identificador,
+                                       date_trunc('seconds', pg_stat_activity.backend_start) AS inicioprocesso,
+                                       date_trunc('seconds', now()) AS horacoleta,
+                                       date_trunc('seconds',SUM(now() - pg_stat_activity.backend_start)) as tempoexecussao
+                                  FROM pg_stat_activity
+                            INNER JOIN pg_proctab() B
+                                    ON pg_stat_activity.pid = B.pid
+                            INNER JOIN pg_locks C
+                                    ON pg_stat_activity.pid = C.pid
+                                   AND pg_stat_activity.query not ilike '%PROC_SMBD_COLETOR%'
+                                 WHERE datname = '$bdNome'
+                              GROUP BY 1,2,3,4,5,6,7,8,9,10,11; ");
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
+            $this->closeDb();
+            $result = $this->client->wsTeste($dados);
+            $result = true;
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+
+            if ($result)
+            {
+                echo "Processos em execução coletados \n";
+            }
+            else
+            {
+                throw new Exception('Não foi possível obter os processos em execução');
+            }
+        }
+    }
 
     /**
      * Define parâmetros de conexão
