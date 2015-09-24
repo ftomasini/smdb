@@ -51,6 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main Header -->
     <header class="main-header">
+        <meta http-equiv="refresh" content="30">
 
         <!-- Logo -->
         <a href="handlerPainel.php?op=show" class="logo">

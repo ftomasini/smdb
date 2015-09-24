@@ -130,6 +130,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
             $dbres = pg_query("SELECT version()");
             $dados = array();
@@ -142,7 +143,6 @@ class smbdColetor
             $result = $this->client->wsTeste($dados);
 
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             if ($result)
             {
                 echo "Estatística versão do servidor coletada!! \n";
@@ -163,6 +163,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
             $bdNome = pg_escape_string($this->dbname);
 
@@ -209,7 +210,6 @@ class smbdColetor
             $result = $this->client->wsTeste($dados);
 
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
 
             if ($result)
             {
@@ -233,6 +233,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
 
             $colunas = '';
@@ -280,7 +281,6 @@ class smbdColetor
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
 
             if ($result)
             {
@@ -303,6 +303,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
 
             $dbres = pg_query("SELECT relid,
@@ -327,7 +328,7 @@ class smbdColetor
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+
             if ($result)
             {
                 echo "Estatistica de índice coletada!! \n";
@@ -349,6 +350,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
 
             $dbres = pg_query("SHOW ALL");
@@ -360,7 +362,6 @@ class smbdColetor
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             if ($result)
             {
                 echo "Configurações da base de dados coletadas!! \n";
@@ -382,6 +383,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
 
             $dbres = pg_query("SELECT load1 as loadultimominuto,
@@ -396,7 +398,6 @@ class smbdColetor
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             if ($result && $dados)
             {
                 echo "Loadavg do servidor coletado!! \n";
@@ -469,6 +470,7 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
             $this->openDb();
 
             $bdNome = pg_escape_string($this->dbname);
@@ -502,7 +504,6 @@ class smbdColetor
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
 
             if ($result)
             {
