@@ -15,30 +15,16 @@ class ColetorModel extends DbConection
                                         (usuario,
                                          data_coleta,
                                          versao)
-                   VALUES (bdValor($data->usuario),
-                           bdValor($data->data_coleta),
-                           bdValor($data->versao))");
-        $this->closeDb();
-
-
-        $teste = "INSERT INTO stat_sgbd_versao
-                                        (usuario,
-                                         data_coleta,
-                                         versao)
                    VALUES ({$this->bdValor($data->usuario)},
                            {$this->bdValor($data->data_coleta)},
-                           {$this->bdValor($data->versao)})";
+                           {$this->bdValor($data->versao)})");
+        $this->closeDb();
 
         if ( !$result )
         {
             $error = pg_last_error($this->dbcon);
             throw new Exception($error);
         }
-
-
-        $f = fopen('/tmp/teste.log', 'a+');
-        fwrite($f, $teste);
-        fwrite($f, $error);
 
         return $result;
     }
