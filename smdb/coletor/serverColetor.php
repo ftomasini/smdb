@@ -10,11 +10,13 @@ require_once 'core/Autoload.php';
 
 class serverColetor
 {
-
+    public $coletorModel;
 
     public function __construct()
     {
+        $this->coletorModel = ColetorModel();
         //chdir('../');
+
         //require_once 'core/Core.php';
     }
 
@@ -33,7 +35,7 @@ class serverColetor
             {
                 if ($tabela == 'stat_sgbd_versao')
                 {
-                    ColetorModel::insert_stat_sgbd_versao($registro);
+                    $this->coletorModel->insert_stat_sgbd_versao($registro);
                 }
                 //foreach($registro as $coluna=>$valor)
                 //{

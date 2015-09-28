@@ -8,7 +8,7 @@ class ColetorModel extends DbConection
     {
     }
 
-    public static function insert_stat_sgbd_versao( $data )
+    public function insert_stat_sgbd_versao( $data )
     {
         $this->openDb();
         $result = pg_query("INSERT INTO stat_sgbd_versao
