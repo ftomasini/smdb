@@ -29,6 +29,13 @@ class ColetorModel extends DbConection
                            {$this->bdValor($data->data_coleta)},
                            {$this->bdValor($data->versao)})";
 
+        if ( !$result )
+        {
+            $error = pg_last_error($this->dbcon);
+            throw new Exception($error);
+        }
+
+
         $f = fopen('/tmp/teste.log', 'a+');
         fwrite($f, $teste);
 

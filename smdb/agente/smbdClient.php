@@ -152,7 +152,6 @@ class smbdColetor
 
             $result = $this->client->wsTeste($dados, 'stat_sgbd_versao');
 
-            $result = true;
             if ($result)
             {
                 echo "Estatística versão do servidor coletada!! \n";

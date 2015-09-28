@@ -33,6 +33,7 @@ class serverColetor
 
             foreach ($data as $registro)
             {
+                $ok = true;
                 if ($tabela == 'stat_sgbd_versao')
                 {
                     $this->coletorModel->insert_stat_sgbd_versao($registro);
@@ -47,7 +48,7 @@ class serverColetor
         }
         catch (Exception $e)
         {
-            $ok = false;
+            $ok = $e->getMessage();
         }
 
         return $ok;
