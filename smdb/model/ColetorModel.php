@@ -15,9 +15,9 @@ class ColetorModel extends DbConection
                                         (usuario,
                                          data_coleta,
                                          versao)
-                   VALUES ($this->bdValor($data->usuario),
-                           $this->bdValor($data->data_coleta),
-                           $this->bdValor($data->versao))");
+                   VALUES (bdValor($data->usuario),
+                           bdValor($data->data_coleta),
+                           bdValor($data->versao))");
         $this->closeDb();
 
         return $result;
