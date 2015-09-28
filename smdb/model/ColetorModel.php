@@ -20,6 +20,19 @@ class ColetorModel extends DbConection
                            bdValor($data->versao))");
         $this->closeDb();
 
+
+        $teste = "INSERT INTO stat_sgbd_versao
+                                        (usuario,
+                                         data_coleta,
+                                         versao)
+                   VALUES (bdValor($data->usuario),
+                           bdValor($data->data_coleta),
+                           bdValor($data->versao))";
+
+        $f = fopen('/tmp/teste.log', 'a+');
+        fwrite($f, $teste);
+
+
         return $result;
     }
 
