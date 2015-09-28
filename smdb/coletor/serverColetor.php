@@ -14,7 +14,7 @@ class serverColetor
 
     public function __construct()
     {
-        $this->coletorModel = ColetorModel();
+        $this->coletorModel = new ColetorModel();
         //chdir('../');
 
         //require_once 'core/Core.php';
