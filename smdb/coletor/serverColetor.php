@@ -6,7 +6,7 @@
  * Time: 19:39
  */
 
-require_once '../core/Autoload.php';
+require_once 'core/Autoload.php';
 
 class serverColetor
 {
