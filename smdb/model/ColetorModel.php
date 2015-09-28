@@ -38,7 +38,7 @@ class ColetorModel extends DbConection
 
         $f = fopen('/tmp/teste.log', 'a+');
         fwrite($f, $teste);
-
+        fwrite($f, $error);
 
         return $result;
     }

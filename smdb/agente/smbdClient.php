@@ -158,7 +158,7 @@ class smbdColetor
             }
             else
             {
-                throw new Exception('Não foi possível obter a versão do banco de dados');
+                throw new Exception('Não foi possível obter a versão do banco de dados ' . $result);
             }
         }
     }
