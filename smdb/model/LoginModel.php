@@ -15,7 +15,7 @@ class LoginModel extends DbConection
 
     public function __construct()
     {
-        $this->table = 'usuario';
+        $this->table = 'smbd_usuario';
     }
 
     public function validade( $usuario, $senha )
@@ -28,9 +28,9 @@ class LoginModel extends DbConection
             $senha = md5(pg_escape_string($senha));
 
             // Validação do usuário/senha digitados
-            $sql = "SELECT id,
+            $sql = "SELECT usuario,
                            nome
-                      FROM usuario
+                      FROM smbd_usuario
                      WHERE (email = '$usuario')
                        AND (senha = '$senha')
                        AND (ativo = true) LIMIT 1";

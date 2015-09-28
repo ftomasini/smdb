@@ -37,11 +37,15 @@ class RegisterModel extends DbConection
             }
             $this->openDb();
 
-            $ok = pg_query("INSERT INTO usuario (nome,
+            $ok = pg_query("INSERT INTO smbd_usuario (nome,
                                           email,
+                                          usuario,
+                                          ativo,
                                           senha)
                            VALUES ($dbNome,
                                    $dbEmail,
+                                   $dbEmail,
+                                   true,
                                    md5($dbSenha))");
             if (!$ok)
             {
@@ -107,7 +111,7 @@ class RegisterModel extends DbConection
         $email = pg_escape_string($email);
         $this->openDb();
 
-        $dbres = pg_query("SELECT * FROM usuario WHERE email='$email'");
+        $dbres = pg_query("SELECT * FROM smbd_usuario WHERE email='$email'");
 
         return pg_fetch_object($dbres);
 

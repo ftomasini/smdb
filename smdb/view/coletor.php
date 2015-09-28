@@ -18,7 +18,6 @@
      </div>
  </form>
 
-</div>
 
 
 <?php include 'principalFim.php' ?>

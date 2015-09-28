@@ -40,7 +40,7 @@
             <div class="form-group">
                 <div class="col-lg-offset-3 col-lg-6">
                     <div class="box-footer">
-                    <input type="hidden" name="id" id="id" value=<?php print htmlentities($usuario->id) ?> />
+                    <input type="hidden" name="id" id="id" value=<?php print htmlentities($usuario->usuario) ?> />
                     <input type="hidden" name="form-submitted" value="1" />
                     <button class="btn btn-primary" type="submit">Salvar</button>
                 </div>

@@ -6,7 +6,7 @@ class UsuarioModel extends DbConection
 
   public function __construct()
   {
-      $this->table = 'usuario';
+      $this->table = 'smbd_usuario';
   }
 
     public function update( $name, $senha, $id )
@@ -21,7 +21,7 @@ class UsuarioModel extends DbConection
             $dbSenha = ($senha != NULL) ? "'" . pg_escape_string($senha) . "'" : 'NULL';
         }
 
-        $stringQuery = "UPDATE usuario ";
+        $stringQuery = "UPDATE smbd_usuario ";
 
         if (strlen($senha)>0)
         {
@@ -33,7 +33,7 @@ class UsuarioModel extends DbConection
             $stringQuery .= "SET nome = $dbName ";
         }
 
-        $stringQuery .= "WHERE id = $dbId";
+        $stringQuery .= "WHERE usuario = $dbId";
         pg_query($stringQuery);
         return true;
     }
@@ -43,7 +43,7 @@ class UsuarioModel extends DbConection
         $email = pg_escape_string($email);
         $this->openDb();
 
-        $dbres = pg_query("SELECT * FROM usuario WHERE email='$email'");
+        $dbres = pg_query("SELECT * FROM smbd_usuario WHERE email='$email'");
 
         return pg_fetch_object($dbres);
 

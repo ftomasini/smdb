@@ -17,15 +17,16 @@ $config = array(
     'sgbd > 9.2' => true,
     'usuario' => 'ftomasini.rs@gmail.com',
     //intervalo de coleta
-    'tempo_coleta_sgbd_versao' => '10000 minutes',
-    'tempo_coleta_base_de_dados' => '1440 minutes',
-    'tempo_coleta_tabela' => '1440 minutes',
-    'tempo_coleta_indice' => '1440 minutes',
-    'tempo_coleta_configuracoes' => '1440 minutes',
-    'tempo_coleta_loadavg' => '5 minutes',
-    'tempo_coleta_memoria' => '5 minutes',
-    'tempo_coleta_processos' => '5 minutes',
-);
+    'tempo_coleta_sgbd_versao' => '1 minutes',
+    'tempo_coleta_base_de_dados' => '1 minutes',
+    'tempo_coleta_tabela' => '1 minutes',
+    'tempo_coleta_indice' => '1 minutes',
+    'tempo_coleta_configuracoes' => '1 minutes',
+    'tempo_coleta_loadavg' => '1 minutes',
+    'tempo_coleta_memoria' => '1 minutes',
+    'tempo_coleta_processos' => '1 minutes',
+    'tempo_coleta_bloqueios' => '1 minutes',
+    );
 
 //Arquivo de log de erros
 $log = fopen('/var/log/smbd.log', 'a+');
@@ -48,6 +49,8 @@ $coletaLoadavg = new Coleta($config['tempo_coleta_loadavg']);
 $coletaMemoria = new Coleta($config['tempo_coleta_memoria']);
 //Define configurações de coleta para processos em execução
 $coletaProcessos = new Coleta($config['tempo_coleta_processos']);
+//Define configurações de coleta para bloqueios
+$coletaBloqueios = new Coleta($config['tempo_coleta_bloqueios']);
 
 
 echo "[OK] Serviço inicializado com sucesso! \n";
@@ -73,7 +76,8 @@ while(1)
         $smbdColetor->stat_memoria($coletaMemoria);
         //Coleta dos processos em execução no servidor
         $smbdColetor->stat_processos($coletaProcessos);
-
+        //Coleta dos bloqueios
+        $smbdColetor->stat_bloqueios($coletaBloqueios);
     }
     catch ( Exception $e )
     {
@@ -99,6 +103,7 @@ class smbdColetor
     private $url;
     private $clientOptions = array();
     private $client;
+    private $usuario;
 
 
     /**
@@ -113,7 +118,7 @@ class smbdColetor
         $this->password = $config['password'];
         $this->dbname = $config['dbname'];
         $this->url = $config['url'];
-
+        $this->usuario = $config['usuario'];
         $this->defineClientOptions();
         $this->client = new SoapClient(NULL, $this->getClientOptions());
     }
@@ -131,8 +136,13 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
+
             $this->openDb();
-            $dbres = pg_query("SELECT version()");
+            $dbres = pg_query("SELECT '{$coletaAtual}' as data_coleta,
+                                      '{$this->usuario}' as usuario,
+                                      version() as versao");
+
             $dados = array();
             if(count($dbres)>0)
             {
@@ -140,7 +150,7 @@ class smbdColetor
             }
             $this->closeDb();
 
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->wsTeste($dados, 'stat_sgbd_versao');
 
             $result = true;
             if ($result)
@@ -164,10 +174,12 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
             $this->openDb();
             $bdNome = pg_escape_string($this->dbname);
 
-            $dbres = pg_query("SELECT date_trunc('seconds', now()),
+            $dbres = pg_query("SELECT '{$coletaAtual}' as data_coleta,
+                                      '{$this->usuario}' as usuario,
                                       pg_stat_database.datid,
                                       pg_stat_database.datname,
                                       pg_stat_database.numbackends,
@@ -194,7 +206,9 @@ class smbdColetor
                                              (heap_blks_read + COALESCE(toast_blks_read, 0) +
                                              heap_blks_hit + COALESCE(toast_blks_hit,0))::numeric * 100), 3) as hit_ratio
                                         FROM pg_statio_user_tables
-                                       WHERE (heap_blks_read + COALESCE(toast_blks_read, 0)) + heap_blks_hit + COALESCE(toast_blks_hit) > 0) as hit_ratio
+                                       WHERE (heap_blks_read + COALESCE(toast_blks_read, 0)) + heap_blks_hit + COALESCE(toast_blks_hit) > 0) as hit_ratio,
+                                       pg_size_pretty(pg_database_size(pg_stat_database.datname)) as tamanho_base_de_dados_formatado,
+                                       pg_database_size(pg_stat_database.datname) as tamanho_base_de_dados
                                  FROM pg_stat_database
                            INNER JOIN pg_stat_database_conflicts
                                    ON pg_stat_database.datname = pg_stat_database_conflicts.datname
@@ -234,11 +248,12 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
             $this->openDb();
 
-            $colunas = '';
-
-            $dbres = pg_query("SELECT relid,
+            $dbres = pg_query("SELECT '{$coletaAtual}' as data_coleta,
+                                      '{$this->usuario}' as usuario,
+                                      relid,
                                       schemaname,
                                       relname,
                                       seq_scan,
@@ -260,9 +275,9 @@ class smbdColetor
                                       analyze_count,
                                       autoanalyze_count,
                                       pg_relation_size(relid) as tamanho,
-                                      pg_total_relation_size(relid)as tamanhocomindices,
-                                      pg_size_pretty(pg_relation_size(relid)) as tamanhoformatado,
-                                      pg_size_pretty(pg_total_relation_size(relid)) as tamanhocomindicesformatado,
+                                      pg_total_relation_size(relid)as tamanho_com_indices,
+                                      pg_size_pretty(pg_relation_size(relid)) as tamanho_formatado,
+                                      pg_size_pretty(pg_total_relation_size(relid)) as tamanho_com_indices_formatado,
                                       (SELECT round((heap_blks_hit + COALESCE(toast_blks_hit, 0))::numeric /
                                                    (heap_blks_read + COALESCE(toast_blks_read, 0) +
                                                     heap_blks_hit + COALESCE(toast_blks_hit,0))::numeric * 100, 3) as hit_ratio
@@ -304,9 +319,12 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
             $this->openDb();
 
-            $dbres = pg_query("SELECT relid,
+            $dbres = pg_query("SELECT '{$coletaAtual}' as data_coleta,
+                                      '{$this->usuario}' as usuario,
+                                      relid,
                                       indexrelid,
                                       schemaname,
                                       relname,
@@ -316,9 +334,9 @@ class smbdColetor
                                       idx_tup_fetch,
                                       (idx_scan > 0) as utilizado,
                                       pg_relation_size(relid) as tamanho,
-                                      pg_total_relation_size(relid)as tamanhocomindices,
-                                      pg_size_pretty(pg_relation_size(relid)) as tamanhoformatado,
-                                      pg_size_pretty(pg_total_relation_size(relid)) as tamanhocomindicesformatado
+                                      pg_total_relation_size(relid)as tamanho_com_indices,
+                                      pg_size_pretty(pg_relation_size(relid)) as tamanho_formatado,
+                                      pg_size_pretty(pg_total_relation_size(relid)) as tamanho_com_indices_formatado
                                  FROM pg_stat_user_indexes");
             $dados = array();
             if(count($dbres)>0)
@@ -351,9 +369,28 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
             $this->openDb();
 
-            $dbres = pg_query("SHOW ALL");
+            $dbres = pg_query(" SELECT '{$coletaAtual}' as data_coleta,
+                                       '{$this->usuario}' as usuario,
+                                       name,
+                                       setting,
+                                       unit,
+                                       category,
+                                       short_desc,
+                                       extra_desc,
+                                       context,
+                                       vartype,
+                                       source,
+                                       min_val,
+                                       max_val,
+                                       enumvals,
+                                       boot_val,
+                                       reset_val,
+                                       sourcefile,
+                                       sourceline
+                                  FROM pg_settings");
             $dados = array();
             if(count($dbres)>0)
             {
@@ -384,11 +421,15 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
+
             $this->openDb();
 
-            $dbres = pg_query("SELECT load1 as loadultimominuto,
-                                      load5 as loadultimos5minutos,
-                                      load15 as loadultimos15minutos
+            $dbres = pg_query("SELECT '{$coletaAtual}' as data_coleta,
+                                      '{$this->usuario}' as usuario,
+                                      load1 as load_ultimo_minuto,
+                                      load5 as load_ultimos_5_minutos,
+                                      load15 as load_ultimos_15_minutos
                                  FROM pg_loadavg();");
             $dados = array();
             if(count($dbres)>0)
@@ -419,9 +460,14 @@ class smbdColetor
     {
         if( $coleta->verificaColeta() )
         {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
+
             $this->openDb();
 
-            $dbres = pg_query("SELECT pg_size_pretty(memused * 1024) as format_memused,
+            $dbres = pg_query("SELECT '{$coletaAtual}' as data_coleta,
+                                      '{$this->usuario}' as usuario,
+                                      pg_size_pretty(memused * 1024) as format_memused,
                                       pg_size_pretty(memfree * 1024) as format_memfree,
                                       pg_size_pretty(memshared * 1024) as format_memshared,
                                       pg_size_pretty(membuffers * 1024) as format_membuffers,
@@ -447,7 +493,6 @@ class smbdColetor
             $this->closeDb();
             $result = $this->client->wsTeste($dados);
             $result = true;
-            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
 
             if ($result)
             {
@@ -471,31 +516,31 @@ class smbdColetor
         if( $coleta->verificaColeta() )
         {
             $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
+
             $this->openDb();
 
             $bdNome = pg_escape_string($this->dbname);
 
-            $dbres = pg_query(" SELECT pg_stat_activity.datname,
+            $dbres = pg_query(" SELECT '{$coletaAtual}' as data_coleta,
+                                       '{$this->usuario}' as usuario,
+                                       pg_stat_activity.datname,
                                        pg_stat_activity.usename,
                                        pg_stat_activity.pid,
                                        priority,
                                        pg_size_pretty(B.rss * 1024) as memoria,
                                        B.state,
                                        pg_stat_activity.query,
-                                       C.mode,
-                                       C.granted,
                                        'PROC_SMBD_COLETOR' as identificador,
-                                       date_trunc('seconds', pg_stat_activity.backend_start) AS inicioprocesso,
-                                       date_trunc('seconds', now()) AS horacoleta,
-                                       date_trunc('seconds',SUM(now() - pg_stat_activity.backend_start)) as tempoexecussao
+                                       date_trunc('seconds', pg_stat_activity.backend_start) AS inicio_processo,
+                                       date_trunc('seconds', now()) AS hora_coleta,
+                                       date_trunc('seconds',SUM(now() - pg_stat_activity.backend_start)) as tempo_execussao
                                   FROM pg_stat_activity
                             INNER JOIN pg_proctab() B
                                     ON pg_stat_activity.pid = B.pid
-                            INNER JOIN pg_locks C
-                                    ON pg_stat_activity.pid = C.pid
                                    AND pg_stat_activity.query not ilike '%PROC_SMBD_COLETOR%'
                                  WHERE datname = '$bdNome'
-                              GROUP BY 1,2,3,4,5,6,7,8,9,10,11; ");
+                              GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12; ");
             $dados = array();
             if(count($dbres)>0)
             {
@@ -508,6 +553,66 @@ class smbdColetor
             if ($result)
             {
                 echo "Processos em execução coletados \n";
+            }
+            else
+            {
+                throw new Exception('Não foi possível obter os processos em execução');
+            }
+        }
+    }
+
+
+    /**
+     * Obtém bloqueios da base de dados
+     *
+     * @throws Exception
+     */
+    public function stat_bloqueios($coleta)
+    {
+        if( $coleta->verificaColeta() )
+        {
+            $coleta->proximaColeta = date('d-m-Y H:i:s', strtotime("+$coleta->tempoColeta"));
+            $coletaAtual = date('d-m-Y H:i:s');
+
+            $this->openDb();
+
+            $bdNome = pg_escape_string($this->dbname);
+
+            $dbres = pg_query(" SELECT '{$coletaAtual}' as data_coleta,
+                                       '{$this->usuario}' as usuario,
+                                       pg_stat_activity.datname,
+                                       pg_stat_activity.usename,
+                                       pg_stat_activity.pid,
+                                       priority,
+                                       pg_size_pretty(B.rss * 1024) as memoria,
+                                       B.state,
+                                       pg_stat_activity.query,
+                                       C.mode,
+                                       C.granted,
+                                       'PROC_SMBD_COLETOR' as identificador,
+                                       date_trunc('seconds', pg_stat_activity.backend_start) AS inicio_processo,
+                                       date_trunc('seconds', now()) AS hora_coleta,
+                                       date_trunc('seconds',SUM(now() - pg_stat_activity.backend_start)) as tempo_execussao
+                                  FROM pg_stat_activity
+                            INNER JOIN pg_proctab() B
+                                    ON pg_stat_activity.pid = B.pid
+                            INNER JOIN pg_locks C
+                                    ON pg_stat_activity.pid = C.pid
+                                   AND pg_stat_activity.query not ilike '%PROC_SMBD_COLETOR%'
+                                 WHERE datname = '$bdNome'
+                              GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14; ");
+            $dados = array();
+            if(count($dbres)>0)
+            {
+                $dados = $this->fetchObject($dbres);
+            }
+            $this->closeDb();
+            $result = $this->client->wsTeste($dados);
+            $result = true;
+
+            if ($result)
+            {
+                echo "Bloqueios coletados \n";
             }
             else
             {

@@ -6,6 +6,7 @@
  * Time: 19:39
  */
 
+require_once '../core/Autoload.php';
 
 class serverColetor
 {
@@ -22,20 +23,28 @@ class serverColetor
      *
      *
      */
-    public function wsTeste($data)
+    public function wsTeste($data, $tabela = null)
     {
-        try {
-            $f = fopen('/tmp/resultWs.log', 'a+');
+        try
+        {
+            //$f = fopen('/tmp/resultWs.log', 'a+');
 
-            foreach ($data as $key1 => $line1)
+            foreach ($data as $registro)
             {
-                foreach($line1 as $key=>$line) {
-                    fwrite($f, "{$key}: {$line} \n");
+                if ($tabela == 'stat_sgbd_versao')
+                {
+                    ColetorModel::insert_stat_sgbd_versao($registro);
                 }
+                //foreach($registro as $coluna=>$valor)
+                //{
+                //    fwrite($f, "{$coluna}: {$valor} \n");
+                //}
             }
 
             $ok = true;
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             $ok = false;
         }
 

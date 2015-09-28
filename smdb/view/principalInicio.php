@@ -1,3 +1,17 @@
+
+<?php
+
+// Require: use your own path
+require_once '../../core/morris-php/morris.php';
+require_once '../../core/morris-php/morris-charts.php';
+
+// Optional: include chart line
+require_once '../../core/morris-php/morris-line-charts.php';
+require_once '../../core/morris-php/morris-donut-charts.php';
+require_once '../../core/morris-php/morris-bar-charts.php';
+require_once '../../core/morris-php/morris-area-charts.php';
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -45,13 +59,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../../html/plugins/morris/morris.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <!-- MORRIS
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     <!-- Main Header -->
     <header class="main-header">
-        <meta http-equiv="refresh" content="30">
 
         <!-- Logo -->
         <a href="handlerPainel.php?op=show" class="logo">
