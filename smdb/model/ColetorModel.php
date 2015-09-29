@@ -127,7 +127,7 @@ class ColetorModel extends DbConection
                                          tamanho_com_indices,
                                          tamanho_formatado,
                                          tamanho_com_indices_formatado,
-                                         hit_ratio
+                                         hit_ratio,
                                          aproveitamento_cache)
                                   VALUES ({$this->bdValor($data->data_coleta)},
                                           {$this->bdValor($data->usuario)},
