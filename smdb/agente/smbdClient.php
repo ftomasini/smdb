@@ -150,7 +150,7 @@ class smbdColetor
             }
             $this->closeDb();
 
-            $result = $this->client->wsTeste($dados, 'stat_sgbd_versao');
+            $result = $this->client->ws($dados, 'stat_sgbd_versao');
 
             if ($result)
             {
@@ -220,7 +220,7 @@ class smbdColetor
             }
             $this->closeDb();
 
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_base_de_dados');
 
             $result = true;
 
@@ -293,7 +293,7 @@ class smbdColetor
                 $dados = $this->fetchObject($dbres);
             }
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_tabela');
             $result = true;
 
             if ($result)
@@ -343,7 +343,7 @@ class smbdColetor
                 $dados = $this->fetchObject($dbres);
             }
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_indice');
             $result = true;
 
             if ($result)
@@ -396,7 +396,7 @@ class smbdColetor
                 $dados = $this->fetchObject($dbres);
             }
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_configuracao_base_de_dados');
             $result = true;
             if ($result)
             {
@@ -436,7 +436,7 @@ class smbdColetor
                 $dados = $this->fetchObject($dbres);
             }
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_loadavg');
             $result = true;
             if ($result && $dados)
             {
@@ -490,7 +490,7 @@ class smbdColetor
             }
 
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_memoria');
             $result = true;
 
             if ($result)
@@ -546,7 +546,7 @@ class smbdColetor
                 $dados = $this->fetchObject($dbres);
             }
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_processos');
             $result = true;
 
             if ($result)
@@ -606,7 +606,7 @@ class smbdColetor
                 $dados = $this->fetchObject($dbres);
             }
             $this->closeDb();
-            $result = $this->client->wsTeste($dados);
+            $result = $this->client->ws($dados, 'stat_bloqueios');
             $result = true;
 
             if ($result)
