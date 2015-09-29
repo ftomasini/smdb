@@ -222,8 +222,6 @@ class smbdColetor
 
             $result = $this->client->ws($dados, 'stat_base_de_dados');
 
-            $result = true;
-
             if ($result)
             {
                 echo "Estatísticas de base de dados coletadas!! \n";
@@ -294,7 +292,6 @@ class smbdColetor
             }
             $this->closeDb();
             $result = $this->client->ws($dados, 'stat_tabela');
-            $result = true;
 
             if ($result)
             {
@@ -344,7 +341,6 @@ class smbdColetor
             }
             $this->closeDb();
             $result = $this->client->ws($dados, 'stat_indice');
-            $result = true;
 
             if ($result)
             {
@@ -397,7 +393,7 @@ class smbdColetor
             }
             $this->closeDb();
             $result = $this->client->ws($dados, 'stat_configuracao_base_de_dados');
-            $result = true;
+
             if ($result)
             {
                 echo "Configurações da base de dados coletadas!! \n";
@@ -437,7 +433,7 @@ class smbdColetor
             }
             $this->closeDb();
             $result = $this->client->ws($dados, 'stat_loadavg');
-            $result = true;
+
             if ($result && $dados)
             {
                 echo "Loadavg do servidor coletado!! \n";
@@ -491,7 +487,6 @@ class smbdColetor
 
             $this->closeDb();
             $result = $this->client->ws($dados, 'stat_memoria');
-            $result = true;
 
             if ($result)
             {
@@ -547,7 +542,6 @@ class smbdColetor
             }
             $this->closeDb();
             $result = $this->client->ws($dados, 'stat_processos');
-            $result = true;
 
             if ($result)
             {

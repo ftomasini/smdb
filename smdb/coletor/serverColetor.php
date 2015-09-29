@@ -42,31 +42,31 @@ class serverColetor
                 {
                     $this->coletorModel->insert_stat_base_de_dados($registro);
                 }
-                if ($tabela == 'stat_stat_tabela')
+                if ($tabela == 'stat_tabela')
                 {
                     $this->coletorModel->insert_stat_tabela($registro);
                 }
-                if ($tabela == 'stat_stat_indice')
+                if ($tabela == 'stat_indice')
                 {
                     $this->coletorModel->insert_stat_indice($registro);
                 }
-                if ($tabela == 'stat_stat_configuracao_base_de_dados')
+                if ($tabela == 'stat_configuracao_base_de_dados')
                 {
                     $this->coletorModel->insert_stat_configuracao_base_de_dados($registro);
                 }
-                if ($tabela == 'stat_stat_loadavg')
+                if ($tabela == 'stat_loadavg')
                 {
                     $this->coletorModel->insert_stat_loadavg($registro);
                 }
-                if ($tabela == 'stat_stat_memoria')
+                if ($tabela == 'stat_memoria')
                 {
                     $this->coletorModel->insert_stat_memoria($registro);
                 }
-                if ($tabela == 'stat_stat_processos')
+                if ($tabela == 'stat_processos')
                 {
                     $this->coletorModel->insert_stat_processos($registro);
                 }
-                if ($tabela == 'stat_stat_bloqueios')
+                if ($tabela == 'stat_bloqueios')
                 {
                     $this->coletorModel->insert_stat_bloqueios($registro);
                 }
