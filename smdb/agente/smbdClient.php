@@ -17,15 +17,15 @@ $config = array(
     'sgbd > 9.2' => true,
     'usuario' => 'ftomasini.rs@gmail.com',
     //intervalo de coleta
-    'tempo_coleta_sgbd_versao' => '1 minutes',
-    'tempo_coleta_base_de_dados' => '1 minutes',
-    'tempo_coleta_tabela' => '1 minutes',
-    'tempo_coleta_indice' => '1 minutes',
-    'tempo_coleta_configuracoes' => '1 minutes',
-    'tempo_coleta_loadavg' => '1 minutes',
-    'tempo_coleta_memoria' => '1 minutes',
+    'tempo_coleta_sgbd_versao' => '200 minutes',
+    'tempo_coleta_base_de_dados' => '200 minutes',
+    'tempo_coleta_tabela' => '200 minutes',
+    'tempo_coleta_indice' => '200 minutes',
+    'tempo_coleta_configuracoes' => '200 minutes',
+    'tempo_coleta_loadavg' => '200 minutes',
+    'tempo_coleta_memoria' => '200 minutes',
     'tempo_coleta_processos' => '1 minutes',
-    'tempo_coleta_bloqueios' => '1 minutes',
+    'tempo_coleta_bloqueios' => '200 minutes',
     );
 
 //Arquivo de log de erros
@@ -513,20 +513,7 @@ class smbdColetor
             $coletaAtual = date('d-m-Y H:i:s');
 
             $this->openDb();
-
             $bdNome = pg_escape_string($this->dbname);
-
-            $dbres = pg_query("CREATE OR REPLACE FUNCTION obterexplain(p_sql text)
-                               RETURNS TABLE(explain text) AS
-                               \$BODY$
-                               DECLARE
-                               v_sql VARCHAR;
-                                BEGIN
-                                    v_sql:= 'EXPLAIN ANALYZE ' || p_sql;
-                                    RETURN QUERY EXECUTE v_sql;
-                                END;
-                                \$BODY$
-                                language plpgsql;");
 
             $dbres = pg_query(" SELECT '{$coletaAtual}' as data_coleta,
                                        '{$this->usuario}' as usuario,
@@ -540,8 +527,7 @@ class smbdColetor
                                        'PROC_SMBD_COLETOR' as identificador,
                                        date_trunc('seconds', pg_stat_activity.backend_start) AS inicio_processo,
                                        date_trunc('seconds', now()) AS hora_coleta,
-                                       date_trunc('seconds',SUM(now() - pg_stat_activity.backend_start)) as tempo_execussao,
-                                       obterexplain(pg_stat_activity.query) as explain
+                                       date_trunc('seconds',SUM(now() - pg_stat_activity.backend_start)) as tempo_execussao
                                   FROM pg_stat_activity
                             INNER JOIN pg_proctab() B
                                     ON pg_stat_activity.pid = B.pid
@@ -660,10 +646,13 @@ class smbdColetor
         {
             throw new Exception("Conexão com a base de dados falhou!");
         }
+
         if (!pg_dbname($con))
         {
             throw new Exception("A base de dados {$this->dbname} não foi encontrada no servidor.");
         }
+
+        return $con;
     }
 
     /**
