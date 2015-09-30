@@ -18,14 +18,14 @@
                       <thead>
                       <tr>
                           <th>Data coleta</th>
-                          <th>Base de dados</th>
+                          <!--<th>Base de dados</th>-->
                           <th>Usuário</th>
                           <th>Código processo</th>
-                          <th>Prioridade processo</th>
+                          <!--<th>Prioridade processo</th>-->
                           <th>Memória utilizada</th>
                           <th>Estado</th>
                           <th>Consulta</th>
-                          <th>Início execução</th>
+                          <!--<th>Início execução</th>-->
                           <th>Tempo de execução</th>
                       </tr>
                       </thead>
@@ -33,14 +33,14 @@
                       <?php foreach ($processos as $processo): ?>
                           <tr>
                               <td><font size="2" color="black"><?php print htmlentities($processo->data_coleta_formatada); ?></font></td>
-                              <td><font size="2" color="#191970"><?php print htmlentities($processo->datname); ?></font></td>
+                              <!--<td><font size="2" color="#191970"><?php print htmlentities($processo->datname); ?></font></td>-->
                               <td><font size="2" color="#ff4500"><?php print htmlentities($processo->usename); ?></font></td>
                               <td><font size="2" color="green"><?php print htmlentities($processo->pid); ?></font></td>
-                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->priority); ?></font></td>
+                              <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->priority); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->memoria); ?></font></td>
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->state); ?></font></td>
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->query); ?></font></td>
-                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->inicio_processo); ?></font></td>
+                              <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->inicio_processo); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->tempo_execussao); ?></font></td>
 
                           </tr>
