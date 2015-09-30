@@ -62,8 +62,8 @@ class Estatistica extends DbConection
                                   state,
                                   query,
                                   inicio_processo,
-                                  tempo_execussao,
-                                  explain
+                                  tempo_execussao
+
                              FROM stat_processos
                             WHERE data_coleta = (select obtemultimacoleta('stat_processos', '$dbUsuario'))");
 

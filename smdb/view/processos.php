@@ -68,7 +68,16 @@
                     "searching": true,
                     "ordering": true,
                     "info": false,
-                    "autoWidth": true
+                    "autoWidth": false,
+                    "columns": [
+                        { "width": "5%" },
+                        { "width": "5%" },
+                        { "width": "5%" },
+                        { "width": "5%" },
+                        { "width": "5%" },
+                        { "width": "70%" },
+                        { "width": "5%" }
+                    ]
                 });
             });
         </script><!-- page script-->
