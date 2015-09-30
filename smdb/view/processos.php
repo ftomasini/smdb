@@ -14,37 +14,39 @@
               <div class="box-header">
               </div><!-- /.box-header -->
               <div class="box-body">
-                <table id="example2" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
-                      <th>Platform(s)</th>
-                      <th>Engine version</th>
-                      <th>CSS grade</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 4.0</td>
-                      <td>Win 95+</td>
-                      <td> 4</td>
-                      <td>X</td>
-                    </tr>
+                  <table id="example2" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                          <th>Data coleta</th>
+                          <th>Base de dados</th>
+                          <th>Usuário</th>
+                          <th>Código processo</th>
+                          <th>Prioridade processo</th>
+                          <th>Memória utilizada</th>
+                          <th>Estado</th>
+                          <th>Consulta</th>
+                          <th>Início execução</th>
+                          <th>Tempo de execução</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach ($processos as $processo): ?>
+                          <tr>
+                              <td><font size="2" color="black"><?php print htmlentities($processo->data_coleta_formatada); ?></font></td>
+                              <td><font size="2" color="#191970"><?php print htmlentities($processo->datname); ?></font></td>
+                              <td><font size="2" color="#ff4500"><?php print htmlentities($processo->usename); ?></font></td>
+                              <td><font size="2" color="green"><?php print htmlentities($processo->pid); ?></font></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->priority); ?></font></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->memoria); ?></font></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->state); ?></font></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->query); ?></font></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->inicio_processo); ?></font></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->tempo_execussao); ?></font></td>
 
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
-                      <th>Platform(s)</th>
-                      <th>Engine version</th>
-                      <th>CSS grade</th>
-                    </tr>
-                  </tfoot>
-                </table>
+                          </tr>
+                      <?php endforeach; ?>
+                      </tbody>
+                  </table>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
         </section><!-- /.content -->
@@ -57,7 +59,7 @@
         <script src="../../html/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- SlimScroll -->
 
-        <!-- page script -->
+
         <script>
             $(function () {
                 $('#example2').DataTable({
@@ -69,6 +71,38 @@
                     "autoWidth": true
                 });
             });
-        </script>
+        </script><!-- page script-->
 
 <?php include 'principalFim.php' ?>
+
+        <!--
+
+                <tr>
+                    <td>183</td>
+                    <td>John Doe</td>
+                    <td>11-7-2014</td>
+                    <td><span class="label label-success">Approved</span></td>
+                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                    <td>219</td>
+                    <td>Alexander Pierce</td>
+                    <td>11-7-2014</td>
+                    <td><span class="label label-warning">Pending</span></td>
+                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                    <td>657</td>
+                    <td>Bob Doe</td>
+                    <td>11-7-2014</td>
+                    <td><span class="label label-primary">Approved</span></td>
+                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                    <td>175</td>
+                    <td>Mike Doe</td>
+                    <td>11-7-2014</td>
+                    <td><span class="label label-danger">Denied</span></td>
+                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                -->

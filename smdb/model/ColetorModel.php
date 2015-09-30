@@ -358,7 +358,8 @@ class ColetorModel extends DbConection
                                          query,
                                          inicio_processo,
                                          hora_coleta,
-                                         tempo_execussao)
+                                         tempo_execussao,
+                                         explain)
                                   VALUES ({$this->bdValor($data->data_coleta)},
                                           {$this->bdValor($data->usuario)},
                                           {$this->bdValor($data->datname)},
@@ -370,7 +371,8 @@ class ColetorModel extends DbConection
                                           {$this->bdValor($data->query)},
                                           {$this->bdValor($data->inicio_processo)},
                                           {$this->bdValor($data->hora_coleta)},
-                                          {$this->bdValor($data->tempo_execussao)})");
+                                          {$this->bdValor($data->tempo_execussao)},
+                                          {$this->bdValor($data->explain)})");
         $this->closeDb();
 
         if ( !$result )

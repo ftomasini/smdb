@@ -16,25 +16,36 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
+                <th>Data coleta</th>
                 <th>Configuração</th>
                 <th>Valor</th>
-                <th>Descrição da configuração</th>
+                <th>Valor padrão</th>
+                <th>Descrição</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 4.0</td>
-                <td>Win 95+</td>
-              </tr>
+
+              <?php foreach ($configuracoes as $configuracao): ?>
+                <tr>
+                    <td><font size="2" color="black"><?php print htmlentities($configuracao->data_coleta_formatada); ?></font></td>
+                    <td><font size="2" color="#191970"><?php print htmlentities($configuracao->name); ?></font></td>
+                    <td><font size="2" color="#ff4500"><?php print htmlentities($configuracao->valor); ?></font></td>
+                    <td><font size="2" color="green"><?php print htmlentities($configuracao->valor_original); ?></font></td>
+                    <td><font size="2" color="#8b4513"><?php print htmlentities($configuracao->descricao_resumida); ?></font></td>
+                </tr>
+            <?php endforeach; ?>
+
+
 
               </tbody>
+
+
               <tfoot>
-              <tr>
-                <th>Configuração</th>
-                <th>Valor</th>
-                <th>Descrição da configuração</th>
+              <th>Data coleta</th>
+              <th>Configuração</th>
+              <th>Valor</th>
+              <th>Valor padrão</th>
+              <th>Descrição</th>
               </tr>
               </tfoot>
             </table>
@@ -53,7 +64,7 @@
       <script>
         $(function () {
           $('#example1').DataTable({
-            "paging": false,
+            "paging": true,
             "lengthChange": true,
             "searching": true,
             "ordering": true,
@@ -63,3 +74,8 @@
         });
       </script>
 <?php include 'principalFim.php' ?>
+
+
+      <!--<td><a href="index.php?op=edit&id=<?php print $contact->id; ?>">edit</a></td>
++                    <td><a href="index.php?op=delete&id=<?php print $contact->id; ?>">delete</a></td>
++                    <td><a href="index.php?op=show&id=<?php print $contact->id; ?>"><?php print htmlentities($contact->name); ?></a></td> -->

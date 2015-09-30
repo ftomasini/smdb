@@ -18,6 +18,8 @@ class ProcessosController extends Controller
 
     public function show()
     {
+        $estatisticas = new Estatistica();
+        $processos = $estatisticas->processosEmExecucao($_SESSION['UsuarioID']);
         include '../../view/processos.php';
     }
 }

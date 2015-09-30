@@ -18,6 +18,8 @@ class ConfiguracaoController extends Controller
 
     public function show()
     {
+        $estatisticas = new Estatistica();
+        $configuracoes = $estatisticas->configuracoesDoSgbd($_SESSION['UsuarioID']);
         include '../../view/configuracao.php';
     }
 }
