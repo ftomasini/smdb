@@ -2,14 +2,14 @@
 <?php
 
 // Require: use your own path
-require_once '../../core/morris-php/morris.php';
+require_once '../../core/morris/morris.php';
 require_once '../../core/morris-php/morris-charts.php';
 
 // Optional: include chart line
-require_once '../../core/morris-php/morris-line-charts.php';
-require_once '../../core/morris-php/morris-donut-charts.php';
-require_once '../../core/morris-php/morris-bar-charts.php';
-require_once '../../core/morris-php/morris-area-charts.php';
+require_once '../../core/morris/morris-line-charts.php';
+require_once '../../core/morris/morris-donut-charts.php';
+require_once '../../core/morris/morris-bar-charts.php';
+require_once '../../core/morris/morris-area-charts.php';
 
 ?>
 <!DOCTYPE html>

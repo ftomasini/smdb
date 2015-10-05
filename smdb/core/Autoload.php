@@ -12,7 +12,7 @@ spl_autoload_register(function($class)
     $locations[] = $loc . "/controller/". str_replace('\\', '/', $class) . '.php';
     $locations[] = $loc . "/model/". str_replace('\\', '/', $class) . '.php';
     $locations[] = $loc . "/core/PHPMailer-master". str_replace('\\', '/', $class) . '.php';
-    $locations[] = $loc . "/core/morris-php". str_replace('\\', '/', $class) . '.php';
+    $locations[] = $loc . "/core/morris". str_replace('\\', '/', $class) . '.php';
 
 
     foreach ($locations as $location)
