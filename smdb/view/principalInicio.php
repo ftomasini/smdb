@@ -3,7 +3,7 @@
 
 // Require: use your own path
 require_once '../../core/morris/morris.php';
-require_once '../../core/morris-php/morris-charts.php';
+require_once '../../core/morris/morris-charts.php';
 
 // Optional: include chart line
 require_once '../../core/morris/morris-line-charts.php';
