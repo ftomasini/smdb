@@ -8,7 +8,7 @@
         <h4>Atenção!</h4>
         <p>Clique em <b>Download</b> para obter o agente coletor que deve ser instalado no servidor da base de dados que será monitorada.</p>
     </div>
- <form class="cmxform form-horizontal " method="POST" action="../agente/agente.zip">
+ <form class="cmxform form-horizontal " method="POST" action="../../agente/agente.zip">
      <div>
          <center>
     <button class="btn btn-app" type="submit">
