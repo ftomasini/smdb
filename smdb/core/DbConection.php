@@ -12,7 +12,7 @@ class DbConection
         $this->dbcon = $this->openDb();
     }
 
-    protected function openDb()
+    public static function openDb()
     {
         if (! $con = pg_connect("host=localhost port=5432 user=postgres password=postgres dbname=smbd"))
         {
@@ -24,7 +24,7 @@ class DbConection
         }
     }
 
-    protected function closeDb()
+    public static function closeDb()
     {
         pg_close();
     }

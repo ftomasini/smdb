@@ -18,6 +18,16 @@ class TabelaBaseDeDadosController extends Controller
 
     public function show()
     {
+        $estatisticas = new Estatistica();
+
+
+        $tabelas = $estatisticas->tabelas($_SESSION['UsuarioID']);
+
+        if( isset($_POST['tabela']) )
+        {
+            $usuario = $_SESSION['UsuarioID'];
+            $tab = $_POST['tabela'];
+        }
         include '../../view/tabelaBaseDeDados.php';
     }
 }
