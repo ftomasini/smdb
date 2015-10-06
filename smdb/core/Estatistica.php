@@ -100,15 +100,12 @@ class Estatistica extends DbConection
 
     public static function tamanhoTabelaChart($usuario =null, $tabela= null)
     {
-
-
-
         $resultado = self::tamanhoTabela($usuario, $tabela);
         ?>
         <!-- DONUT CHART -->
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title">Donut Chart</h3>
+                <h3 class="box-title"><?php print htmlentities($tabela); ?></h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-times"></i></button>
@@ -117,20 +114,32 @@ class Estatistica extends DbConection
             <div class="box-body chart-responsive">
                 <div id="my-charts2"></div>
         <?php
-        $morris = new MorrisDonutCharts( 'my-charts2' );
-        $morris->resize = true;
-        $morris->data = array(
-            array( 'label' => $resultado->tamanho_formatado, 'value' => $resultado->percentual_tabela ),
-            array( 'label' => $resultado->tamanho_menos_tabela, 'value' => $resultado->percentual_restante),
+        if (is_array($resultado))
+        {
+            $morris = new MorrisDonutCharts('my-charts2');
+            $morris->resize = true;
+            $morris->data = array(
+                array('label' => $resultado->tamanho_formatado, 'value' => $resultado->percentual_tabela),
+                array('label' => $resultado->tamanho_menos_tabela, 'value' => $resultado->percentual_restante),
 
-        );
-        $morris->formatter = 'REPLACE';
-
-        ?>
-        </div>
-</div>
-<?php
-        echo $morris->toJavascript();
+            );
+            $morris->formatter = 'REPLACE';
+            ?>
+            </div>
+            </div>
+            <?php
+            echo $morris->toJavascript();
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse rekatório' . '') ?>
+            </div>
+            <?php
+        }
     }
 
 

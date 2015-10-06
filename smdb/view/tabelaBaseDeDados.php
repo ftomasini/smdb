@@ -20,7 +20,6 @@
                             <option>--Selecione--</option>
                             <?php
 
-                            var_dump($tabelas);
                             foreach ($tabelas as $tabela)
                             {
                              ?> <option><?php print htmlentities($tabela->tabela);?></option>
