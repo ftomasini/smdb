@@ -105,7 +105,7 @@ class Estatistica extends DbConection
         <!-- DONUT CHART -->
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title"><?php print htmlentities($tabela); ?></h3>
+                <h3 class="box-title"><?php print htmlentities("Tamanho da tabela ". $tabela ." em relação a base de dados. "); ?></h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-times"></i></button>
@@ -126,9 +126,11 @@ class Estatistica extends DbConection
             $morris->formatter = 'REPLACE';
             ?>
             </div>
+            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
             </div>
             <?php
             echo $morris->toJavascript();
+
         }
         else
         {
@@ -136,7 +138,7 @@ class Estatistica extends DbConection
             <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            <?php print htmlentities('Não foram encontrados dados para esse rekatório' . '') ?>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
             </div>
             <?php
         }
@@ -156,7 +158,7 @@ class Estatistica extends DbConection
                                    pg_size_pretty((tamanho_base_de_dados::numeric - tamanho::numeric)) as tamanho_menos_tabela,
                                    data_coleta,
                                    relname,
-                                   TO_CHAR(MAX(data_coleta), 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
+                                   TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
                               FROM stat_tabela A
                         INNER JOIN (SELECT usuario,
                                            tamanho_base_de_dados_formatado,

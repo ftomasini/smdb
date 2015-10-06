@@ -10,7 +10,13 @@
 
         <!-- Main content -->
         <section class="content">
-          <div class="box">
+
+            <!--
+            <div id="Layer1" style="position:absolute; left:10px; top:20px; width:100; height:50; z-index:1; overflow: auto">Vc
+                -->
+                <div class="box-body table-responsive no-padding">
+
+                <div class="box">
               <div class="box-header">
               </div><!-- /.box-header -->
               <div class="box-body">
