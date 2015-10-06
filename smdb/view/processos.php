@@ -11,16 +11,18 @@
         <!-- Main content -->
         <section class="content">
 
-            <!--
-            <div id="Layer1" style="position:absolute; left:10px; top:20px; width:100; height:50; z-index:1; overflow: auto">Vc
-                -->
-                <div class="box-body table-responsive no-padding">
+            <!-- -->
 
                 <div class="box">
               <div class="box-header">
-              </div><!-- /.box-header -->
+              </div>
               <div class="box-body">
-                  <table id="example2" class="table table-bordered table-striped">
+                  <!--<div id="Layer1" style="position:absolute; left:10px; top:20px; width:100; height:50; z-index:1; overflow: auto">Vc
+                      -->
+                      <div class="box-body table-responsive">
+
+
+                      <table id="example2" class="table table-bordered table-striped">
                       <thead>
                       <tr>
                           <th>Data coleta</th>
