@@ -13,7 +13,8 @@
           <div class="box">
               <div class="box-header">
               </div><!-- /.box-header -->
-              <div class="box-body">
+              <div class="box-body table-responsive">
+                  
                   <table id="example2" class="table table-bordered table-striped">
                       <thead>
                       <tr>
@@ -39,7 +40,7 @@
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->priority); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->memoria); ?></font></td>
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->state); ?></font></td>
-                              <td><?php print htmlentities($processo->query); ?></td>
+                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->query); ?></font></td>
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->inicio_processo); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->tempo_execussao); ?></font></td>
 
