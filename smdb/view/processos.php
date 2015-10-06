@@ -10,19 +10,11 @@
 
         <!-- Main content -->
         <section class="content">
-
-            <!-- -->
-
-                <div class="box">
+          <div class="box">
               <div class="box-header">
-              </div>
+              </div><!-- /.box-header -->
               <div class="box-body">
-                  <!--<div id="Layer1" style="position:absolute; left:10px; top:20px; width:100; height:50; z-index:1; overflow: auto">Vc
-                      -->
-                      <div class="box-body table-responsive">
-
-
-                      <table id="example2" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped">
                       <thead>
                       <tr>
                           <th>Data coleta</th>
@@ -47,7 +39,7 @@
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->priority); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->memoria); ?></font></td>
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->state); ?></font></td>
-                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->query); ?></font></td>
+                              <td><?php print htmlentities($processo->query); ?></td>
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->inicio_processo); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->tempo_execussao); ?></font></td>
 
