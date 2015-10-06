@@ -114,7 +114,7 @@ class Estatistica extends DbConection
             <div class="box-body chart-responsive">
                 <div id="my-charts2"></div>
         <?php
-        if (is_array($resultado))
+        if (is_object($resultado))
         {
             $morris = new MorrisDonutCharts('my-charts2');
             $morris->resize = true;
