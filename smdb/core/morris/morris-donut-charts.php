@@ -65,9 +65,10 @@ class MorrisDonutCharts extends Morris {
             <?php
                $json = $this->toJSON();
                $json = str_replace('"REPLACE"', "function (y, data) { return y + '%'}", $json);
+
                echo $json;
             ?>
-            );
+            ).select(0);
       });
     </script>
     <?php

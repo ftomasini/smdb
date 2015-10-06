@@ -14,7 +14,7 @@
               <div class="box-header">
               </div><!-- /.box-header -->
               <div class="box-body table-responsive">
-                  
+
                   <table id="example2" class="table table-bordered table-striped">
                       <thead>
                       <tr>
@@ -76,7 +76,7 @@
                         { "width": "5%" },
                         { "width": "5%" },
                         { "width": "5%" },
-                        { "width": "70%" },
+                        { "width": "30%" },
                         { "width": "5%" }
                     ]
                 });

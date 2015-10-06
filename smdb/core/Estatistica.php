@@ -123,6 +123,7 @@ class Estatistica extends DbConection
                 array('label' => $resultado->tamanho_menos_tabela, 'value' => $resultado->percentual_restante),
 
             );
+
             $morris->formatter = 'REPLACE';
             ?>
             </div>
