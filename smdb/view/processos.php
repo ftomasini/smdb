@@ -10,8 +10,8 @@
 
         <!-- Main content -->
         <section class="content">
+                <a href="handlerProcessos.php?op=show" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></a>
           <div class="box">
-
 
 
               <div class="box">

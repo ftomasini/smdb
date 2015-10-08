@@ -108,15 +108,19 @@ class Estatistica extends DbConection
                 <h3 class="box-title"><?php print htmlentities("Tamanho da tabela ". $tabela ." em relação a base de dados. "); ?></h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-dashboard"></i></button>
+
+                    <input type="button" class="btn btn-box-tool" value="Recado" rel1 = "tamanhoTabelaChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = <?php print htmlentities($tabela); ?> id="btn_publicar" /><br />
+                    <div id="divresponse"></div>
+
                 </div>
             </div>
             <div class="box-body chart-responsive">
-                <div id="my-charts2"></div>
+                <div id="<?php print htmlentities("tamanho".$tabela);?>"</div>
         <?php
         if (is_object($resultado))
         {
-            $morris = new MorrisDonutCharts('my-charts2');
+            $morris = new MorrisDonutCharts("tamanho".$tabela);
             $morris->resize = true;
             $morris->data = array(
                 array('label' => $resultado->tamanho_formatado, 'value' => $resultado->percentual_tabela),
@@ -125,13 +129,10 @@ class Estatistica extends DbConection
             );
 
             $morris->formatter = 'REPLACE';
-            ?>
-            </div>
-            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
-            </div>
-            <?php
-            echo $morris->toJavascript();
 
+            echo $morris->toJavascript();
+            ?>
+            <?php
         }
         else
         {
@@ -143,6 +144,13 @@ class Estatistica extends DbConection
             </div>
             <?php
         }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
+        </div>
+        <?php
+
     }
 
 
@@ -193,7 +201,7 @@ class Estatistica extends DbConection
 
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-dashboard"></i></button>
                 </div>
             </div>
             <div class="box-body chart-responsive">
@@ -255,7 +263,7 @@ class Estatistica extends DbConection
 
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-dashboard"></i></button>
                 </div>
             </div>
             <div class="box-body chart-responsive">
@@ -308,7 +316,7 @@ class Estatistica extends DbConection
 
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove2"><i class="fa fa-dashboard"></i></button>
                 </div>
             </div>
             <div class="box-body chart-responsive">

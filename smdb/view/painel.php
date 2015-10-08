@@ -10,7 +10,15 @@
 
             <!-- Main content -->
             <section class="content">
+                <?php
 
+                $charts = PainelModel::selectAll($_SESSION['UsuarioID']);
+
+                foreach($charts as $chart)
+                {
+                    eval($chart->metodo);
+                }
+                ?>
 
             </section><!-- /.content -->
 

@@ -32,6 +32,10 @@ class Controller
             {
                 $this->show();
             }
+            elseif ( $op == 'publica' )
+            {
+                $this->publica();
+            }
             else
             {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
