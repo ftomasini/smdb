@@ -80,7 +80,42 @@
                               <td><font size="2" color="green"><?php print htmlentities($processo->pid); ?></font></td>
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->priority); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->memoria); ?></font></td>
-                              <td><font size="2" color="#8b4513"><?php print htmlentities($processo->state); ?></font></td>
+                              <td>
+                                  <font size="2" color="#8b4513">
+                                      <?php
+
+                                            if ($processo->state == 'R')
+                                            {?><span class="label label-success">
+                                                <?php print htmlentities("R - executável");?>
+                                                </span><?php
+                                            }
+                                            elseif ($processo->state == 'D')
+                                            {?><span class="label label-primary">
+                                                <?php print htmlentities("D - em espera no disco");?>
+                                                </span><?php
+                                            }
+                                            elseif ($processo->state == 'S')
+                                            {?><span class="label label-warning">
+                                                <?php print htmlentities("S - Suspenso");?>
+                                                </span><?php
+                                            }
+                                            elseif ($processo->state == 'T')
+                                            {?><span class="label label-danger">
+                                                <?php print htmlentities("T - interrompido");?>
+                                                </span><?php
+                                            }
+                                            elseif ($processo->state == 'Z')
+                                            {?><span class="label label-danger">
+                                                <?php print htmlentities("Z - Zumbi");?>
+                                                </span><?php
+                                            }
+                                            else
+                                            {?><span class="label label-danger">
+                                                <?php print htmlentities($processo->state);?>
+                                                </span><?php
+                                            }
+                                      ?>
+                                  </font></td>
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->query); ?></font></td>
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($processo->inicio_processo); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($processo->tempo_execussao); ?></font></td>

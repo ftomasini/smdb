@@ -329,9 +329,9 @@ class smbdColetor
                                       idx_tup_read,
                                       idx_tup_fetch,
                                       (idx_scan > 0) as utilizado,
-                                      pg_relation_size(relid) as tamanho,
+                                      pg_relation_size(indexrelid) as tamanho,
                                       pg_total_relation_size(relid)as tamanho_com_indices,
-                                      pg_size_pretty(pg_relation_size(relid)) as tamanho_formatado,
+                                      pg_size_pretty(pg_relation_size(indexrelid)) as tamanho_formatado,
                                       pg_size_pretty(pg_total_relation_size(relid)) as tamanho_com_indices_formatado
                                  FROM pg_stat_user_indexes");
             $dados = array();
