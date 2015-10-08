@@ -33,15 +33,25 @@
             </div>
 
 
+
             <?php
 
 
             if(isset($tab))
             {
+                Estatistica::informacoesTabelaChart($usuario, $tab);
+                Estatistica::indicesNaoUtilizadosChart($usuario, $tab);
+                Estatistica::indicesUtilizadosChart($usuario, $tab);
                 Estatistica::tamanhoTabelaChart($usuario, $tab);
+
             }
             ?>
+
+
         </section><!-- /.content -->
+
+
+
     </form>
 
 

@@ -68,7 +68,7 @@ class MorrisDonutCharts extends Morris {
 
                echo $json;
             ?>
-            ).select(0); 
+            ).select(0);
       });
     </script>
     <?php
