@@ -415,7 +415,7 @@ class ColetorModel extends DbConection
                                           {$this->bdValor($data->hora_coleta)},
                                           {$this->bdValor($data->tempo_execussao)},
                                           {$this->bdValor($data->mode)},
-                                          {$this->bdValor($data->granted)}");
+                                          {$this->bdValor($data->granted)})");
         $this->closeDb();
 
         if ( !$result )
