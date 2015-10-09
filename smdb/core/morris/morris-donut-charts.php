@@ -20,7 +20,10 @@ class MorrisDonutCharts extends Morris {
    *
    * @var array $colors
    */
-  public $colors = array( '#0B62A4', '#3980B5', '#95BBD7', '#B0CCE1', '#095791', '#095085', '#083E67', '#052C48', '#042135' );
+  //public $colors = array( '#0B62A4', '#3980B5', '#95BBD7', '#B0CCE1', '#095791', '#095085', '#083E67', '#052C48', '#042135' );
+
+
+  public $colors = array( '#0B62A4','#30637a','#763186','#915032','#469d33','#4b3588','#9a374e','#84a037','#38b295','#44b2a3','#c0495a','#a5cf5a');
 
   /**
    * A function that will translate a y-value into a label for the centre of the donut.

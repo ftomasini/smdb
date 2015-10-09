@@ -60,8 +60,8 @@ class PainelModel extends DbConection
         $dbMetodo = ($metodo != NULL)?"'".pg_escape_string($metodo)."'":'NULL';
 
         pg_query("DELETE
-                    FROM contacts
-                   WHERE usuarios=$dbUsuario
+                    FROM public.smbd_principal
+                   WHERE usuario=$dbUsuario
                      AND metodo=$dbMetodo
                     ");
     }

@@ -176,3 +176,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content">
+            <div id="divresponse"></div>

@@ -27,9 +27,7 @@
 
                               var data = google.visualization.arrayToDataTable([
                                   ['Label', 'Value'],
-                                  ['Memory', 80],
-                                  ['CPU', 55],
-                                  ['Network', 68]
+                                  ['Memória', 30],
                               ]);
 
                               var options = {
@@ -45,7 +43,16 @@
 
                           }
                       </script>
+                      <div class="col-lg-3 col-xs-6">
                       <div id="chart_div"></div>
+                      </div>
+                      <div class="col-lg-3 col-xs-6">
+                          <!-- small box -->
+                              <div class="inner">
+                                  <h3><b>53</b><sup style="font-size: 60px"></sup></h3>
+                                  <p>Load average</p>
+                              </div>
+                      </div>
                   </div>
               </div>
 

@@ -26,16 +26,33 @@ class PainelController extends Controller
         //&func="+id1+"&usuario="+id2+"&tabela="+id3,
         $metodo = "Estatistica::{$_GET['func']}('{$_GET['usuario']}', '{$_GET['tabela']}');";
 
-        $this->painelModel->insert($_GET['usuario'], $metodo);
+
+        $metodos = $this->painelModel->selectAll($_GET['usuario']);
+
+        $encontrou = false;
+        foreach ($metodos as $l)
+        {
+            if ($l->metodo == $metodo)
+            {
+                $encontrou = true;
+            }
+        }
+
+        if ($encontrou)
+        {
+            $this->painelModel->delete($_GET['usuario'], $metodo);
+            ?>
+            <script>
+                location.reload();
+            </script><?php
+        }
+        else
+        {
+            $this->painelModel->insert($_GET['usuario'], $metodo);
+        }
+
         // insere no painel
 
-
-?>
-
-<script type="text/javascript">
-    alert(2);
-    </script>
-<?php
     }
 
 
