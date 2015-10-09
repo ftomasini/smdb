@@ -19,6 +19,9 @@ class ProcessosController extends Controller
     public function show()
     {
         $estatisticas = new Estatistica();
+
+        $load = Estatistica::loadAvg($_SESSION['UsuarioID'], true);
+        $memoria = Estatistica::memoria($_SESSION['UsuarioID'], true);
         $processos = $estatisticas->processosEmExecucao($_SESSION['UsuarioID']);
         include '../../view/processos.php';
     }

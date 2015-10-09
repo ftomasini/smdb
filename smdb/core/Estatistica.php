@@ -454,5 +454,83 @@ class Estatistica extends DbConection
 
     }
 
+
+
+    public static function loadAvg($usuario, $somenteUltimo = false)
+    {
+        self::openDb();
+
+        $filtraData = '::date';
+        if($somenteUltimo)
+        {
+            $filtraData = '';
+        }
+        $dbUsuario = pg_escape_string($usuario);
+
+        $dbres = pg_query("SELECT usuario,
+                                  data_coleta,
+                                  TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada,
+                                  load_ultimo_minuto,
+                                  load_ultimos_5_minutos,
+                                  load_ultimos_15_minutos
+                             FROM stat_loadavg
+                            WHERE usuario = '$dbUsuario'
+                              AND data_coleta{$filtraData} = (select obtemultimacoleta('stat_loadavg', '$dbUsuario')){$filtraData} ");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        $return = $result;
+        if($somenteUltimo)
+        {
+            $return = $result[0];
+        }
+
+        return $return;
+    }
+
+    public static function memoria($usuario, $somenteUltimo = false)
+    {
+        self::openDb();
+
+        $filtraData = '::date';
+        if($somenteUltimo)
+        {
+            $filtraData = '';
+        }
+        $dbUsuario = pg_escape_string($usuario);
+
+        $dbres = pg_query(" SELECT format_memused,
+                                   format_memfree,
+                                   format_memshared,
+                                   format_membuffers,
+                                   format_memcached,
+                                   format_swapused,
+                                   format_swapfree,
+                                   format_swapcached,
+                                   round(((memused::int * 100) / (memused::int + memfree::int))) as percentual
+                              FROM public.stat_memoria
+                              WHERE usuario = '$dbUsuario'
+                              AND data_coleta{$filtraData} = (select obtemultimacoleta('stat_loadavg', '$dbUsuario')){$filtraData}");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        $return = $result;
+        if($somenteUltimo)
+        {
+            $return = $result[0];
+        }
+
+        return $return;
+    }
+
+
 }
 ?>

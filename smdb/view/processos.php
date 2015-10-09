@@ -27,7 +27,7 @@
 
                               var data = google.visualization.arrayToDataTable([
                                   ['Label', 'Value'],
-                                  ['Memória', 30],
+                                  ['Memória', <?php print htmlentities($memoria->percentual);  ?>],
                               ]);
 
                               var options = {
@@ -49,14 +49,15 @@
                       <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
                               <div class="inner">
-                                  <h3><b>53</b><sup style="font-size: 60px"></sup></h3>
-                                  <p>Load average</p>
+                                  <p><b>Load average</b></p>
+                                      <p><?php print htmlentities("Último min: ". $load->load_ultimo_minuto); ?></p>
+                                      <p><?php print htmlentities("Últimos 5 min: ". $load->load_ultimos_5_minutos); ?></p>
+                                      <p><?php print htmlentities("Últimos 15 min: ". $load->load_ultimos_15_minutos); ?></p>
+                                      <p><?php print htmlentities("Data coleta: " . $load->data_coleta_formatada); ?></p>
                               </div>
                       </div>
                   </div>
               </div>
-
-
 
 
               <div class="box-header">
