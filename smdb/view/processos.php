@@ -27,7 +27,7 @@
 
                               var data = google.visualization.arrayToDataTable([
                                   ['Label', 'Value'],
-                                  ['Memória', <?php print htmlentities($memoria->percentual);  ?>],
+                                  ['Memória', <?php print htmlentities(strlen($memoria->percentual)>0?$memoria->percentual:0);  ?>],
                               ]);
 
                               var options = {
