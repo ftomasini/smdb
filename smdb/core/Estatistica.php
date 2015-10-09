@@ -511,6 +511,7 @@ class Estatistica extends DbConection
                                    format_swapused,
                                    format_swapfree,
                                    format_swapcached,
+                                   TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada,
                                    round(((memused::int * 100) / (memused::int + memfree::int))) as percentual
                               FROM public.stat_memoria
                               WHERE usuario = '$dbUsuario'

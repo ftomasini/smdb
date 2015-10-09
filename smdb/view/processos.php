@@ -31,7 +31,7 @@
                               ]);
 
                               var options = {
-                                  width: 400, height: 120,
+                                  width: 400, height: 200,
                                   redFrom: 90, redTo: 100,
                                   yellowFrom:75, yellowTo: 90,
                                   minorTicks: 5
@@ -43,9 +43,27 @@
 
                           }
                       </script>
+
                       <div class="col-lg-3 col-xs-6">
-                      <div id="chart_div"></div>
+                          <div id="chart_div"></div>
+                          <p><?php print htmlentities("Data coleta: " . $memoria->data_coleta_formatada); ?></p>
                       </div>
+                      <div class="col-lg-3 col-xs-6">
+                          <!-- small box -->
+                          <div class="inner">
+                              <p><b>Memória</b></p>
+                              <p><?php print htmlentities("Memória usada: ". $memoria->format_memused); ?></p>
+                              <p><?php print htmlentities("Memória livre: ". $memoria->format_memfree); ?></p>
+                              <p><?php print htmlentities("Memória compartilhada: ". $memoria->format_memshared); ?></p>
+                              <p><?php print htmlentities("Memória buffers: " . $memoria->format_membuffers); ?></p>
+                              <p><?php print htmlentities("Memória em cache: ". $memoria->format_memcached); ?></p>
+                              <p><?php print htmlentities("Memória swap usada: ". $memoria->format_swapused); ?></p>
+                              <p><?php print htmlentities("Memória swap livre: ". $memoria->format_swapfree); ?></p>
+                              <p><?php print htmlentities("Memória swap em cache: " . $memoria->format_swapcached); ?></p>
+
+                          </div>
+                      </div>
+
                       <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
                               <div class="inner">
@@ -56,6 +74,7 @@
                                       <p><?php print htmlentities("Data coleta: " . $load->data_coleta_formatada); ?></p>
                               </div>
                       </div>
+
                   </div>
               </div>
 
