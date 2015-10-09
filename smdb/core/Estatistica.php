@@ -515,7 +515,7 @@ class Estatistica extends DbConection
                                    round(((memused::int * 100) / (memused::int + memfree::int))) as percentual
                               FROM public.stat_memoria
                               WHERE usuario = '$dbUsuario'
-                              AND data_coleta{$filtraData} = (select obtemultimacoleta('stat_loadavg', '$dbUsuario')){$filtraData}");
+                              AND data_coleta{$filtraData} = (select obtemultimacoleta('stat_memoria', '$dbUsuario')){$filtraData}");
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )
