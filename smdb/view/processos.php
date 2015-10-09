@@ -1,4 +1,5 @@
 <?php include 'principalInicio.php' ?>
+<meta http-equiv="refresh" content="30">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
