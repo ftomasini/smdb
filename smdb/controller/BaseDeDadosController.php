@@ -18,6 +18,15 @@ class BaseDeDadosController extends Controller
 
     public function show()
     {
+        $estatisticas = new Estatistica();
+
+
+        $tabelas = $estatisticas->tabelas($_SESSION['UsuarioID']);
+
+        if( isset($_SESSION['UsuarioID']) )
+        {
+            $usuario = $_SESSION['UsuarioID'];
+        }
         include '../../view/baseDeDados.php';
     }
 }

@@ -58,6 +58,109 @@ class Estatistica extends DbConection
     }
 
 
+    public static function tamanhoTabelaComIndicesChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::tamanhoTabelaComIndices($usuario, $tabela);
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Tamanho da tabela ". $tabela ." + indices em relação a base de dados. "); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "tamanhoTabelaComIndicesChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = <?php print htmlentities($tabela); ?> id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("tamanhoComIndices".$tabela);?>"</div>
+        <?php
+        if (is_object($resultado))
+        {
+            $morris = new MorrisDonutCharts("tamanhoComIndices".$tabela);
+            $morris->resize = true;
+            $morris->data = array(
+                array('label' => $resultado->tamanho_com_indices_formatado, 'value' => $resultado->percentual_tabela),
+                array('label' => $resultado->tamanho_menos_tabela, 'value' => $resultado->percentual_restante),
+
+            );
+
+            $morris->formatter = 'REPLACE';
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
+
+
+
+    public static function aproveitamentoCacheTabelaChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::aproveitamentoCacheTabela($usuario, $tabela);
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Percentual de dados encontrados em cache em todas as consultas efetuadas na tabela ". $tabela .". "); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "aproveitamentoCacheTabelaChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = <?php print htmlentities($tabela); ?> id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("aproveitamentoCacheTabelaChart".$tabela);?>"</div>
+        <?php
+        if (is_object($resultado))
+        {
+            $morris = new MorrisDonutCharts("aproveitamentoCacheTabelaChart".$tabela);
+            $morris->resize = true;
+            $morris->data = array(
+                array('label' => 'Encontrados em cache', 'value' => $resultado->aproveitamento_cache_formatado),
+                array('label' => 'Não encontrados em cache', 'value' => $resultado->nao_aproveitamento_cache_formatado),
+
+            );
+
+            $morris->formatter = 'REPLACE';
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
 
 
     public static function informacoesTabelaChart($usuario, $tabela)
@@ -82,33 +185,31 @@ class Estatistica extends DbConection
                         <div class="col-sm-4 invoice-col">
                             <b>Vacuum</b><br>
                             <br>
-                            <b>Última vez em que o vaccum foi executado manualmente:</b> <?php print htmlentities("$resultado->last_vacuum"); ?><br>
-                            <b>Última vez em que o vaccum foi executado pelo autovacuum:</b> <?php print htmlentities("$resultado->last_autovacuum"); ?><br>
-                            <b>Última vez em que o vaccum analyze foi executado manualmente:</b> <?php print htmlentities("$resultado->last_analyze"); ?><br>
-                            <b>Última vez em que o vaccum analyze foi executado pelo autovacuum:</b> <?php print htmlentities("$resultado->last_autoanalyze"); ?><br>
-                            <b>Número de vezes que o vaccum foi executado manualmente:</b> <?php print htmlentities("$resultado->vacuum_count"); ?><br>
-                            <b>Número de vezes que o vaccum foi executado pelo autovacuum:</b> <?php print htmlentities("$resultado->autovacuum_count"); ?><br>
-                            <b>Número de vezes que o vaccum analyze foi executado manualmente:</b> <?php print htmlentities("$resultado->analyze_count"); ?><br>
-                            <b>Número de vezes que o vaccum analyze foi executado pelo autovacuum:</b> <?php print htmlentities("$resultado->autoanalyze_count"); ?><br>
+                            Último vaccum executado manualmente: <b><?php print htmlentities("$resultado->last_vacuum"); ?></b><br>
+                            Último vaccum executado pelo autovacuum: <b><?php print htmlentities("$resultado->last_autovacuum"); ?></b><br>
+                            Último vaccum analyze executado manualmente: <b><?php print htmlentities("$resultado->last_analyze"); ?></b><br>
+                            Último vaccum analyze executado pelo autovacuum: <b><?php print htmlentities("$resultado->last_autoanalyze"); ?></b><br>
+                            Nº de vezes que o vaccum foi executado manualmente: <b><?php print htmlentities("$resultado->vacuum_count"); ?></b><br>
+                            Nº de vezes que o vaccum foi executado pelo autovacuum: <b><?php print htmlentities("$resultado->autovacuum_count"); ?></b><br>
+                            Nº de vezes que o vaccum analyze foi executado manualmente: <b><?php print htmlentities("$resultado->analyze_count"); ?></b><br>
+                            Nº de vezes que o vaccum analyze foi executado pelo autovacuum: <b><?php print htmlentities("$resultado->autoanalyze_count"); ?></b><br>
                         </div>
 
                         <div class="col-sm-4 invoice-col">
                             <b>Registros</b><br>
                             <br>
-                            <b>Número de linhas inseridas:</b> <?php print htmlentities("$resultado->n_tup_ins"); ?><br>
-                            <b>Número de linhas atualizadas:</b> <?php print htmlentities("$resultado->n_tup_upd"); ?><br>
-                            <b>Número de linhas excluídas:</b> <?php print htmlentities("$resultado->n_tup_del"); ?><br>
-                            <b>Número de linhas vivas:</b> <?php print htmlentities("$resultado->n_dead_tup"); ?><br>
-                            <b>Número de linhas mortas:</b> <?php print htmlentities("$resultado->n_dead_tup"); ?><br>
+                            Número de linhas inseridas: <b><?php print htmlentities("$resultado->n_tup_ins"); ?></b><br>
+                            Número de linhas atualizadas: <b><?php print htmlentities("$resultado->n_tup_upd"); ?></b><br>
+                            Número de linhas excluídas: <b><?php print htmlentities("$resultado->n_tup_del"); ?></b><br>
+                            Número de linhas vivas: <b><?php print htmlentities("$resultado->n_dead_tup"); ?></b><br>
+                            Número de linhas mortas: <b><?php print htmlentities("$resultado->n_dead_tup"); ?></b><br>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
                             <b>Varreduras</b><br>
                             <br>
-                            <b>Número de varreduras seqüenciais:</b> <?php print htmlentities("$resultado->seq_scan"); ?><br>
-                            <b>Número de linhas ao vivas buscadas por varreduras seqüenciais:</b> <?php print htmlentities("$resultado->seq_tup_read"); ?><br>
-                            <b>Número de varreduras indexadas:</b> <?php print htmlentities("$resultado->idx_scan"); ?><br>
-                            <b>Número de linhas ao vivas buscadas por varreduras indexadas:</b> <?php print htmlentities("$resultado->idx_tup_fetch"); ?><br>
+                            Número de varreduras seqüenciais: <b><?php print htmlentities("$resultado->seq_scan"); ?></b><br>
+                            Número de varreduras indexadas: <b><?php print htmlentities("$resultado->idx_scan"); ?></b><br>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -229,6 +330,68 @@ class Estatistica extends DbConection
     }
 
 
+    public static function informacoesBaseDeDadosChart($usuario, $tabela)
+    {
+        $resultado = self::informacoesBaseDeDados($usuario, $tabela);
+        ?>
+
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Informações diversas da base de dados."); ?></h3>
+
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "informacoesBaseDeDadosChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = <?php print htmlentities($tabela); ?> id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div class="box-header with-border">
+                    <!-- info row -->
+                    <div class="row invoice-info">
+                        <!-- /.col -->
+                            <b>Transações</b><br>
+                            <br>
+                            Número de backends actualmente ligado a este banco de dados: <b><?php print htmlentities("$resultado->numbackends"); ?></b><br>
+                            Número de transações neste banco de dados que foram cometidos: <b><?php print htmlentities("$resultado->xact_commit"); ?></b><br>
+                            Número de transações neste banco de dados que foram revertidas: <b><?php print htmlentities("$resultado->xact_rollback"); ?></b><br>
+                            Número de blocos de disco lidos neste banco de dados: <b><?php print htmlentities("$resultado->blks_read"); ?></b><br>
+                            Número de vezes que os blocos de disco já foram encontrados no cache de buffer: <b><?php print htmlentities("$resultado->blks_hit"); ?></b><br>
+                            <br>
+                            <br>
+
+                            <b>Registros</b><br>
+                            <br>
+                            Número de linhas retornados por consultas neste banco de dados: <b><?php print htmlentities("$resultado->tup_returned"); ?></b><br>
+                            Número de linhas buscado por consultas neste banco de dados: <b><?php print htmlentities("$resultado->tup_fetched"); ?></b><br>
+                            Número de linhas inseridas por consultas neste banco de dados: <b><?php print htmlentities("$resultado->tup_inserted"); ?></b><br>
+                            Número de linhas atualizadas por consultas neste banco de dados: <b><?php print htmlentities("$resultado->tup_updated"); ?></b><br>
+                            Número de linhas excluídas por consultas neste banco de dados: <b><?php print htmlentities("$resultado->tup_deleted"); ?></b><br>
+                            <br>
+                            <br>
+
+                            <b>Consultas</b><br>
+                            <br>
+                            Número de consultas canceladas devido a conflitos com a recuperação neste banco de dados: <b><?php print htmlentities("$resultado->conflicts"); ?></b><br>
+                            Hora em que essas estatísticas eram último reset: <b><?php print htmlentities("$resultado->stats_reset"); ?></b><br>
+                            Número de consultas neste banco de dados que foram cancelados devido a áreas de tabela caiu: <b><?php print htmlentities("$resultado->confl_tablespace"); ?></b><br>
+                            Número de consultas neste banco de dados que tenham sido cancelada devido a tempo limite de bloqueio: <b><?php print htmlentities("$resultado->confl_lock"); ?></b><br>
+                            Número de consultas neste banco de dados que foram cancelados devido à instantâneos antigos: <b><?php print htmlentities("$resultado->confl_snapshot"); ?></b><br>
+                            Número de consultas neste banco de dados que foram cancelados devido a buffers fixadas: <b><?php print htmlentities("$resultado->confl_bufferpin"); ?></b><br>
+                            Número de consultas neste banco de dados que foram cancelados devido a impasses: <b><?php print htmlentities("$resultado->confl_deadlock"); ?></b><br>
+                            Aproveitamento do cache: <b><?php print htmlentities("$resultado->hit_ratio"); ?></b><br>
+                            Tamanho da base de dados: <b><?php print htmlentities("$resultado->tamanho_base_de_dados_formatado"); ?></b><br>
+
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
+        </div>
+
+        <?php
+    }
+
 
 
 
@@ -264,6 +427,50 @@ class Estatistica extends DbConection
                            WHERE A.usuario = '$dbUsuario'
                              AND schemaname || '-' || relname = '$dbTabela'
                              AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
+                        ");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        return $result[0];
+
+    }
+
+    public static function informacoesBaseDeDados($usuario, $tabela)
+    {
+        self::openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+
+        $dbres = pg_query(" SELECT datid,
+                                   datname,
+                                   numbackends,
+                                   xact_commit,
+                                   xact_rollback,
+                                   blks_read,
+                                   blks_hit,
+                                   tup_returned,
+                                   tup_fetched,
+                                   tup_inserted,
+                                   tup_updated,
+                                   tup_deleted,
+                                   conflicts,
+                                   TO_CHAR(stats_reset::timestamp, 'dd/mm/yyyy hh24:mi')  as stats_reset,
+                                   confl_tablespace,
+                                   confl_lock,
+                                   confl_snapshot,
+                                   confl_bufferpin,
+                                   confl_deadlock,
+                                   hit_ratio,
+                                   tamanho_base_de_dados_formatado,
+                                   tamanho_base_de_dados,
+                                   TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
+                              FROM stat_base_de_dados A
+                           WHERE A.usuario = '$dbUsuario'
+                             AND data_coleta = (select obtemultimacoleta('stat_base_de_dados', '$dbUsuario'))
                         ");
 
         $result = array();
@@ -443,6 +650,71 @@ class Estatistica extends DbConection
                              AND schemaname || '-' || relname = '$dbTabela'
                              AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
                         GROUP BY 1,2,3,4,5,6");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        return $result[0];
+
+    }
+
+
+
+    public static function tamanhoTabelaComIndices($usuario, $tabela)
+    {
+        self::openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+        $dbTabela = pg_escape_string($tabela);
+        $dbres = pg_query(" SELECT tamanho_com_indices_formatado,
+                                   round((tamanho_com_indices::numeric * 100) / tamanho_base_de_dados::numeric,2) as percentual_tabela,
+                                   round(100 - ((tamanho_com_indices::numeric * 100) / tamanho_base_de_dados::numeric),2) as percentual_restante,
+                                   pg_size_pretty((tamanho_base_de_dados::numeric - tamanho_com_indices::numeric)) as tamanho_menos_tabela,
+                                   data_coleta,
+                                   relname,
+                                   TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
+                              FROM stat_tabela A
+                        INNER JOIN (SELECT usuario,
+                                           tamanho_base_de_dados_formatado,
+                                           tamanho_base_de_dados
+                                      FROM stat_base_de_dados
+                                     WHERE data_coleta = (select obtemultimacoleta('stat_base_de_dados', '$dbUsuario')::timestamp)) B
+                                ON A.usuario = B.usuario
+                           WHERE A.usuario = '$dbUsuario'
+                             AND schemaname || '-' || relname = '$dbTabela'
+                             AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
+                        GROUP BY 1,2,3,4,5,6");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        return $result[0];
+
+    }
+
+
+
+    public static function aproveitamentoCacheTabela($usuario, $tabela)
+    {
+        self::openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+        $dbTabela = pg_escape_string($tabela);
+        $dbres = pg_query("SELECT round(coalesce(aproveitamento_cache::numeric,0.0),2) as aproveitamento_cache_formatado,
+                                  round(100 - coalesce(aproveitamento_cache::numeric,0.0),2) as nao_aproveitamento_cache_formatado,
+                                  data_coleta,
+                                  relname,
+                                  TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
+                              FROM stat_tabela A
+                             WHERE A.usuario = '$dbUsuario'
+                               AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
+                               AND schemaname || '-' || relname = '$dbTabela'");
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )

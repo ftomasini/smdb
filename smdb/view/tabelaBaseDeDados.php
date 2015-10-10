@@ -43,7 +43,8 @@
                 Estatistica::indicesNaoUtilizadosChart($usuario, $tab);
                 Estatistica::indicesUtilizadosChart($usuario, $tab);
                 Estatistica::tamanhoTabelaChart($usuario, $tab);
-
+                Estatistica::tamanhoTabelaComIndicesChart($usuario, $tab);
+                Estatistica::aproveitamentoCacheTabelaChart($usuario, $tab);
             }
             ?>
 
