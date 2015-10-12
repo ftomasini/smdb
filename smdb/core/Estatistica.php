@@ -352,7 +352,7 @@ class Estatistica extends DbConection
                             <b>Transações</b><br>
                             <br>
                             Número de backends actualmente ligado a este banco de dados: <b><?php print htmlentities("$resultado->numbackends"); ?></b><br>
-                            Número de transações neste banco de dados que foram cometidos: <b><?php print htmlentities("$resultado->xact_commit"); ?></b><br>
+                            Número de transações neste banco de dados que foram efetuadas com sucesso: <b><?php print htmlentities("$resultado->xact_commit"); ?></b><br>
                             Número de transações neste banco de dados que foram revertidas: <b><?php print htmlentities("$resultado->xact_rollback"); ?></b><br>
                             Número de blocos de disco lidos neste banco de dados: <b><?php print htmlentities("$resultado->blks_read"); ?></b><br>
                             Número de vezes que os blocos de disco já foram encontrados no cache de buffer: <b><?php print htmlentities("$resultado->blks_hit"); ?></b><br>
@@ -604,6 +604,39 @@ class Estatistica extends DbConection
         return $result;
 
     }
+
+    public function bloqueios($usuario)
+    {
+        $this->openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+        $dbres = pg_query("SELECT usuario,
+                                  data_coleta,
+                                  TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada,
+                                  datname,
+                                  usename,
+                                  pid,
+                                  priority,
+                                  memoria,
+                                  state,
+                                  query,
+                                  mode,
+                                  'PROC_SMBD_COLETOR' as identificador,
+                                  inicio_processo,
+                                  tempo_execussao
+                             FROM stat_bloqueios
+                            WHERE data_coleta = (select obtemultimacoleta('stat_bloqueios', '$dbUsuario'))");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        return $result;
+
+    }
+
 
     public function tabelas($usuario)
     {
