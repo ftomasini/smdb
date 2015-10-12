@@ -24,7 +24,9 @@ class PainelController extends Controller
     public function publica()
     {
         //&func="+id1+"&usuario="+id2+"&tabela="+id3,
-        $metodo = "Estatistica::{$_GET['func']}('{$_GET['usuario']}', '{$_GET['tabela']}');";
+
+        $tabela =  isset($_GET['tabela']) ? $_GET['tabela'] : '';
+        $metodo = "Estatistica::{$_GET['func']}('{$_GET['usuario']}', '{$tabela}');";
 
 
         $metodos = $this->painelModel->selectAll($_GET['usuario']);

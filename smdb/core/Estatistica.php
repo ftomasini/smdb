@@ -57,6 +57,127 @@ class Estatistica extends DbConection
 
     }
 
+    public static function loadChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::loadAvg($usuario, false);
+
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Load avarege no dia atual."); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "loadChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = "" id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("loadChart".$tabela);?>"</div>
+        <?php
+
+
+        if (is_array($resultado))
+        {
+            $morris = new MorrisLineCharts("loadChart");
+            $morris->xkey = array( 'date' );
+            $morris->resize = true;
+            $morris->hideHover = 'auto';
+            $morris->ykeys = array( 'value' );
+            $morris->labels = array( 'Load average' );
+
+
+            foreach ($resultado as $r)
+            {
+                $data['date'] = $r->data_coleta;
+                $data['value'] = $r->load_ultimo_minuto;
+                $ret[] = $data;
+            }
+            $morris->data = $ret;
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado[0]->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
+
+
+    public static function memoriaChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::memoria($usuario, false);
+
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Memória no dia atual."); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "memoriaChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = "" id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("memoriaChart".$tabela);?>"</div>
+        <?php
+
+
+        if (is_array($resultado))
+        {
+            $morris = new MorrisLineCharts("memoriaChart");
+            $morris->xkey = array( 'date' );
+            $morris->resize = true;
+            $morris->hideHover = 'auto';
+            $morris->ykeys = array( 'value' );
+            $morris->labels = array( 'Memória usada' );
+
+
+            foreach ($resultado as $r)
+            {
+                $data['date'] = $r->data_coleta;
+                $data['value'] = $r->memused;
+                $ret[] = $data;
+            }
+            $morris->data = $ret;
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado[0]->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
+
 
     public static function tamanhoTabelaComIndicesChart($usuario =null, $tabela= null)
     {
@@ -808,7 +929,9 @@ class Estatistica extends DbConection
         }
         $dbUsuario = pg_escape_string($usuario);
 
-        $dbres = pg_query(" SELECT format_memused,
+        $dbres = pg_query(" SELECT data_coleta,
+                                   memused,
+                                   format_memused,
                                    format_memfree,
                                    format_memshared,
                                    format_membuffers,

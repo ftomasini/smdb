@@ -11,7 +11,7 @@
 
         <!-- Main content -->
         <section class="content">
-                <a href="handlerProcessos.php?op=show" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></a>
+                <a href="handlerBloqueios.php?op=show" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></a>
           <div class="box">
 
 
@@ -91,50 +91,6 @@
                       <?php endforeach; ?>
                       </tbody>
                   </table>
-
-                  <b>Modos de bloqueio</b>
-                  <br>
-                  <br>
-                  ACCESS SHARE<br>
-                  O comando SELECT obtém um bloqueio neste modo nas tabelas referenciadas. Em geral, qualquer comando que apenas lê a tabela e não modificá-la obtém este modo de bloqueio.
-                  <br>
-                  <br>
-                  ROW SHARE<br>
-                  O comando UPDATE, DELETE, e INSERT adquirir este modo de bloqueio na tabela de destino (além de ACCESS SHARE bloqueios em outras tabelas referenciadas). Em geral, este modo de bloqueio é obtido por qualquer comando que modifica os dados em uma tabela.
-                  <br>
-                  <br>
-                  ROW EXCLUSIVE<br>
-                  Conflicts with the SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, and ACCESS EXCLUSIVE lock modes.
-
-                  The commands UPDATE, DELETE, and INSERT acquire this lock mode on the target table (in addition to ACCESS SHARE locks on any other referenced tables). In general, this lock mode will be acquired by any command that modifies data in a table.
-                  <br>
-                  <br>
-                  SHARE UPDATE EXCLUSIVE<br>
-                  Conflicts with the SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, and ACCESS EXCLUSIVE lock modes. This mode protects a table against concurrent schema changes and VACUUM runs.
-
-                  Acquired by VACUUM (without FULL), ANALYZE, CREATE INDEX CONCURRENTLY, and some forms of ALTER TABLE.
-                  <br>
-                  <br>
-                  SHARE<br>
-                  Conflicts with the ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE ROW EXCLUSIVE, EXCLUSIVE, and ACCESS EXCLUSIVE lock modes. This mode protects a table against concurrent data changes.
-
-                  Acquired by CREATE INDEX (without CONCURRENTLY).
-                  <br>
-                  <br>
-                  SHARE ROW EXCLUSIVE<br>
-                  Conflicts with the ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, and ACCESS EXCLUSIVE lock modes. This mode protects a table against concurrent data changes, and is self-exclusive so that only one session can hold it at a time.
-
-                  This lock mode is not automatically acquired by any PostgreSQL command.
-                  <br>
-                  <br>
-                  EXCLUSIVE<br>
-                  Conflicts with the ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, and ACCESS EXCLUSIVE lock modes. This mode allows only concurrent ACCESS SHARE locks, i.e., only reads from the table can proceed in parallel with a transaction holding this lock mode.
-
-                  This lock mode is not automatically acquired on tables by any PostgreSQL command.
-                  <br>
-                  <br>
-                  ACCESS EXCLUSIVE<br>
-                  Conflicts with locks of all modes (ACCESS SHARE, ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, and ACCESS EXCLUSIVE). This mode guarantees that the holder is the only transaction accessing the table in any way.
 
 
 

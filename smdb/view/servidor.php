@@ -4,8 +4,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Estatísticas
-            <small>Base de dados</small>
+            Servidor
+            <small>Dados do servidor</small>
         </h1>
 
             <!-- Main content -->
@@ -17,7 +17,8 @@
 
                 if(isset($usuario))
                 {
-                    Estatistica::informacoesBaseDeDadosChart($usuario, '');
+                    Estatistica::loadChart($usuario, '');
+                    Estatistica::memoriaChart($usuario, '');
                 }
                 ?>
 
@@ -33,16 +34,16 @@
             $( "p" ).click(function()
             {
                 alert('Adicionado ao painel principal!');
+
                 //alert("Envia recado");
                 var id1 = $(this).attr('rel1');
                 var id2 = $(this).attr('rel2');
-                var id3 = $(this).attr('rel3');
 
                 $.ajax({
                     //Tipo de envio POST ou GET
                     type: "POST",
                     //Caminho do arquivo que processa o carrinho
-                    url: "handlerPainel.php?op=publica&func="+id1+"&usuario="+id2+"&tabela="+id3,
+                    url: "handlerPainel.php?op=publica&func="+id1+"&usuario="+id2,
                     //Arquvios passados via POST neste caso, segue o mesmo modelo para GET
                     //Se der tudo ok no envio...
                     success: function(resposta){

@@ -60,6 +60,8 @@
             //$("#btn_publicar1").click(function()
             $( "p" ).click(function()
             {
+                alert('Adicionado ao painel principal!');
+
                 //alert("Envia recado");
                 var id1 = $(this).attr('rel1');
                 var id2 = $(this).attr('rel2');
@@ -78,6 +80,5 @@
 
             });
             });
-
         </script>
 <?php include 'principalFim.php' ?>
