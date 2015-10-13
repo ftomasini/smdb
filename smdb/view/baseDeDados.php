@@ -22,6 +22,7 @@
                     Estatistica::tamanhoBaseDeDadosComIndicesChart($usuario, '');
                     Estatistica::aproveitamentoCacheBaseDeDadosChart($usuario, '');
                     Estatistica::tabelasComPoucaPesquisaPorIndicesChart($usuario, '');
+                    Estatistica::consultasLentasChart($usuario, '');
                 }
                 ?>
 

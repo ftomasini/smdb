@@ -8,6 +8,10 @@
             <small>Estatísticas que estão sendo monitoradas</small>
         </h1>
 
+        <div class="callout callout-warning">
+            <h4>Atenção!</h4>
+            <p>Para adicionar ou remover gráficos do painel clique em <b>Inserir/remover do painel</b> no canto direito do gráfico desejado.</p>
+        </div>
             <!-- Main content -->
             <section class="content">
                 <?php
