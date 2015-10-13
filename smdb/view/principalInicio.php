@@ -165,6 +165,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="handlerProcessos.php?op=show"><i class="fa fa-laptop"></i> <span>Processos em execução</span></a></li>
                 <li><a href="handlerBloqueios.php?op=show"><i class="glyphicon glyphicon-ban-circle"></i> <span>Bloqueios</span></a></li>
                 <li><a href="handlerServidor.php?op=show"><i class="glyphicon glyphicon-scale"></i> <span>Servidor</span></a></li>
+                <!--
+
                 <li><a href="handlerConsultas.php?op=show"><i class="glyphicon glyphicon-search"></i> <span>Consultas</span></a></li>
 
                 <!--

@@ -18,6 +18,10 @@
                 if(isset($usuario))
                 {
                     Estatistica::informacoesBaseDeDadosChart($usuario, '');
+                    Estatistica::tamanhoBaseDeDadosChart($usuario, '');
+                    Estatistica::tamanhoBaseDeDadosComIndicesChart($usuario, '');
+                    Estatistica::aproveitamentoCacheBaseDeDadosChart($usuario, '');
+                    Estatistica::tabelasComPoucaPesquisaPorIndicesChart($usuario, '');
                 }
                 ?>
 

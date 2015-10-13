@@ -6,6 +6,139 @@ class Estatistica extends DbConection
     {
     }
 
+
+    public static function tamanhoBaseDeDadosChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::tamanhoTabela($usuario, null, true);
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Tamanho de cada tabela da base de dados. "); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "tamanhoBaseDeDadosChart" rel2 = <?php print htmlentities($usuario); ?> rel3 ="" id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("tamanhoBaseDeDadosChart".$tabela);?>"</div>
+        <?php
+        if (is_array($resultado))
+        {
+            $morris = new MorrisDonutCharts("tamanhoBaseDeDadosChart".$tabela);
+            $morris->resize = true;
+
+            $outros = 0;
+            foreach ($resultado as $r)
+            {
+                if ( $r->percentual_tabela > 1)
+                {
+                $data['label'] = $r->tamanho_formatado . ' - '. $r->relname;
+                $data['value'] = $r->percentual_tabela;
+                $ret[] = $data;
+                }
+                else
+                {
+                    $outros = $outros + $r->percentual_tabela;
+                }
+            }
+            $data['label'] = 'Outras tabelas';
+            $data['value'] = $outros;
+            $ret[] = $data;
+
+            $morris->data = $ret;
+
+            $morris->formatter = 'REPLACE';
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado[0]->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
+
+    public static function tamanhoBaseDeDadosComIndicesChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::tamanhoTabelaComIndices($usuario, null, true);
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Tamanho de cada tabela + indices da base de dados. "); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "tamanhoBaseDeDadosComIndicesChart" rel2 = <?php print htmlentities($usuario); ?> rel3 ="" id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("tamanhoBaseDeDadosComIndicesChart".$tabela);?>"</div>
+        <?php
+        if (is_array($resultado))
+        {
+            $morris = new MorrisDonutCharts("tamanhoBaseDeDadosComIndicesChart".$tabela);
+            $morris->resize = true;
+
+            $outros = 0;
+            foreach ($resultado as $r)
+            {
+                if ( $r->percentual_tabela > 1)
+                {
+                $data['label'] = $r->tamanho_com_indices_formatado . ' - '. $r->relname;
+                $data['value'] = $r->percentual_tabela;
+                $ret[] = $data;
+                }
+                else
+                {
+                    $outros = $outros + $r->percentual_tabela;
+                }
+            }
+            $data['label'] = 'Outras tabelas';
+            $data['value'] = $outros;
+            $ret[] = $data;
+
+            $morris->data = $ret;
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado[0]->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
+
+
+
     public static function tamanhoTabelaChart($usuario =null, $tabela= null)
     {
         $resultado = self::tamanhoTabela($usuario, $tabela);
@@ -230,6 +363,56 @@ class Estatistica extends DbConection
 
     }
 
+public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabela= null)
+    {
+        $resultado = self::aproveitamentoCacheBaseDeDados($usuario);
+        ?>
+        <!-- DONUT CHART -->
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Percentual de dados encontrados em cache em todas as consultas efetuadas na base de dados. "); ?></h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "aproveitamentoCacheBaseDeDadosChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = "" id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div id="<?php print htmlentities("aproveitamentoCacheBaseDeDadosChart".$tabela);?>"</div>
+        <?php
+        if (is_object($resultado))
+        {
+            $morris = new MorrisDonutCharts("aproveitamentoCacheBaseDeDadosChart".$tabela);
+            $morris->resize = true;
+            $morris->data = array(
+                array('label' => 'Encontrados em cache', 'value' => $resultado->aproveitamento_cache_formatado),
+                array('label' => 'Não encontrados em cache', 'value' => $resultado->nao_aproveitamento_cache_formatado),
+
+            );
+
+            $morris->formatter = 'REPLACE';
+
+            echo $morris->toJavascript();
+            ?>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <?php print htmlentities('Não foram encontrados dados para esse relatório' . '') ?>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        </div>
+            <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
+        </div>
+        <?php
+
+    }
 
 
     public static function aproveitamentoCacheTabelaChart($usuario =null, $tabela= null)
@@ -340,6 +523,53 @@ class Estatistica extends DbConection
             <?php echo "Data da coleta " .  $resultado->data_coleta_formatada; ?>
         </div>
 
+        <?php
+    }
+
+
+    public static function tabelasComPoucaPesquisaPorIndicesChart($usuario, $tabela)
+    {
+        $resultado = self::tabelasComPoucaPesquisaPorIndices($usuario);
+        ?>
+
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php print htmlentities("Índices não utilizados da tabela " . $tabela . ". "); ?></h3>
+
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <p class="btn btn-box-tool" type="button" data-widget="" rel1 = "tabelasComPoucaPesquisaPorIndicesChart" rel2 = <?php print htmlentities($usuario); ?> rel3 = "" id="btn_publicar1"><i class="fa fa-dashboard"></i> Inserir / Remover do painel</p>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div class="row">
+                    <div class="col-xs-12 table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Nome da tabela</th>
+                                <th>Percentual de pesquisas que utilizaram índice</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php foreach ($resultado as $linha): ?>
+                                <tr>
+                                    <td><font size="2" color="red"><?php print htmlentities($linha->tabela); ?></font></td>
+                                    <td><font size="2" color="red"><?php print htmlentities($linha->idx_percent . '%'); ?></font></td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.col
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+            <?php echo "Data da coleta " .  (isset($resultado[0]) ? $resultado[0]->data_coleta_formatada : '-'); ?>
+        </div>
         <?php
     }
 
@@ -780,12 +1010,19 @@ class Estatistica extends DbConection
     }
 
 
-    public static function tamanhoTabela($usuario, $tabela)
+    public static function tamanhoTabela($usuario, $tabela, $todas = false)
     {
         self::openDb();
 
+
         $dbUsuario = pg_escape_string($usuario);
         $dbTabela = pg_escape_string($tabela);
+        $parte = "AND schemaname || '-' || relname = '$dbTabela'";
+        if ($todas)
+        {
+            $parte = "AND 1=1";
+        }
+
         $dbres = pg_query(" SELECT tamanho_formatado,
                                    round((tamanho::numeric * 100) / tamanho_base_de_dados::numeric,2) as percentual_tabela,
                                    round(100 - ((tamanho::numeric * 100) / tamanho_base_de_dados::numeric),2) as percentual_restante,
@@ -801,7 +1038,7 @@ class Estatistica extends DbConection
                                      WHERE data_coleta = (select obtemultimacoleta('stat_base_de_dados', '$dbUsuario')::timestamp)) B
                                 ON A.usuario = B.usuario
                            WHERE A.usuario = '$dbUsuario'
-                             AND schemaname || '-' || relname = '$dbTabela'
+                             {$parte}
                              AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
                         GROUP BY 1,2,3,4,5,6");
 
@@ -811,15 +1048,26 @@ class Estatistica extends DbConection
             $result[] = $obj;
         }
 
-        return $result[0];
-
+        $return = $result;
+        if (!$todas)
+        {
+            $return = $result[0];
+        }
+        return $return;
     }
 
 
 
-    public static function tamanhoTabelaComIndices($usuario, $tabela)
+    public static function tamanhoTabelaComIndices($usuario, $tabela, $todas = false)
     {
         self::openDb();
+        $dbUsuario = pg_escape_string($usuario);
+        $dbTabela = pg_escape_string($tabela);
+        $parte = "AND schemaname || '-' || relname = '$dbTabela'";
+        if ($todas)
+        {
+            $parte = "AND 1=1";
+        }
 
         $dbUsuario = pg_escape_string($usuario);
         $dbTabela = pg_escape_string($tabela);
@@ -838,9 +1086,37 @@ class Estatistica extends DbConection
                                      WHERE data_coleta = (select obtemultimacoleta('stat_base_de_dados', '$dbUsuario')::timestamp)) B
                                 ON A.usuario = B.usuario
                            WHERE A.usuario = '$dbUsuario'
-                             AND schemaname || '-' || relname = '$dbTabela'
+                             {$parte}
                              AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
                         GROUP BY 1,2,3,4,5,6");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+        $return = $result;
+        if (!$todas)
+        {
+            $return = $result[0];
+        }
+        return $return;
+
+    }
+
+    public static function aproveitamentoCacheBaseDeDados($usuario)
+    {
+        self::openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+        $dbres = pg_query("SELECT round(coalesce(hit_ratio::numeric,0.0),2) as aproveitamento_cache_formatado,
+                                  round(100 - coalesce(hit_ratio::numeric,0.0),2) as nao_aproveitamento_cache_formatado,
+                                  data_coleta,
+                                  TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
+                              FROM stat_base_de_dados A
+                             WHERE A.usuario = '$dbUsuario'
+                               AND data_coleta = (select obtemultimacoleta('stat_base_de_dados', '$dbUsuario'))
+                               ");
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )
@@ -959,6 +1235,37 @@ class Estatistica extends DbConection
 
         return $return;
     }
+
+
+
+    public static function tabelasComPoucaPesquisaPorIndices($usuario)
+    {
+        self::openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+
+        $dbres = pg_query(" SELECT data_coleta,
+                                   schemaname || '-' || relname as tabela,
+                                   round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) as idx_percent,
+                                   TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
+                              FROM public.stat_tabela
+                              WHERE usuario = '$dbUsuario'
+                                AND seq_scan::numeric + idx_scan::numeric > 0
+                              AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
+                              ORDER BY idx_percent, seq_scan DESC");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        $return = $result;
+
+        return $return;
+    }
+
+
 
 
 }
