@@ -1320,11 +1320,12 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                                   data_coleta,
                                   TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada,
                                   query,
-                                  tempo_execussao
+                                  max(tempo_execussao) as tempo_execussao
                              FROM stat_processos
                             WHERE usuario = '$dbUsuario'
                               AND data_coleta::date = (select obtemultimacoleta('stat_processos', '$dbUsuario'))::date
-                              ORDER BY tempo_execussao asc LIMIT 50 ");
+                         GROUP BY 1,2,3,4
+                              ORDER BY tempo_execussao desc LIMIT 50 ");
 
 
         $result = array();
