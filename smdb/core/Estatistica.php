@@ -1325,6 +1325,7 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                             WHERE usuario = '$dbUsuario'
                               AND data_coleta::date = (select obtemultimacoleta('stat_processos', '$dbUsuario'))::date
                               ORDER BY tempo_execussao LIMIT 50 ");
+                              
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )
