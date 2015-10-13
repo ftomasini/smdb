@@ -8,10 +8,13 @@
             <small>Estatísticas que estão sendo monitoradas</small>
         </h1>
 
-        <div class="callout callout-warning">
-            <h4>Atenção!</h4>
-            <p>Para adicionar ou remover gráficos do painel clique em <b>Inserir/remover do painel</b> no canto direito do gráfico desejado.</p>
+        <div class="pad margin no-print">
+            <div class="callout callout-info" style="margin-bottom: 0!important;">
+                <h4><i class="fa fa-info"></i> Atenção!</h4>
+                Para adicionar ou remover gráficos do painel clique em <b>Inserir/remover do painel</b> no canto direito do gráfico desejado.
+            </div>
         </div>
+
             <!-- Main content -->
             <section class="content">
                 <?php

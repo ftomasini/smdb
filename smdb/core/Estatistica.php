@@ -113,6 +113,7 @@ class Estatistica extends DbConection
             $ret[] = $data;
 
             $morris->data = $ret;
+            $morris->formatter = 'REPLACE';
 
             echo $morris->toJavascript();
             ?>
@@ -583,7 +584,7 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
 
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title"><?php print htmlentities("Tabelas com poucas pesquisas que utilizaram índice." . $tabela . ". "); ?></h3>
+                <h3 class="box-title"><?php print htmlentities("Tabelas com poucas consultas que utilizaram índice."); ?></h3>
 
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>

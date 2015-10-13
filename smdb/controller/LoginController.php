@@ -75,6 +75,9 @@ class LoginController extends Controller
 				$_SESSION['UsuarioID'] = $usuario;//$resultado['id'];
 				$_SESSION['UsuarioNome'] = $usuario;//$resultado['nome'];
                 }
+
+				$this->insereAlarmisticas($usuario);
+
                     $this->redirect('view/handler/handlerPainel.php?op=show');
 			}
 		}
@@ -97,6 +100,19 @@ class LoginController extends Controller
 
 		return $return;
 	}
+
+	private function insereAlarmisticas($usuario)
+	{
+		//melhor horario para fazer manutencao
+		//indices nao utilizados
+
+
+		//uso do cache
+
+		return $return;
+	}
+
+
 
 }
 ?>
