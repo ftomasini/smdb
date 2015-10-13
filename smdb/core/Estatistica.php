@@ -1312,8 +1312,6 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
     public static function consultasLentas($usuario)
     {
         self::openDb();
-
-
         $dbUsuario = pg_escape_string($usuario);
 
         $dbres = pg_query("SELECT usuario,
@@ -1326,7 +1324,6 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                               AND data_coleta::date = (select obtemultimacoleta('stat_processos', '$dbUsuario'))::date
                          GROUP BY 1,2,3,4
                               ORDER BY tempo_execussao desc LIMIT 50 ");
-
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )
