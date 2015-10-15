@@ -1,0 +1,256 @@
+CREATE TABLE smbd_usuario (
+ usuario CHAR(10) NOT NULL,
+ cadastro TIMESTAMP(10) NOT NULL,
+ nome VARCHAR(50) NOT NULL,
+ senha VARCHAR(40),
+ email VARCHAR(100),
+ ativo BIT(10)
+);
+
+ALTER TABLE smbd_usuario ADD CONSTRAINT PK_smbd_usuario PRIMARY KEY (usuario,cadastro);
+
+
+CREATE TABLE stat_base_de_dados (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ datid CHAR(10),
+ datname CHAR(10),
+ numbackends CHAR(10),
+ xact_rollback CHAR(10),
+ blks_read CHAR(10),
+ blks_hit CHAR(10),
+ tup_returned CHAR(10),
+ tup_fetched CHAR(10),
+ tup_updated CHAR(10),
+ tup_deleted CHAR(10),
+ stats_reset CHAR(10),
+ confl_tablespace CHAR(10),
+ confl_lock CHAR(10),
+ confl_snapshot CHAR(10),
+ confl_bufferpin CHAR(10),
+ confl_deadlock CHAR(10),
+ hit_ratio CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_base_de_dados ADD CONSTRAINT PK_stat_base_de_dados PRIMARY KEY (id);
+
+
+CREATE TABLE stat_bloqueios (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ cadastro TIMESTAMP(10) NOT NULL,
+ data_coleta CHAR(10),
+ datname CHAR(10),
+ usename CHAR(10),
+ pid CHAR(10),
+ priority CHAR(10),
+ memoria CHAR(10),
+ state CHAR(10),
+ query CHAR(10),
+ inicioprocesso CHAR(10),
+ horacoleta CHAR(10),
+ tempoexecussao CHAR(10),
+ mode CHAR(10),
+ granted CHAR(10)
+);
+
+ALTER TABLE stat_bloqueios ADD CONSTRAINT PK_stat_bloqueios PRIMARY KEY (id,usuario,cadastro);
+
+
+CREATE TABLE stat_configuracao_base_de_dados (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ name CHAR(10),
+ setting CHAR(10),
+ unit CHAR(10),
+ category CHAR(10),
+ short_desc CHAR(10),
+ extra_desc CHAR(10),
+ context CHAR(10),
+ vartype CHAR(10),
+ source CHAR(10),
+ min_val CHAR(10),
+ max_val CHAR(10),
+ enumvals CHAR(10),
+ boot_val CHAR(10),
+ reset_val CHAR(10),
+ sourcefile CHAR(10),
+ sourceline CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_configuracao_base_de_dados ADD CONSTRAINT PK_stat_configuracao_base_de_dados PRIMARY KEY (id);
+
+
+CREATE TABLE stat_indice (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ relid CHAR(10),
+ indexrelid CHAR(10),
+ schemaname CHAR(10),
+ relname CHAR(10),
+ indexrelname CHAR(10),
+ idx_scan CHAR(10),
+ idx_tup_read CHAR(10),
+ idx_tup_fetch CHAR(10),
+ utilizado CHAR(10),
+ tamanho CHAR(10),
+ tamanho_com_indices CHAR(10),
+ tamanho_formatado CHAR(10),
+ tamanho_com_indices_formatado CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_indice ADD CONSTRAINT PK_stat_indice PRIMARY KEY (id);
+
+
+CREATE TABLE stat_loadavg (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ load_ultimo_minuto CHAR(10),
+ load_ultimos_5_minutos CHAR(10),
+ load_ultimos_15_minutos CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_loadavg ADD CONSTRAINT PK_stat_loadavg PRIMARY KEY (id);
+
+
+CREATE TABLE stat_memoria (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta TIMESTAMP(10),
+ format_memused CHAR(10),
+ format_memfree CHAR(10),
+ format_memshared CHAR(10),
+ format_membuffers CHAR(10),
+ format_memcached CHAR(10),
+ format_swapused CHAR(10),
+ format_swapfree CHAR(10),
+ format_swapcached CHAR(10),
+ memused CHAR(10),
+ memfree CHAR(10),
+ memshared CHAR(10),
+ membuffers CHAR(10),
+ memcached CHAR(10),
+ swapused CHAR(10),
+ swapfree CHAR(10),
+ swapcached CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_memoria ADD CONSTRAINT PK_stat_memoria PRIMARY KEY (id);
+
+
+CREATE TABLE stat_processos (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ datname CHAR(10),
+ usename CHAR(10),
+ pid CHAR(10),
+ priority CHAR(10),
+ memoria CHAR(10),
+ state CHAR(10),
+ query CHAR(10),
+ inicioprocesso CHAR(10),
+ horacoleta CHAR(10),
+ tempoexecussao CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_processos ADD CONSTRAINT PK_stat_processos PRIMARY KEY (id);
+
+
+CREATE TABLE stat_sgbd_versao (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ versao CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_sgbd_versao ADD CONSTRAINT PK_stat_sgbd_versao PRIMARY KEY (id);
+
+
+CREATE TABLE stat_tabela (
+ id CHAR(10) NOT NULL,
+ usuario CHAR(10) NOT NULL,
+ data_coleta CHAR(10),
+ relid CHAR(10),
+ schemaname CHAR(10),
+ relname CHAR(10),
+ seq_scan CHAR(10),
+ seq_tup_read CHAR(10),
+ idx_scan CHAR(10),
+ idx_tup_fetch CHAR(10),
+ n_tup_ins CHAR(10),
+ n_tup_upd CHAR(10),
+ n_tup_del CHAR(10),
+ n_tup_hot_upd CHAR(10),
+ n_live_tup CHAR(10),
+ n_dead_tup CHAR(10),
+ last_vacuum CHAR(10),
+ last_autovacuum CHAR(10),
+ last_analyze CHAR(10),
+ last_autoanalyze CHAR(10),
+ vacuum_count CHAR(10),
+ autovacuum_count CHAR(10),
+ analyze_count CHAR(10),
+ autoanalyze_count CHAR(10),
+ tamanho CHAR(10),
+ tamanho_com_indices CHAR(10),
+ tamanho_formatado CHAR(10),
+ tamanho_com_indices_formatado CHAR(10),
+ hit_ratio CHAR(10),
+ aproveitamento_cache CHAR(10),
+ cadastro TIMESTAMP(10)
+);
+
+ALTER TABLE stat_tabela ADD CONSTRAINT PK_stat_tabela PRIMARY KEY (id);
+
+
+CREATE TABLE smbd_principal (
+ usuario CHAR(10) NOT NULL,
+ cadastro TIMESTAMP(10) NOT NULL,
+ metodo CHAR(10)
+);
+
+ALTER TABLE smbd_principal ADD CONSTRAINT PK_smbd_principal PRIMARY KEY (usuario,cadastro);
+
+
+ALTER TABLE stat_base_de_dados ADD CONSTRAINT FK_stat_base_de_dados_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_bloqueios ADD CONSTRAINT FK_stat_bloqueios_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_configuracao_base_de_dados ADD CONSTRAINT FK_stat_configuracao_base_de_dados_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_indice ADD CONSTRAINT FK_stat_indice_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_loadavg ADD CONSTRAINT FK_stat_loadavg_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_memoria ADD CONSTRAINT FK_stat_memoria_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_processos ADD CONSTRAINT FK_stat_processos_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_sgbd_versao ADD CONSTRAINT FK_stat_sgbd_versao_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE stat_tabela ADD CONSTRAINT FK_stat_tabela_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
+ALTER TABLE smbd_principal ADD CONSTRAINT FK_smbd_principal_0 FOREIGN KEY (usuario,cadastro) REFERENCES smbd_usuario (usuario,cadastro);
+
+
