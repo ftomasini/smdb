@@ -4,7 +4,6 @@
  * para o SGBD PostgreSQL do
  * sistema SMBD (Sistema de monitoramento de base de dados)
  */
-
 $config = array(
     //base de dados
     'host' => 'localhost',

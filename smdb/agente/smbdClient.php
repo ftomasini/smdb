@@ -13,7 +13,6 @@ $config = array(
     'dbname' => 'avaliacao',
     //smbd
     'url' => 'http://smbd.com.br',
-    'sgbd > 9.2' => true,
     'usuario' => 'ftomasini.rs@gmail.com',
     //intervalo de coleta
     'tempo_coleta_sgbd_versao' => '200 minutes',
@@ -126,7 +125,6 @@ class smbdColetor
     /**
      * Obtém a versão da base de dados
      * que está sendo analisada
-     *
      *
      * @throws Exception
      */
