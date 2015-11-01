@@ -217,7 +217,7 @@ class Estatistica extends DbConection
             $morris->resize = true;
             $morris->hideHover = 'auto';
             $morris->ykeys = array( 'value' );
-            $morris->labels = array( 'Load average' );
+            $morris->labels = array( 'Load avarege' );
 
 
             foreach ($resultado as $r)
@@ -704,8 +704,6 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                                 <tr>
                                     <td><font size="2" color="blue"><?php print htmlentities($linha->indexrelname); ?></font></td>
                                     <td><font size="2" color="blue"><?php print htmlentities($linha->idx_scan); ?></font></td>
-                                    <td><font size="2" color="blue"><?php print htmlentities($linha->idx_tup_read); ?></font></td>
-                                    <td><font size="2" color="blue"><?php print htmlentities($linha->idx_tup_fetch); ?></font></td>
                                     <td><font size="2" color="blue"><?php print htmlentities($linha->tamanho_formatado); ?></font></td>
 
                                 </tr>
@@ -1291,9 +1289,12 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                                    TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
                               FROM public.stat_tabela
                               WHERE usuario = '$dbUsuario'
-                                AND seq_scan::numeric + idx_scan::numeric > 0
+                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) > 20.00
+                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) < 40.00
                               AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
-                              ORDER BY idx_percent, seq_scan DESC");
+                              AND SCHEMANAME = 'public'
+                              AND (seq_scan::numeric + idx_scan::numeric)::numeric >0
+                              ORDER BY idx_percent, seq_scan DESC limit 10");
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )
@@ -1319,7 +1320,7 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                             WHERE usuario = '$dbUsuario'
                               AND data_coleta::date = (select obtemultimacoleta('stat_processos', '$dbUsuario'))::date
                          GROUP BY 1,2
-                              ORDER BY tempo_execussao desc LIMIT 50 ");
+                              ORDER BY tempo_execussao desc LIMIT 5 ");
 
         $result = array();
         while ( ($obj = pg_fetch_object($dbres)) != NULL )

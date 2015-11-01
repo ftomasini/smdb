@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li>
                     <a href="handlerAlarmistica.php?op=show">
                         <i class="fa fa-envelope"></i> <span>Alarmísticas</span>
-                        <small class="label pull-right bg-yellow">12</small>
+                        <small class="label pull-right bg-yellow">1</small>
                     </a>
                 </li>
                 <li><a href="handlerProcessos.php?op=show"><i class="fa fa-laptop"></i> <span>Processos em execução</span></a></li>
