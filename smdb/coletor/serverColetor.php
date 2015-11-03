@@ -15,22 +15,21 @@ class serverColetor
     public function __construct()
     {
         $this->coletorModel = new ColetorModel();
-        //chdir('../');
-
-        //require_once 'core/Core.php';
     }
 
 
     /**
+     * Função genérica que recebe os dados enviados via webservices e
+     * salva na base de dados da aplicação.
      *
-     *
+     * @param $data
+     * @param null $tabela
+     * @return bool|string
      */
     public function ws($data, $tabela = null)
     {
         try
         {
-            //$f = fopen('/tmp/resultWs.log', 'a+');
-
             foreach ($data as $registro)
             {
                 $ok = true;
@@ -70,11 +69,6 @@ class serverColetor
                 {
                     $this->coletorModel->insert_stat_bloqueios($registro);
                 }
-
-                //foreach($registro as $coluna=>$valor)
-                //{
-                //    fwrite($f, "{$coluna}: {$valor} \n");
-                //}
             }
 
             $ok = true;
