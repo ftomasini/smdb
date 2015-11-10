@@ -10,7 +10,7 @@ $config = array(
     'port' => '5432',
     'user' => 'postgres',
     'password' => 'postgres',
-    'dbname' => 'avaliacao',
+    'dbname' => 'smbd',
     //smbd
     'url' => 'http://smbd.com.br',
     'usuario' => 'ftomasini.rs@gmail.com',
@@ -20,9 +20,9 @@ $config = array(
     'tempo_coleta_tabela' => '200 minutes',
     'tempo_coleta_indice' => '200 minutes',
     'tempo_coleta_configuracoes' => '200 minutes',
-    'tempo_coleta_loadavg' => '200 minutes',
-    'tempo_coleta_memoria' => '200 minutes',
-    'tempo_coleta_processos' => '1 minutes',
+    'tempo_coleta_loadavg' => '1 minute',
+    'tempo_coleta_memoria' => '1 minute',
+    'tempo_coleta_processos' => '1 minute',
     'tempo_coleta_bloqueios' => '200 minutes',
     );
 
