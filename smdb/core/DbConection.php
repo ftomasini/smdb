@@ -14,7 +14,7 @@ class DbConection
 
     public static function openDb()
     {
-        if (! $con = pg_connect("host=localhost port=5432 user=postgres password=postgres dbname=smbdoficial"))
+        if (! $con = pg_connect("host=localhost port=5432 user=postgres password=postgres dbname=smbd"))
         {
             throw new Exception("Connection to the database server failed!");
         }
