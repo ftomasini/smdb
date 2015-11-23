@@ -1,5 +1,5 @@
 <?php
-require_once 'core/Autoload.php';
+require_once '../core/Autoload.php';
 
 while(true)
 {
