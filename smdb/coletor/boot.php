@@ -11,12 +11,12 @@ while(true)
     {
         if(isset($usuario))
         {
-            Estatistica::informacoesBaseDeDadosChart($usuario, '');
-            Estatistica::tamanhoBaseDeDadosChart($usuario, '');
-            Estatistica::tamanhoBaseDeDadosComIndicesChart($usuario, '');
-            Estatistica::aproveitamentoCacheBaseDeDadosChart($usuario, '');
-            Estatistica::tabelasComPoucaPesquisaPorIndicesChart($usuario, '');
-            Estatistica::consultasLentasChart($usuario, '');
+            Estatistica::informacoesBaseDeDados($usuario, '');
+            Estatistica::tamanhoTabela($usuario, null, true);
+            Estatistica::tamanhoTabelaComIndices($usuario, null, true);
+            Estatistica::aproveitamentoCacheBaseDeDados($usuario, '');
+            Estatistica::tabelasComPoucaPesquisaPorIndices($usuario, '');
+            Estatistica::consultasLentas($usuario, '');
         }
     }
 }
