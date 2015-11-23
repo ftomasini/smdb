@@ -18,7 +18,10 @@ class AlarmisticaController extends Controller
 
     public function show()
     {
+        $estatisticas = new Estatistica();
+        $alarmistica = $estatisticas->alarmistica($_SESSION['UsuarioID']);
         include '../../view/alarmistica.php';
     }
+
 }
 ?>

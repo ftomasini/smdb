@@ -1196,6 +1196,44 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
     }
 
 
+    public static function alarmistica($usuario)
+    {
+        self::openDb();
+
+        $dbUsuario = pg_escape_string($usuario);
+
+        $dbres = pg_query("SELECT usuario,
+                                  x.data_coleta,
+                                  TO_CHAR(x.data_coleta, 'dd/mm/yyyy') as data_coleta_formatada,
+                                  TO_CHAR(x.data_coleta, 'hh24:mi') as hora_coleta_formatada,
+                                  load_ultimo_minuto,
+                                  load_ultimos_5_minutos,
+                                  load_ultimos_15_minutos
+                             FROM stat_loadavg x
+                       INNER JOIN ( SELECT MIN(load_ultimo_minuto) as load,
+                                           data_coleta::date
+                                      FROM stat_loadavg
+                                     WHERE usuario = '$dbUsuario'
+                                  GROUP BY 2
+                                  ORDER BY 2 DESC LIMIT 1) x1
+                               ON (x1.data_coleta = x.data_coleta::date
+                              AND x1.load = load_ultimo_minuto )
+                            WHERE usuario = '$dbUsuario' ");
+
+        $result = array();
+        while ( ($obj = pg_fetch_object($dbres)) != NULL )
+        {
+            $result[] = $obj;
+        }
+
+        $return = $result;
+        $return = $result[0];
+
+        return $return;
+    }
+
+
+
 
     public static function loadAvg($usuario, $somenteUltimo = false)
     {

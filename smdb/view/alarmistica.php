@@ -14,10 +14,8 @@
     <div class="box box-primary">
 
         <?php
-        if (isset($_GET['m']))
-        {
-            $this->showSuccess('titulo', "Alerta excluido com sucesso!");
-        }
+
+
         ?>
         <div class=" form">
             <form class="cmxform form-horizontal " method="POST" action="handlerUsuario.php?op=new">
@@ -32,8 +30,8 @@
                         </div>
                     </div>
                     <div class="box-body">
-                    De acordo com as informações coletadas no último dia (12/10/2015) o melhor horário para efetuar alguma manutenção é 00:42:29
-                    Load avarege: 0.2
+                    De acordo com as informações coletadas no dia (<?php echo $alarmistica->data_coleta_formatada; ?>) o melhor horário para efetuar alguma manutenção é <?php echo $alarmistica->hora_coleta_formatada; ?>
+                    Load avarege: <?php echo $alarmistica->load_ultimo_minuto; ?>
                     </div><!-- /.box-body -->
                     <div class="box-footer">
 
