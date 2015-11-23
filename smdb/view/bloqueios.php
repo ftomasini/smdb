@@ -82,7 +82,7 @@
                                             }
                                       ?>
                                   </font></td>
-                              <td><font size="2" color="#8b4513"><?php print htmlentities($bloqueio->mode); ?></font></td>
+                              <td><font size="2"><span class="label label-danger"><?php print htmlentities($bloqueio->mode); ?></span></font></td>
                               <td><font size="2" color="#8b4513"><?php print htmlentities($bloqueio->query); ?></font></td>
                               <!--<td><font size="2" color="#8b4513"><?php print htmlentities($bloqueio->inicio_processo); ?></font></td>-->
                               <td><font size="2" color="#8b4513"><?php print htmlentities($bloqueio->tempo_execussao); ?></font></td>
