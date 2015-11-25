@@ -1327,8 +1327,8 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                                    TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
                               FROM public.stat_tabela
                               WHERE usuario = '$dbUsuario'
-                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) > 0.00
-                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) < 100.00
+                                --AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) > 0.00
+                                --AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) < 100.00
                               AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
                               AND SCHEMANAME = 'public'
                               AND (seq_scan::numeric + idx_scan::numeric)::numeric >0
