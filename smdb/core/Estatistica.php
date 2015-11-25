@@ -506,7 +506,7 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                             Número de linhas inseridas: <b><?php print htmlentities("$resultado->n_tup_ins"); ?></b><br>
                             Número de linhas atualizadas: <b><?php print htmlentities("$resultado->n_tup_upd"); ?></b><br>
                             Número de linhas excluídas: <b><?php print htmlentities("$resultado->n_tup_del"); ?></b><br>
-                            Número de linhas vivas: <b><?php print htmlentities("$resultado->n_dead_tup"); ?></b><br>
+                            Número de linhas vivas: <b><?php print htmlentities("$resultado->n_live_tup"); ?></b><br>
                             Número de linhas mortas: <b><?php print htmlentities("$resultado->n_dead_tup"); ?></b><br>
                         </div>
                         <!-- /.col -->
@@ -1327,8 +1327,8 @@ public static function aproveitamentoCacheBaseDeDadosChart($usuario =null, $tabe
                                    TO_CHAR(data_coleta, 'dd/mm/yyyy hh24:mi') as data_coleta_formatada
                               FROM public.stat_tabela
                               WHERE usuario = '$dbUsuario'
-                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) > 20.00
-                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) < 40.00
+                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) > 0.00
+                                AND round(idx_scan::numeric / (seq_scan::numeric + idx_scan::numeric)::numeric * 100,2) < 100.00
                               AND data_coleta = (select obtemultimacoleta('stat_tabela', '$dbUsuario'))
                               AND SCHEMANAME = 'public'
                               AND (seq_scan::numeric + idx_scan::numeric)::numeric >0
